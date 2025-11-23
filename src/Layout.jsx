@@ -215,7 +215,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-20 lg:px-8 lg:pt-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8">
-              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg" alt="Blue Mountain" className="h-12" />
+              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg" alt="Blue Mountain" className="h-12 brightness-0 invert" />
               <p className="text-sm leading-6 text-gray-300">
                 Live Comfortably in the Home you Love
               </p>
