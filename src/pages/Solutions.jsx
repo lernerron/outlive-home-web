@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -14,7 +13,7 @@ import {
   CreditCard,
   Star
 } from "lucide-react";
-import EstimateForm from "../components/estimate/EstimateForm";
+import LeadCaptureForm from "../components/LeadCaptureForm";
 
 export default function SolutionsPage() {
   const [estimateFormOpen, setEstimateFormOpen] = useState(false);
@@ -315,10 +314,11 @@ export default function SolutionsPage() {
         </div>
       </div>
 
-      {/* Estimate Form Dialog */}
-      <EstimateForm 
+      {/* Lead Capture Form Dialog */}
+      <LeadCaptureForm 
         isOpen={estimateFormOpen}
         onClose={() => setEstimateFormOpen(false)}
+        source="solutions"
       />
     </div>
   );

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import {
   Zap,
   Award,
 } from "lucide-react";
-import EstimateForm from "../components/estimate/EstimateForm";
+import LeadCaptureForm from "../components/LeadCaptureForm";
 
 export default function WheelchairRampsPage() {
   const [estimateFormOpen, setEstimateFormOpen] = useState(false);
@@ -169,10 +168,11 @@ export default function WheelchairRampsPage() {
         </div>
       </div>
 
-      {/* Estimate Form Dialog */}
-      <EstimateForm 
+      {/* Lead Capture Form Dialog */}
+      <LeadCaptureForm 
         isOpen={estimateFormOpen}
         onClose={() => setEstimateFormOpen(false)}
+        source="wheelchair-ramps"
       />
     </div>
   );
