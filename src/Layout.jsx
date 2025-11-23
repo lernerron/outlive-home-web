@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -63,7 +62,7 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex lg:flex-1">
             <Link to={createPageUrl('Home')} className="-m-1.5 p-1.5">
               <span className="sr-only">Blue Mountain</span>
-              <Logo className="h-10 sm:h-12 w-auto" />
+              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg" alt="Blue Mountain" className="h-10 sm:h-12 w-auto" />
             </Link>
           </div>
           <div className="flex lg:hidden">
@@ -143,7 +142,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="flex items-center justify-between">
                 <Link to={createPageUrl('Home')} className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                   <span className="sr-only">Blue Mountain</span>
-                  <Logo className="h-8 w-auto" />
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg" alt="Blue Mountain" className="h-8 w-auto" />
                 </Link>
                 <button
                   type="button"
@@ -216,7 +215,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-20 lg:px-8 lg:pt-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-8">
-              <Logo className="h-12" />
+              <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg" alt="Blue Mountain" className="h-12" />
               <p className="text-sm leading-6 text-gray-300">
                 Live Comfortably in the Home you Love
               </p>
