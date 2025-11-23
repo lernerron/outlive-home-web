@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -44,7 +43,7 @@ export default function HomePage() {
 
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="flex justify-center mb-10">
               <Logo className="h-24" />
@@ -70,7 +69,7 @@ export default function HomePage() {
       </div>
 
       {/* Our Expertise Section */}
-      <div className="bg-gray-50 py-20 sm:py-24">
+      <div className="bg-gray-50 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
