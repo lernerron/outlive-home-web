@@ -38,11 +38,11 @@ export default function Layout({ children, currentPageName }) {
     {
       name: 'Solutions',
       submenu: [
-        { name: 'Home Elevators', href: createPageUrl('Homelifts') },
+        { name: 'Bathrooms', href: createPageUrl('BathroomSafety') },
+        { name: 'Elevators', href: createPageUrl('Homelifts') },
         { name: 'Stair Lifts', href: createPageUrl('StairLift') },
         { name: 'Ramps', href: createPageUrl('Ramps') },
-        { name: 'Safe Showers', href: createPageUrl('SafeShowers') },
-        // { name: 'Grab Bars & Handrails', href: createPageUrl('GrabBarsHandrails') },
+        { name: 'Wheelchair Lifts', href: createPageUrl('WheelchairRamps') },
       ]
     },
     {
