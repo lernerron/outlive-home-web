@@ -44,11 +44,11 @@ export default function HomePage() {
         </div>
 
         <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-7xl text-center px-6 lg:px-8">
             <div className="flex justify-center mb-10">
               <Logo className="h-24" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live comfortably in the home you love
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live Comfortably in the Home You Love
 
             </h1>
             <p className="text-gray-600 my-10 text-base sm:text-lg leading-8">
