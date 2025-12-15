@@ -44,7 +44,7 @@ export default function HomePage() {
         </div>
 
         <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-7xl text-center px-6 lg:px-8">
             <div className="flex justify-center mb-10">
               <Logo className="h-24" />
             </div>
