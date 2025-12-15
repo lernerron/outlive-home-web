@@ -48,7 +48,7 @@ export default function HomePage() {
             <div className="flex justify-center mb-10">
               <Logo className="h-24" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live Comfortably in the Home You Love
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live comfortably in the home you love
 
             </h1>
             <p className="text-gray-600 my-10 text-base sm:text-lg leading-8">
