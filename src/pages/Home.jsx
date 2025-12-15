@@ -51,7 +51,7 @@ export default function HomePage() {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live Comfortably in the Home You Love
 
             </h1>
-            <p className="text-gray-600 my-10 text-base sm:text-lg leading-8">Elegant solutions designed to enhance safety and comfort for every room in your home.
+            <p className="text-gray-600 my-10 text-base sm:text-lg leading-8">
 
             </p>
             <div className="mt-12 flex items-center justify-center gap-x-6">
