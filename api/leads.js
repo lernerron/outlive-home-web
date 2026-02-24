@@ -21,6 +21,29 @@ const validateLead = (lead) => {
   return null;
 };
 
+const buildWebhookHeaders = (webhookSecret) => {
+  const authHeaderName = process.env.LEADS_WEBHOOK_AUTH_HEADER || 'Authorization';
+  const authToken = process.env.LEADS_WEBHOOK_AUTH_TOKEN || '';
+  const hasAuthToken = Boolean(authToken.trim());
+
+  return {
+    'Content-Type': 'application/json',
+    ...(webhookSecret ? { 'X-Webhook-Secret': webhookSecret } : {}),
+    ...(hasAuthToken ? { [authHeaderName]: authToken } : {})
+  };
+};
+
+const transformWebhookPayload = (leadPayload) => {
+  const mode = (process.env.LEADS_WEBHOOK_PAYLOAD_MODE || 'raw').toLowerCase();
+  if (mode === 'event') {
+    return {
+      event: 'lead.created',
+      data: leadPayload
+    };
+  }
+  return leadPayload;
+};
+
 export default async function handler(req, res) {
   const corsOrigin = process.env.LEADS_CORS_ORIGIN || '*';
 
@@ -49,11 +72,8 @@ export default async function handler(req, res) {
     try {
       const webhookResponse = await fetch(webhookUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(webhookSecret ? { 'X-Webhook-Secret': webhookSecret } : {})
-        },
-        body: JSON.stringify(leadPayload)
+        headers: buildWebhookHeaders(webhookSecret),
+        body: JSON.stringify(transformWebhookPayload(leadPayload))
       });
 
       if (!webhookResponse.ok) {
