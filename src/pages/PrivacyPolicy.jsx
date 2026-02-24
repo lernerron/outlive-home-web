@@ -1,5 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { Shield, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
 export default function PrivacyPolicyPage() {

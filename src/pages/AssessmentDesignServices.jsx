@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
@@ -12,7 +12,6 @@ import {
   MapPin, 
   Eye, 
   Scale,
-  CheckCircle2,
   Users,
   Target,
   Award

@@ -1,17 +1,11 @@
 
-import React, { useState } from "react";
-import { createPageUrl } from "@/utils";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   ArrowRight,
   CheckCircle2,
-  Shield,
-  Clock,
   Ruler,
-  Droplets,
-  Heart,
-  Award,
   AreaChart,
   Hammer,
   CreditCard } from

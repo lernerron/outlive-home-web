@@ -1,30 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
-  BadgeCheck,
   Heart,
-  Home as HomeIcon,
-  Key,
-  Phone,
-  Shield,
-  ShowerHead,
-  Footprints,
   ArrowRight,
   Stethoscope,
   Stars,
-  Hammer,
-  Network,
-  Workflow,
-  UserCheck,
-  Link2,
-  Quote } from
+  Hammer } from
 "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm"; // Changed from EstimateForm
 import Logo from "../components/Logo";
-import { AreaChart, Ruler, CreditCard, Star } from 'lucide-react';
+import { AreaChart, Ruler } from 'lucide-react';
 
 export default function HomePage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false); // Changed state variable name

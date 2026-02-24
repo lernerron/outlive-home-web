@@ -2,19 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
+
+
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import {
-  Phone,
-  Mail,
   Menu,
   X,
   ChevronDown
 } from 'lucide-react';
-import Logo from './components/Logo';
 import { cn } from "@/lib/utils";
 import LeadCaptureForm from './components/LeadCaptureForm';
 

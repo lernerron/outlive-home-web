@@ -1,24 +1,16 @@
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   ArrowRight,
-  CheckCircle2,
   Download,
-  Star,
-  Plus,
-  Minus,
-  ArrowDownCircle,
   ChevronRight,
   ShieldCheck,
   Settings2, // Shaftless Rail System
   MousePointerClick, // Easy to Operate
   Wind, // Smooth and Quiet Ride
-  Users, // Wheelchair friendly
-  ThumbsUp, // Built-in safety (generic)
+  Users, // Built-in safety (generic)
   Clock,
   Sparkles
 } from "lucide-react";
@@ -28,14 +20,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
+
 import LeadCaptureForm from "../components/LeadCaptureForm";
 
 const featureImages = {

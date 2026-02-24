@@ -1,8 +1,8 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Scaling, Construction, Info, Award, Leaf } from "lucide-react";
+import { ArrowRight, Construction, Leaf } from "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
 
 export default function RampsPage() {

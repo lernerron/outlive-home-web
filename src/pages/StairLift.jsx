@@ -1,7 +1,5 @@
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   CheckCircle2,
@@ -11,8 +9,7 @@ import {
   Wrench,
   Battery,
   Zap,
-  Award,
-  ThumbsUp } from
+  Award } from
 "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
 
