@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Loader2, CheckCircle2, AlertCircle, MapPin } from 'lucide-react';
-import { Lead } from '@/entities/Lead';
+import { submitLead } from '@/api/leads';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -178,7 +178,7 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
       // Clean phone number for storage
       const cleanPhone = formData.phone.replace(/\D/g, '');
       
-      await Lead.create({
+      await submitLead({
         ...formData,
         phone: cleanPhone,
         source
