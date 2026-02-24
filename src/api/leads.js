@@ -1,4 +1,4 @@
-const LEADS_API_URL = import.meta.env.VITE_LEADS_API_URL;
+const LEADS_API_URL = import.meta.env.VITE_LEADS_API_URL || '/api/leads';
 const LOCAL_QUEUE_KEY = 'pending_leads';
 
 const queueLeadLocally = (payload) => {
@@ -15,18 +15,24 @@ const queueLeadLocally = (payload) => {
 };
 
 export async function submitLead(payload) {
-  if (!LEADS_API_URL) {
+  let response;
+  try {
+    response = await fetch(LEADS_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch (error) {
+    // If the endpoint is unavailable (e.g. local dev without API), queue locally.
     queueLeadLocally(payload);
-    return { queued: true };
+    return {
+      queued: true,
+      reason: 'network_error',
+      message: error?.message || 'Lead endpoint unavailable'
+    };
   }
-
-  const response = await fetch(LEADS_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  });
 
   if (!response.ok) {
     const text = await response.text();
