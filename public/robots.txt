@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://localhost:5173/sitemap.xml
+# TODO: replace with production domain
+Sitemap: https://REPLACE_WITH_PRODUCTION_DOMAIN/sitemap.xml

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:5173/</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/BathroomSafety</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/BathroomSafety</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/Homelifts</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/Homelifts</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/StairLift</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/StairLift</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/Ramps</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/Ramps</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/WheelchairRamps</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/WheelchairRamps</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/AssessmentDesignServices</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/AssessmentDesignServices</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/FinancingOptions</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/FinancingOptions</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/AboutUs</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/AboutUs</loc>
   </url>
   <url>
-    <loc>http://localhost:5173/PrivacyPolicy</loc>
+    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/PrivacyPolicy</loc>
   </url>
 </urlset>
