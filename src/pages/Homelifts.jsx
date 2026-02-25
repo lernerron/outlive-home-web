@@ -91,17 +91,6 @@ export default function HomeliftsPage() {
     }
   ];
 
-  const comparisonData = [
-    { feature: "Primary Use", trioAlta: "Wheelchair & Multiple Passengers", duoClassic: "Single/Dual Passenger", duoVista: "Single/Dual Passenger, Aesthetic Focus", duoAlta: "Single/Dual Passenger" },
-    { feature: "Max Passengers", trioAlta: "3", duoClassic: "2", duoVista: "2", duoAlta: "2" },
-    { feature: "Wheelchair Friendly", trioAlta: true, duoClassic: false, duoVista: false, duoAlta: false },
-    { feature: "Footprint Size", trioAlta: "< 13.5 sq ft", duoClassic: "< 6 sq ft", duoVista: "Compact", duoAlta: "< 7 sq ft" },
-    { feature: "Power Source", trioAlta: "Dedicated Circuit", duoClassic: "Standard Outlet", duoVista: "Dedicated Circuit", duoAlta: "Dedicated Circuit" },
-    { feature: "Key Highlight", trioAlta: "Spacious & Luxurious", duoClassic: "No-fuss, Zero Maintenance", duoVista: "Natural Light, Blends In", duoAlta: "Space-Saving Solution" },
-    { feature: "Relative Price", trioAlta: "$$$", duoClassic: "$", duoVista: "$$", duoAlta: "$$" },
-  ];
-
-
   const faqs = [
     {
       question: "How much does a home elevator cost?",
