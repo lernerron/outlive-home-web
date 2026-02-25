@@ -11,6 +11,7 @@ import {
   CreditCard } from
 "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
+import { ASSET_URLS } from "@/lib/assets";
 
 export default function BathroomSafetyPage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
@@ -56,7 +57,7 @@ export default function BathroomSafetyPage() {
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
               <div className="relative">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/152233e36_kohlrChoreograph2.png"
+                  src={ASSET_URLS.bathroomSafety.hero}
                   alt="Elegant accessible shower with marble-style walls"
                   className="w-full max-w-md lg:max-w-lg rounded-xl bg-white/5 shadow-2xl ring-1 ring-gray-400/10" />
 
@@ -95,7 +96,7 @@ export default function BathroomSafetyPage() {
             </div>
             <div className="relative h-full">
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/317fd6_AccessibleBathroom.jpg"
+                src={ASSET_URLS.bathroomSafety.benefits}
                 alt="Modern accessible bathroom with roll-in shower"
                 className="h-full w-full object-cover rounded-xl shadow-xl ring-1 ring-gray-400/10" />
 
@@ -157,7 +158,7 @@ export default function BathroomSafetyPage() {
             <div className="grid grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-2">
               <div className="lg:order-last">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/523f79347_KohlerWalk-inTub1.jpg"
+                  src={ASSET_URLS.bathroomSafety.walkInTub}
                   alt="A comfortable walk-in tub with a side door"
                   className="rounded-xl shadow-lg" />
 
@@ -220,7 +221,7 @@ export default function BathroomSafetyPage() {
               </div>
               <div>
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/4cffb52aa_Wet-Roombyhttps-motionspotcouk.jpg"
+                  src={ASSET_URLS.bathroomSafety.wetRoom}
                   alt="Spacious and modern wet room"
                   className="rounded-xl shadow-lg" />
 
@@ -233,7 +234,7 @@ export default function BathroomSafetyPage() {
             <div className="grid grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-2">
               <div className="lg:order-last">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/531adeaa4_SafteyAccessibilityUpdatesCredit-LameBlackLamb.jpg"
+                  src={ASSET_URLS.bathroomSafety.safetyUpdates}
                   alt="Bathroom with multiple accessibility features including grab bars and shower seat"
                   className="rounded-xl shadow-lg" />
 

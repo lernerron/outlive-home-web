@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,6 +15,7 @@ import { Loader2, CheckCircle2, AlertCircle, MapPin } from 'lucide-react';
 import { submitLead } from '@/api/leads';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { trackEvent } from '@/lib/analytics';
 
 const COMMON_EMAIL_DOMAINS = [
   'gmail.com',
@@ -26,6 +27,10 @@ const COMMON_EMAIL_DOMAINS = [
 ];
 
 export default function LeadCaptureForm({ isOpen, onClose, source = 'website' }) {
+  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim();
+  const isTurnstileEnabled = Boolean(turnstileSiteKey);
+  const turnstileRef = useRef(null);
+  const turnstileWidgetId = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     zipCode: '',
@@ -39,6 +44,8 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailSuggestion, setEmailSuggestion] = useState('');
   const [locationPermissionRequested, setLocationPermissionRequested] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileError, setTurnstileError] = useState('');
   // The consentChecked state is no longer needed
 
   // Auto-detect location for zip code
@@ -64,6 +71,54 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
       }
     }
   }, [isOpen, locationPermissionRequested, formData.zipCode]);
+
+  useEffect(() => {
+    if (!isOpen || !isTurnstileEnabled || !turnstileRef.current) {
+      return;
+    }
+
+    const renderWidget = () => {
+      if (!window.turnstile || !turnstileRef.current) return;
+      if (turnstileWidgetId.current !== null) return;
+      turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: turnstileSiteKey,
+        callback: (token) => {
+          setTurnstileToken(token);
+          setTurnstileError('');
+        },
+        'expired-callback': () => {
+          setTurnstileToken('');
+        },
+        'error-callback': () => {
+          setTurnstileError('Turnstile verification failed. Please try again.');
+          setTurnstileToken('');
+        }
+      });
+    };
+
+    const existingScript = document.querySelector(
+      'script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]'
+    );
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.onload = renderWidget;
+      document.head.appendChild(script);
+    } else {
+      renderWidget();
+    }
+
+    return () => {
+      if (window.turnstile && turnstileWidgetId.current !== null) {
+        window.turnstile.remove(turnstileWidgetId.current);
+        turnstileWidgetId.current = null;
+      }
+      setTurnstileToken('');
+      setTurnstileError('');
+    };
+  }, [isOpen, isTurnstileEnabled, turnstileSiteKey]);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -170,6 +225,11 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
       return;
     }
 
+    if (isTurnstileEnabled && !turnstileToken) {
+      setTurnstileError('Please complete the Turnstile check before submitting.');
+      return;
+    }
+
     setIsSubmitting(true);
     setErrors({});
 
@@ -180,10 +240,12 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
       await submitLead({
         ...formData,
         phone: cleanPhone,
-        source
+        source,
+        turnstileToken: isTurnstileEnabled ? turnstileToken : undefined
       });
 
       setIsSubmitted(true);
+      trackEvent('lead_submit', { source });
     } catch (error) {
       console.error('Error submitting lead:', error);
       setErrors({ submit: 'Something went wrong. Please try again.' });
@@ -199,6 +261,8 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
     setIsSubmitted(false);
     setEmailSuggestion('');
     setLocationPermissionRequested(false);
+    setTurnstileToken('');
+    setTurnstileError('');
     // setConsentChecked(false); // This state is no longer needed
     onClose();
   };
@@ -396,6 +460,14 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
           )}
 
           <div className="space-y-4 pt-2">
+            {isTurnstileEnabled && (
+              <div className="space-y-2">
+                <div ref={turnstileRef} />
+                {turnstileError && (
+                  <p className="text-sm text-red-600">{turnstileError}</p>
+                )}
+              </div>
+            )}
             <Button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 py-3 text-lg font-semibold"

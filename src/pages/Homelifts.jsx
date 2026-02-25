@@ -20,21 +20,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ASSET_URLS } from "@/lib/assets";
 
 
 import LeadCaptureForm from "../components/LeadCaptureForm";
 
 const featureImages = {
-  quickInstallation: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8126875ed_quick-installation-feature.png",
-  shaftlessRail: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/113a19b8d_Theinvisibleelevator.png",
-  easyToOperate: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68aa89b09_Smallfootprint.png", // Updated image URL
-  smoothRide: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/dce936dd7_smooth-and-quiet-ride-feature.png",
-  safetyFeatures: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/8b4dc3927_built-in-safety-feature.png",
-  wheelchairFriendly: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/31d7d12e7_Wheelchairfriendlyoption2.png",
+  quickInstallation: ASSET_URLS.homelifts.features.quickInstallation,
+  shaftlessRail: ASSET_URLS.homelifts.features.shaftlessRail,
+  easyToOperate: ASSET_URLS.homelifts.features.easyToOperate,
+  smoothRide: ASSET_URLS.homelifts.features.smoothRide,
+  safetyFeatures: ASSET_URLS.homelifts.features.safetyFeatures,
+  wheelchairFriendly: ASSET_URLS.homelifts.features.wheelchairFriendly,
 };
-
-const stiltzLiftGenericImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9b3d8c_StiltzLift.png";
-
 
 export default function HomeliftsPage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
@@ -81,15 +79,15 @@ export default function HomeliftsPage() {
   const modelDetails = [
     {
       title: "Stiltz Duo Alta Homelift", // Kept for alt text and key
-      logoUrl: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9a12b85ce_duo-alta-logo.png",
+      logoUrl: ASSET_URLS.homelifts.models.duoAlta.logo,
       description: "The Duo Alta Home Elevator is the perfect alternative to a stair lift or conventional hydraulic elevator. Capable of taking two passengers between floors in under 30 seconds, the Duo Alta offers freedom and flexibility that cannot be matched.",
-      productImage: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9b4f43dec_DuoAltaPhoto.png",
+      productImage: ASSET_URLS.homelifts.models.duoAlta.product,
     },
     {
       title: "Stiltz Trio Alta Homelift", // Kept for alt text and key
-      logoUrl: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/20a8f01ea_trio-alta-logo.png",
+      logoUrl: ASSET_URLS.homelifts.models.trioAlta.logo,
       description: "The Trio Alta has an innovative design that can comfortably accommodate a wheelchair, while remaining compact and pleasant to the eye.",
-      productImage: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/c08f4c98f_TrioAltaPhoto.png",
+      productImage: ASSET_URLS.homelifts.models.trioAlta.product,
     }
   ];
 
@@ -157,7 +155,7 @@ export default function HomeliftsPage() {
           <div className="mx-auto mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
             <div className="relative overflow-hidden rounded-2xl shadow-2xl max-w-lg mx-auto">
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/f75325b4e_Homeliftherosectionphoto1.png"
+                src={ASSET_URLS.homelifts.hero}
                 alt="Stiltz Homelift in modern home showing both floors with woman using the elevator"
                 className="w-full h-auto object-contain bg-gray-900/5"
               />
@@ -236,7 +234,7 @@ export default function HomeliftsPage() {
                     <Button 
                       variant="outline" 
                       className="flex-1 flex items-center justify-center py-3 text-base border-blue-600 text-blue-600 hover:bg-blue-50"
-                      onClick={() => window.open("https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/81a88eabb_Stiltz-US-Duo-Trio-Alta-Brochure-11-01-23-WEB.pdf", "_blank")}
+                      onClick={() => window.open(ASSET_URLS.homelifts.brochurePdf, "_blank")}
                     >
                       <Download className="mr-2 h-5 w-5" />
                       Download Brochure

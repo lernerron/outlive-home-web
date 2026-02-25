@@ -13,6 +13,12 @@
 - Lead capture no longer depends on Base44 entity imports.
 - Serverless endpoint added at `api/leads.js`.
 - Admin queue page added at `/admin/leads-queue`.
+- Static `base44-prod` asset URLs are centralized in `src/lib/assets.js`.
+- Asset source is now overrideable via `VITE_ASSET_BASE_URL`.
+- Local asset staging added in `public/assets` with a download script.
+- Turnstile + optional analytics hooks added (env-gated).
+- Local lead persistence option added for dev (`LEADS_STORE_LOCAL`).
+- Basic SEO metadata + `robots.txt` + `sitemap.xml` added.
 
 ## What Was Implemented
 1. Auth decoupling from Base44
@@ -43,31 +49,34 @@
 - Updated package name + index title + README base name.
 
 ## Remaining Risks / Not Fully Independent Yet
-- Hardcoded media URLs still reference `.../storage/.../base44-prod/...` bucket paths.
-- If those assets are not in infrastructure you fully control, production may break after Base44 cancellation.
+- Local assets are not yet present in `public/assets` in this environment (download requires network).
+- `sitemap.xml`/`robots.txt` are set to `http://localhost:5173` and need update for production domain.
 
 ## Priority Next Steps (ordered)
-1. Asset ownership migration
-- Inventory all hardcoded asset URLs.
-- Move assets to your own storage bucket/domain.
-- Replace URLs via centralized constants/map.
+1. Asset ownership migration (local)
+- Run `./scripts/download-assets.sh` with network access or manually place assets in `public/assets`.
+- Validate every page renders assets correctly from `/assets`.
 
-2. Wire real lead destination
+2. Wire real lead destination (when ready)
 - Set deployment env vars for webhook destination.
 - Verify lead delivery end-to-end from form + admin queue retry.
 
-3. Add anti-spam + analytics
-- Add Turnstile/hCaptcha to lead form.
-- Track lead submit conversion events.
+3. Analytics + anti-spam (configured)
+- Set Turnstile keys to enforce verification.
+- Configure Plausible or Google Analytics IDs to enable tracking.
 
-4. SEO/production hardening
-- Metadata, OG tags, sitemap/robots, error monitoring.
+4. SEO/production hardening (defaults added)
+- Update `sitemap.xml` + `robots.txt` URLs for the production domain.
 
 ## Env Vars to Configure
 Frontend:
 - `VITE_AUTH_REQUIRED`
 - `VITE_AUTH_LOGIN_URL`
 - `VITE_LEADS_API_URL` (optional; defaults to `/api/leads`)
+- `VITE_ASSET_BASE_URL` (defaults to `/assets`)
+- `VITE_TURNSTILE_SITE_KEY` (optional)
+- `VITE_PLAUSIBLE_DOMAIN` (optional)
+- `VITE_GA_MEASUREMENT_ID` (optional)
 
 Server (Vercel function envs):
 - `LEADS_WEBHOOK_URL`
@@ -76,6 +85,9 @@ Server (Vercel function envs):
 - `LEADS_WEBHOOK_AUTH_TOKEN` (optional)
 - `LEADS_WEBHOOK_PAYLOAD_MODE` (`raw` or `event`)
 - `LEADS_CORS_ORIGIN` (optional)
+- `LEADS_STORE_LOCAL` (optional; dev only)
+- `LEADS_LOCAL_PATH` (optional; dev only)
+- `TURNSTILE_SECRET_KEY` (optional)
 
 ## Useful Local Commands
 ```bash

@@ -7,6 +7,33 @@ npm install
 npm run dev
 ```
 
+## Static Asset Base URL
+
+- Static marketing assets are centralized in `src/lib/assets.js`.
+- Local default is `/assets` served from `public/assets`.
+- Set `VITE_ASSET_BASE_URL` to point assets to your own bucket/domain when ready.
+- Use `./scripts/download-assets.sh` to pull the legacy assets into `public/assets`.
+
+## Local Lead Storage (Dev)
+
+- Set `LEADS_STORE_LOCAL=true` to persist leads to a local JSON file.
+- Default path is `./data/leads.json` and is only recommended for local dev.
+
+## Turnstile (Anti-spam)
+
+- Set `VITE_TURNSTILE_SITE_KEY` (client) and `TURNSTILE_SECRET_KEY` (server).
+- If set, form submissions require Turnstile verification.
+
+## Analytics (Optional)
+
+- Plausible: set `VITE_PLAUSIBLE_DOMAIN`.
+- Google Analytics: set `VITE_GA_MEASUREMENT_ID`.
+
+## SEO Defaults
+
+- `public/robots.txt` and `public/sitemap.xml` are set to `http://localhost:5173`.
+- Update those URLs before production deployment.
+
 ## Lead Submission Flow
 
 - Frontend posts to `VITE_LEADS_API_URL` when set.

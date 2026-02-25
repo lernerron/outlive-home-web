@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost:5173/</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/BathroomSafety</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/Homelifts</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/StairLift</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/Ramps</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/WheelchairRamps</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/AssessmentDesignServices</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/FinancingOptions</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/AboutUs</loc>
+  </url>
+  <url>
+    <loc>http://localhost:5173/PrivacyPolicy</loc>
+  </url>
+</urlset>

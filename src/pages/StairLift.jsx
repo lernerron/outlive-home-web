@@ -12,6 +12,7 @@ import {
   Award } from
 "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
+import { ASSET_URLS } from "@/lib/assets";
 
 export default function StairLiftPage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
@@ -89,7 +90,7 @@ export default function StairLiftPage() {
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
               <div className="relative">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/2914844b0_BrunoWebsitePhoto.jpg"
+                  src={ASSET_URLS.stairLifts.hero}
                   alt="Modern Stairlift Installation by Bruno"
                   className="w-full max-w-md lg:max-w-lg rounded-xl bg-white/5 shadow-2xl ring-1 ring-gray-400/10" />
                 <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>

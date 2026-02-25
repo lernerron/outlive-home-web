@@ -13,6 +13,7 @@ import {
 import LeadCaptureForm from "../components/LeadCaptureForm"; // Changed from EstimateForm
 import Logo from "../components/Logo";
 import { AreaChart, Ruler } from 'lucide-react';
+import { ASSET_URLS } from "@/lib/assets";
 
 export default function HomePage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false); // Changed state variable name
@@ -73,37 +74,37 @@ export default function HomePage() {
             {
               title: "Bathroom Safety",
               description: "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/317fd6_AccessibleBathroom.jpg",
+              image: ASSET_URLS.home.bathroomSafety,
               link: createPageUrl('BathroomSafety')
             },
             {
               title: "Home Elevators",
               description: "Safe, reliable, and elegant home elevators for seamless floor-to-floor access.",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9b3d8c_StiltzLift.png",
+              image: ASSET_URLS.home.homeElevators,
               link: createPageUrl('Homelifts')
             },
             {
               title: "Stair Lifts",
               description: "Glide up and down your stairs with a gentle, smooth ride from start to finish",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/f49588477_Bruno-Elan-SRE-3050-Stairlift-Bottom-Of-Stairs-2.png",
+              image: ASSET_URLS.home.stairLifts,
               link: createPageUrl('StairLift') // Changed 'StairLifts' to 'StairLift' as per outline
             },
             {
               title: "Ramps",
               description: "In-and-out of the House Solutions for easy home entry.",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/673f08be2_Ramps.jpg",
+              image: ASSET_URLS.home.ramps,
               link: createPageUrl('Ramps')
             },
             {
               title: "Grab Bars & Handrails",
               description: "Enhance safety and mobility throughout your home with stylish, sturdy grab bars and handrails designed to blend with your decor.",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/10bde6_Handrails2.jpg",
+              image: ASSET_URLS.home.grabBarsHandrails,
               link: createPageUrl('GrabBarsHandrails')
             },
             {
               title: "Wheelchair Lifts",
               description: "Provide safe, reliable access between floors for wheelchair users with our vertical platform lifts.",
-              image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/4239901fe_WheelchairLift-harmar-highlanderii-l-bap-lpr.jpg"
+              image: ASSET_URLS.home.wheelchairLifts
             }].
             map((product, index) =>
             <Card key={index} className="overflow-hidden group relative flex flex-col">

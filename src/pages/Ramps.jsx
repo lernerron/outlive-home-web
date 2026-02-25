@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Construction, Leaf } from "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
+import { ASSET_URLS } from "@/lib/assets";
 
 export default function RampsPage() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function RampsPage() {
   {
     title: "Modular Ramps",
     description: "Modular Ramps are designed to address the accessibility needs of the residential market. The EZ-ACCESS Modular Ramp system is an excellent choice when accessibility needs extend beyond the scope of a portable ramp. The efficient design uses less hardware.",
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/673f08be2_Ramps.jpg"
+    image: ASSET_URLS.ramps.modular
   },
   {
     title: "Custom Ramps",

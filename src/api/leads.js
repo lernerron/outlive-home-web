@@ -20,8 +20,9 @@ const setPendingLeads = (leads) => {
 export const queueLeadLocally = (payload) => {
   try {
     const current = getPendingLeads();
+    const { turnstileToken: _turnstileToken, ...sanitizedPayload } = payload || {};
     current.push({
-      ...payload,
+      ...sanitizedPayload,
       queuedAt: new Date().toISOString()
     });
     setPendingLeads(current);
