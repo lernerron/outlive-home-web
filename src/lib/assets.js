@@ -1,11 +1,9 @@
 const DEFAULT_ASSET_BASE_URL = "/assets";
-const LEGACY_ASSET_BASE_URL =
-  "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public";
 
 const configuredAssetBaseUrl = import.meta.env.VITE_ASSET_BASE_URL?.trim();
 
 export const ASSET_BASE_URL = (
-  configuredAssetBaseUrl || DEFAULT_ASSET_BASE_URL || LEGACY_ASSET_BASE_URL
+  configuredAssetBaseUrl || DEFAULT_ASSET_BASE_URL
 ).replace(/\/+$/, "");
 
 const buildAssetUrl = (path) => `${ASSET_BASE_URL}/${path.replace(/^\/+/, "")}`;
