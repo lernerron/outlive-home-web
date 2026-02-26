@@ -11,6 +11,8 @@ const buildAssetUrl = (path) => `${ASSET_BASE_URL}/${path.replace(/^\/+/, "")}`;
 export const ASSET_URLS = {
   brand: {
     logo: buildAssetUrl("688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg"),
+    heroBackground: buildAssetUrl("hero-bathroom.png"),
+    showerGlassEnclosure: buildAssetUrl("shower-glass-enclosure.jpg"),
   },
   home: {
     bathroomSafety: buildAssetUrl("317fd6_AccessibleBathroom.jpg"),

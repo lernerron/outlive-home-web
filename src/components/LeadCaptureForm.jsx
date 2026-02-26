@@ -483,7 +483,7 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
               )}
             </Button>
             <p className="text-xs text-gray-500 text-center leading-relaxed">
-              By clicking "Submit", I am providing my e-signature and agree that Blue Mountain may call or text me using an automatic dialing system to arrange a convenient phone or in-home estimate. I understand consent is not required as a condition of purchase, and that I may revoke my consent at any time. Msg / data rates may apply. See our <Link to={createPageUrl('PrivacyPolicy')} className="underline hover:text-blue-700">Privacy Policy</Link>.
+              By clicking "Submit", I am providing my e-signature and agree that Outlive Homes may call or text me using an automatic dialing system to arrange a convenient phone or in-home estimate. I understand consent is not required as a condition of purchase, and that I may revoke my consent at any time. Msg / data rates may apply. See our <Link to={createPageUrl('PrivacyPolicy')} className="underline hover:text-blue-700">Privacy Policy</Link>.
             </p>
           </div>
         </form>

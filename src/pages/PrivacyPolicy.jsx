@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
         {/* Introduction */}
         <div className="mb-16">
           <p className="text-lg leading-8 text-gray-700">
-            This Privacy Policy describes how <strong className="text-blue-900">Blue Mountain Associates</strong> ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") collects, uses, shares, and protects your personal information when you visit or use our website, <strong>www.bmliving.com</strong> (the "<strong>Site</strong>"). This Privacy Policy is intended to comply with applicable privacy laws, including the <strong>California Consumer Privacy Act (CCPA)</strong> and the <strong>California Privacy Rights Act (CPRA)</strong>.
+            This Privacy Policy describes how <strong className="text-blue-900">Outlive Homes</strong> ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") collects, uses, shares, and protects your personal information when you visit or use our website, <strong>www.outlivehomes.com</strong> (the "<strong>Site</strong>"). This Privacy Policy is intended to comply with applicable privacy laws, including the <strong>California Consumer Privacy Act (CCPA)</strong> and the <strong>California Privacy Rights Act (CPRA)</strong>.
           </p>
         </div>
 
@@ -194,8 +194,8 @@ export default function PrivacyPolicyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-blue-600" />
-                <a href="mailto:privacy@bluemountainassociates.com" className="text-blue-600 hover:text-blue-800 font-medium">
-                  privacy@bluemountainassociates.com
+                <a href="mailto:privacy@outlivehomes.com" className="text-blue-600 hover:text-blue-800 font-medium">
+                  privacy@outlivehomes.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -301,8 +301,8 @@ export default function PrivacyPolicyPage() {
               <Mail className="h-6 w-6 text-blue-200 mt-1" />
               <div>
                 <p className="font-medium mb-1">Email</p>
-                <a href="mailto:privacy@bmliving.com" className="text-blue-200 hover:text-white transition-colors">
-                  privacy@bmliving.com
+                <a href="mailto:privacy@outlivehomes.com" className="text-blue-200 hover:text-white transition-colors">
+                  privacy@outlivehomes.com
                 </a>
               </div>
             </div>
@@ -322,9 +322,9 @@ export default function PrivacyPolicyPage() {
               <div>
                 <p className="font-medium mb-1">Address</p>
                 <div className="text-blue-200 text-sm leading-5">
-                  Blue Mountain Associates<br/>
-                  1234 Privacy Way, Suite 100<br/>
-                  Los Angeles, CA 90001
+                  Outlive Homes<br/>
+                  Miami, FL<br/>
+                  South Florida
                 </div>
               </div>
             </div>

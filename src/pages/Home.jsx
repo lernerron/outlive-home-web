@@ -1,153 +1,160 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
-  Heart,
   ArrowRight,
   Stethoscope,
   Stars,
-  Hammer } from
-"lucide-react";
-import LeadCaptureForm from "../components/LeadCaptureForm"; // Changed from EstimateForm
-import Logo from "../components/Logo";
-import { AreaChart, Ruler } from 'lucide-react';
+  Hammer,
+  Star,
+  Quote,
+  Shield,
+  Clock,
+  CheckCircle2,
+} from "lucide-react";
+import LeadCaptureForm from "../components/LeadCaptureForm";
+import InlineLeadForm from "../components/InlineLeadForm";
 import { ASSET_URLS } from "@/lib/assets";
 
 export default function HomePage() {
-  const [leadFormOpen, setLeadFormOpen] = useState(false); // Changed state variable name
+  const [leadFormOpen, setLeadFormOpen] = useState(false);
 
   return (
     <div className="bg-white">
-      {/* Hero section */}
-      <div className="relative isolate">
-        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-blue-600 to-blue-400 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            style={{
-              clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
-            }} />
+      {/* Hero section — full-bleed background */}
+      <div className="relative isolate min-h-[85vh] flex items-center">
+        <div
+          className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${ASSET_URLS.brand.heroBackground})` }}
+        />
+        <div className="absolute inset-0 -z-10 bg-black/45" />
 
-        </div>
-
-        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-          <div className="mx-auto max-w-7xl text-center px-6 lg:px-8">
-            <div className="flex justify-center mb-10">
-              <Logo className="h-24" />
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Live comfortably in the home you love
-
-            </h1>
-            <p className="text-gray-600 my-10 text-base sm:text-lg leading-8">
-
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-blue-300 mb-4">
+              South Florida's Home Accessibility Experts
             </p>
-            <div className="mt-12 flex items-center justify-center gap-x-6">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl leading-tight">
+              The Art and Science of
+              <br />
+              Outliving at Home
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-200 max-w-xl">
+              We design elegant, clinical-grade accessibility solutions that let
+              you stay safely and comfortably in the home you love.
+            </p>
+            <div className="mt-10 flex items-center gap-x-6">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700"
-                onClick={() => setLeadFormOpen(true)} // Updated onClick handler
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={() => setLeadFormOpen(true)}
               >
                 Get a Free Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
+              <a
+                href="#solutions"
+                className="text-sm font-semibold text-white hover:text-gray-200 flex items-center"
+              >
+                See Our Solutions <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
       </div>
 
+      {/* 5-Star Social Proof Badge */}
+      <div className="bg-gray-900">
+        <div className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
+          <div className="flex items-center justify-center gap-2">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-orange-500 text-orange-500" />
+              ))}
+            </div>
+            <span className="text-white font-semibold text-sm sm:text-base">
+              5-Star Rated Service
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Our Expertise Section */}
-      <div className="bg-gray-50 py-12 sm:py-16">
+      <div id="solutions" className="bg-gray-50 py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
               Our Expertise
             </h2>
-            <p className="text-lg text-gray-600 mb-12 sm:mb-16">We design solutions that fit your home and your personal needs.
-
+            <p className="text-lg text-gray-600 mb-12 sm:mb-16">
+              We design solutions that fit your home and your personal needs.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16 sm:mb-20">
             {[
-            {
-              title: "Bathroom Safety",
-              description: "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
-              image: ASSET_URLS.home.bathroomSafety,
-              link: createPageUrl('BathroomSafety')
-            },
-            {
-              title: "Home Elevators",
-              description: "Safe, reliable, and elegant home elevators for seamless floor-to-floor access.",
-              image: ASSET_URLS.home.homeElevators,
-              link: createPageUrl('Homelifts')
-            },
-            {
-              title: "Stair Lifts",
-              description: "Glide up and down your stairs with a gentle, smooth ride from start to finish",
-              image: ASSET_URLS.home.stairLifts,
-              link: createPageUrl('StairLift') // Changed 'StairLifts' to 'StairLift' as per outline
-            },
-            {
-              title: "Ramps",
-              description: "In-and-out of the House Solutions for easy home entry.",
-              image: ASSET_URLS.home.ramps,
-              link: createPageUrl('Ramps')
-            },
-            {
-              title: "Grab Bars & Handrails",
-              description: "Enhance safety and mobility throughout your home with stylish, sturdy grab bars and handrails designed to blend with your decor.",
-              image: ASSET_URLS.home.grabBarsHandrails,
-              link: createPageUrl('GrabBarsHandrails')
-            },
-            {
-              title: "Wheelchair Lifts",
-              description: "Provide safe, reliable access between floors for wheelchair users with our vertical platform lifts.",
-              image: ASSET_URLS.home.wheelchairLifts
-            }].
-            map((product, index) =>
-            <Card key={index} className="overflow-hidden group relative flex flex-col">
+              {
+                title: "Bathroom Safety",
+                description:
+                  "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
+                image: ASSET_URLS.home.bathroomSafety,
+              },
+              {
+                title: "Home Elevators",
+                description:
+                  "Safe, reliable, and elegant home elevators for seamless floor-to-floor access.",
+                image: ASSET_URLS.home.homeElevators,
+              },
+              {
+                title: "Stair Lifts",
+                description:
+                  "Glide up and down your stairs with a gentle, smooth ride from start to finish.",
+                image: ASSET_URLS.home.stairLifts,
+              },
+              {
+                title: "Ramps",
+                description:
+                  "In-and-out of the house solutions for easy home entry.",
+                image: ASSET_URLS.home.ramps,
+              },
+              {
+                title: "Grab Bars & Handrails",
+                description:
+                  "Enhance safety and mobility throughout your home with stylish, sturdy grab bars and handrails designed to blend with your decor.",
+                image: ASSET_URLS.home.grabBarsHandrails,
+              },
+              {
+                title: "Wheelchair Lifts",
+                description:
+                  "Provide safe, reliable access between floors for wheelchair users with our vertical platform lifts.",
+                image: ASSET_URLS.home.wheelchairLifts,
+              },
+            ].map((product, index) => (
+              <Card key={index} className="overflow-hidden flex flex-col">
                 <div className="h-48 overflow-hidden">
                   <img
-                  src={product.image}
-                  alt={product.title}
-                  className={`h-full w-full object-cover object-center ${product.link ? "group-hover:scale-105 transition-transform duration-300" : ""}`} />
-
+                    src={product.image}
+                    alt={product.title}
+                    className="h-full w-full object-cover object-center"
+                  />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-lg font-semibold">{product.title}</h3>
-                    {product.link &&
-                  <ArrowRight className="h-5 w-5 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                  }
-                  </div>
-                  <p className="text-gray-600 mb-4 flex-grow">{product.description}</p>
-                  {product.link &&
-                <div className="mt-auto">
-                      <Link
-                    to={product.link}
-                    className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800 text-sm">
-
-                        Learn more
-                        <ArrowRight className="ml-1 h-3 w-3" />
-                      </Link>
-                    </div>
-                }
+                  <h3 className="text-lg font-semibold mb-2">
+                    {product.title}
+                  </h3>
+                  <p className="text-gray-600 flex-grow">
+                    {product.description}
+                  </p>
                 </div>
-                {product.link &&
-              <Link
-                to={product.link}
-                className="absolute inset-0 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
-                aria-hidden="true" />
-
-              }
               </Card>
-            )}
+            ))}
           </div>
 
           <div className="text-center">
-            <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => setLeadFormOpen(true)}> {/* Updated onClick handler */}
+            <Button
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => setLeadFormOpen(true)}
+            >
               Get a Free Consultation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -155,177 +162,271 @@ export default function HomePage() {
         </div>
       </div>
 
-     {/* Our Process Section */}
-      <div className="py-20 sm:py-24">
+      {/* Bathroom Solutions Showcase — LeafHome-style image overlay cards */}
+      <div className="bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12 sm:mb-16">
-               Our Process
+          <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
+              Simple solutions. Big results.
             </h2>
+            <p className="text-lg text-gray-600">
+              We combine style and functionality to design a bathroom you love.
+              And use quality craftsmanship that's built to last.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-            {
-              title: "Free Home Visit and Consultation",
-              description: "Meet our experts for personalized recommendations.",
-              icon: AreaChart
-            },
-            {
-              title: "Design and Customize",
-              description: "Custom designs tailored to your needs blending accessibility with aesthetics to maintain your home's character and style.",
-              icon: Ruler
-            },
-            {
-              title: "Professional Installation",
-              description: "Efficient and respectful installers complete your remodel.",
-              icon: Hammer
-            },
-            {
-              title: "Enjoy and Relax",
-              description: "Enjoy peace of mind with our lifetime warranty.",
-              icon: Heart
-            }].
-            map((step, index) =>
-            <Card key={index} className="text-center">
-                <div className="p-6 sm:p-8">
-                  <div className="mx-auto rounded-full bg-blue-100 p-3 w-14 h-14 flex items-center justify-center mb-6">
-                    <step.icon className="h-6 w-6 text-blue-700" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+              {
+                title: "Bathroom Remodels",
+                description: "Remodel your bathroom to match your style and needs.",
+                image: ASSET_URLS.home.bathroomSafety,
+              },
+              {
+                title: "Shower Conversions",
+                description: "Convert your tub to a shower or your shower to a tub.",
+                image: ASSET_URLS.brand.heroBackground,
+              },
+              {
+                title: "Walk-in Solutions",
+                description: "Safe, accessible walk-in showers and baths for comfort and independence.",
+                image: ASSET_URLS.home.grabBarsHandrails,
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer"
+                onClick={() => setLeadFormOpen(true)}
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-200 text-sm sm:text-base">
+                    {item.description}
+                  </p>
                 </div>
-              </Card>
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Why Customers Choose Blue Mountain Living Section Header */}
-      <div className="py-20 sm:py-24">
+      {/* Our Process Section — 3 numbered steps */}
+      <div id="process" className="bg-gray-50 py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Your project done right.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {[
+              {
+                step: 1,
+                title: "Free Consultation",
+                description:
+                  "We visit your home, assess your needs, and discuss solutions — no obligation, no pressure.",
+              },
+              {
+                step: 2,
+                title: "Design & Estimate",
+                description:
+                  "Our team designs a custom plan tailored to your home, needs, and budget. You'll know exactly what to expect.",
+              },
+              {
+                step: 3,
+                title: "Professional Installation",
+                description:
+                  "Our skilled installers complete your project efficiently and respectfully, backed by our lifetime warranty.",
+              },
+            ].map((step) => (
+              <div key={step.step} className="text-center">
+                <div className="mx-auto w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-bold mb-6">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
+                <p className="text-gray-600 leading-7">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Why Customers Choose Us Section */}
+      <div id="why-us" className="py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Why Customers Choose Us
-
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
+              Why Customers Choose Us
             </h2>
             <p className="text-lg text-gray-600 mb-12 sm:mb-16">
-              Our commitment to excellence sets us apart in every aspect of home accessibility.
+              Our commitment to excellence sets us apart in every aspect of home
+              accessibility.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-16 lg:gap-28">
-            {/* Clinical-Led Design Section */}
+            {/* Clinical-Led Design */}
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
               <div className="flex flex-col justify-center lg:pr-8">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
                     <Stethoscope className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">Clinical-Led Design</h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                    Clinical-Led Design
+                  </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  We combine clinical insight with construction know-how. Our design process is led by licensed occupational therapists who specialize in accessibility and universal design principles. They assess your mobility, safety, and functional needs, crafting elegant solutions that meet today's challenges and anticipate tomorrow's.
+                  We combine clinical insight with construction know-how. Our
+                  design process is led by licensed occupational therapists who
+                  specialize in accessibility and universal design principles.
+                  They assess your mobility, safety, and functional needs,
+                  crafting elegant solutions that meet today's challenges and
+                  anticipate tomorrow's.
                 </p>
               </div>
               <div className="relative h-full flex items-center">
                 <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                     alt="Clinical Assessment"
-                    className="h-full w-full object-cover object-center shadow-xl" />
-
+                    className="h-full w-full object-cover object-center shadow-xl"
+                  />
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
                 </div>
               </div>
             </div>
 
-            {/* Exceptional Quality and Craftsmanship Section */}
+            {/* Exceptional Quality and Craftsmanship */}
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
               <div className="flex flex-col justify-center lg:order-2 lg:pl-8">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
                     <Hammer className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">Exceptional Quality and Craftsmanship</h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                    Exceptional Quality and Craftsmanship
+                  </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  Quality craftsmanship defines every project we undertake. Our team of skilled professionals adheres to the highest industry standards, ensuring every modification—be it a simple grab bar installation or a full-scale accessible remodel—is executed flawlessly. We combine premium materials, advanced techniques, and rigorous quality control processes to deliver durable, beautiful, and safe living spaces.
+                  Quality craftsmanship defines every project we undertake. Our
+                  team of skilled professionals adheres to the highest industry
+                  standards, ensuring every modification—be it a simple grab bar
+                  installation or a full-scale accessible remodel—is executed
+                  flawlessly. We combine premium materials, advanced techniques,
+                  and rigorous quality control processes to deliver durable,
+                  beautiful, and safe living spaces.
                 </p>
               </div>
               <div className="relative h-full flex items-center lg:order-1">
                 <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2531&q=80"
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2531&q=80"
                     alt="Quality Craftsmanship"
-                    className="h-full w-full object-cover object-center shadow-xl" />
-
+                    className="h-full w-full object-cover object-center shadow-xl"
+                  />
                   <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
                 </div>
               </div>
             </div>
 
-            {/* Unparalleled Customer Service Section */}
+            {/* Unparalleled Customer Service */}
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
               <div className="flex flex-col justify-center lg:pr-8">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
                     <Stars className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">Unparalleled Customer Service</h2>
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                    Unparalleled Customer Service
+                  </h2>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  Your satisfaction drives everything we do. We earned a distinguished reputation by delivering exceptional service, every time. Your dedicated concierge will start by listening closely, follow through with precise attention to detail, and finish only when you're fully satisfied. Our satisfaction guarantee means we stand behind our work, ensuring each step from initial consultation to final walkthrough exceeds your expectations. Trust is not just a claim; it's something we continually earn.
+                  Your satisfaction drives everything we do. We earned a
+                  distinguished reputation by delivering exceptional service,
+                  every time. Your dedicated concierge will start by listening
+                  closely, follow through with precise attention to detail, and
+                  finish only when you're fully satisfied. Our satisfaction
+                  guarantee means we stand behind our work, ensuring each step
+                  from initial consultation to final walkthrough exceeds your
+                  expectations.
                 </p>
               </div>
               <div className="relative h-full flex items-center">
                 <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                     alt="Customer Satisfaction"
-                    className="h-full w-full object-cover object-center shadow-xl" />
-
+                    className="h-full w-full object-cover object-center shadow-xl"
+                  />
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* CTA section */}
-      <div className="bg-white">
-        <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">Ready to Upgrade Your Home?
+      {/* Customer Testimonial */}
+      <div className="bg-gray-50 py-20 sm:py-24">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+          <Quote className="mx-auto h-10 w-10 text-blue-200 mb-8" />
+          <blockquote className="text-xl sm:text-2xl font-medium leading-relaxed text-gray-900 mb-8">
+            "This was the best experience we've ever had with a home renovation.
+            The team was professional, listened to everything we needed, and
+            delivered beyond our expectations. Our bathroom is now safe, beautiful,
+            and exactly what we envisioned."
+          </blockquote>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-5 w-5 fill-orange-500 text-orange-500" />
+            ))}
+          </div>
+          <p className="font-semibold text-gray-900">Maria R.</p>
+          <p className="text-sm text-gray-500">Verified Customer &middot; Miami, FL</p>
+        </div>
+      </div>
 
-            </h2>
-            <p className="mx-auto mt-8 max-w-xl text-lg leading-8 text-gray-300">
-              Our team of experts will help you find the perfect solution to meet your needs and budget.
-            </p>
-            <div className="mt-12 flex items-center justify-center gap-x-6">
-              <Button
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100"
-                onClick={() => setLeadFormOpen(true)} // Updated onClick handler
-              >
-                Get a Free Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+      {/* Inline Lead Capture Section */}
+      <div className="bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">
+                Want more info? We've got you.
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 leading-8">
+                Get a free, no-obligation consultation. Our experts will visit
+                your home, assess your needs, and design the perfect solution —
+                all at no cost to you.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Shield className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-700">Licensed &amp; insured professionals</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-700">We'll respond within 24 hours</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-700">Lifetime warranty on all installations</span>
+                </div>
+              </div>
             </div>
-            <svg
-              viewBox="0 0 1024 1024"
-              className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
-              aria-hidden="true">
-
-              <circle cx={512} cy={512} r={512} fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fillOpacity="0.7" />
-              <defs>
-                <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
-                  <stop stopColor="#3b82f6" />
-                  <stop offset={1} stopColor="#1e40af" />
-                </radialGradient>
-              </defs>
-            </svg>
+            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
+              <InlineLeadForm source="homepage-inline" />
+            </div>
           </div>
         </div>
       </div>
@@ -334,8 +435,8 @@ export default function HomePage() {
       <LeadCaptureForm
         isOpen={leadFormOpen}
         onClose={() => setLeadFormOpen(false)}
-        source="homepage" // Added source prop
+        source="homepage"
       />
-    </div>);
-
+    </div>
+  );
 }
