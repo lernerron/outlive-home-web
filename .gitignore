@@ -15,7 +15,15 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.next
+out
 *.local
+
+# Local data (leads contain PII)
+data/leads.json
+
+# Claude Code session data
+.claude/
 
 # Editor directories and files
 .vscode/*
