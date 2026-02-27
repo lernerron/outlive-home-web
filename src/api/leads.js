@@ -1,4 +1,4 @@
-const LEADS_API_URL = import.meta.env.VITE_LEADS_API_URL || '/api/leads';
+const LEADS_API_URL = process.env.NEXT_PUBLIC_LEADS_API_URL || '/api/leads';
 export const LOCAL_QUEUE_KEY = 'pending_leads';
 
 export const getPendingLeads = () => {

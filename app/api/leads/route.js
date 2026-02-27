@@ -1,13 +1,13 @@
 const requiredFields = ['name', 'zipCode', 'phone', 'email'];
 
-const json = (res, status, payload, origin = '*') => {
-  res.statusCode = status;
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Access-Control-Allow-Origin', origin);
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Webhook-Secret');
-  res.end(JSON.stringify(payload));
-};
+function corsHeaders(origin = '*') {
+  return {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, X-Webhook-Secret',
+  };
+}
 
 const validateLead = (lead) => {
   if (!lead || typeof lead !== 'object') {
@@ -29,7 +29,7 @@ const buildWebhookHeaders = (webhookSecret) => {
   return {
     'Content-Type': 'application/json',
     ...(webhookSecret ? { 'X-Webhook-Secret': webhookSecret } : {}),
-    ...(hasAuthToken ? { [authHeaderName]: authToken } : {})
+    ...(hasAuthToken ? { [authHeaderName]: authToken } : {}),
   };
 };
 
@@ -38,18 +38,10 @@ const transformWebhookPayload = (leadPayload) => {
   if (mode === 'event') {
     return {
       event: 'lead.created',
-      data: leadPayload
+      data: leadPayload,
     };
   }
   return leadPayload;
-};
-
-const getClientIp = (req) => {
-  const forwarded = req.headers['x-forwarded-for'];
-  if (typeof forwarded === 'string' && forwarded.length) {
-    return forwarded.split(',')[0].trim();
-  }
-  return req.socket?.remoteAddress || '';
 };
 
 const verifyTurnstile = async (token, remoteip) => {
@@ -60,7 +52,7 @@ const verifyTurnstile = async (token, remoteip) => {
 
   const body = new URLSearchParams({
     secret,
-    response: token || ''
+    response: token || '',
   });
 
   if (remoteip) {
@@ -68,13 +60,14 @@ const verifyTurnstile = async (token, remoteip) => {
   }
 
   try {
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body
-    });
+    const response = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      }
+    );
 
     if (!response.ok) {
       return { ok: false, details: `turnstile_http_${response.status}` };
@@ -82,7 +75,9 @@ const verifyTurnstile = async (token, remoteip) => {
 
     const data = await response.json();
     if (!data?.success) {
-      const errorCodes = Array.isArray(data['error-codes']) ? data['error-codes'].join(',') : 'turnstile_failed';
+      const errorCodes = Array.isArray(data['error-codes'])
+        ? data['error-codes'].join(',')
+        : 'turnstile_failed';
       return { ok: false, details: errorCodes };
     }
 
@@ -93,7 +88,8 @@ const verifyTurnstile = async (token, remoteip) => {
 };
 
 const persistLeadLocally = async (leadPayload) => {
-  const shouldStore = (process.env.LEADS_STORE_LOCAL || '').toLowerCase() === 'true';
+  const shouldStore =
+    (process.env.LEADS_STORE_LOCAL || '').toLowerCase() === 'true';
   if (!shouldStore) return;
 
   const { default: path } = await import('path');
@@ -122,39 +118,64 @@ const persistLeadLocally = async (leadPayload) => {
   await fs.writeFile(resolvedPath, JSON.stringify(existing, null, 2));
 };
 
-export default async function handler(req, res) {
+export async function OPTIONS() {
   const corsOrigin = process.env.LEADS_CORS_ORIGIN || '*';
+  return new Response(null, {
+    status: 204,
+    headers: corsHeaders(corsOrigin),
+  });
+}
 
-  if (req.method === 'OPTIONS') {
-    return json(res, 204, {}, corsOrigin);
+export async function POST(request) {
+  const corsOrigin = process.env.LEADS_CORS_ORIGIN || '*';
+  const headers = corsHeaders(corsOrigin);
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ error: 'Invalid JSON body' }),
+      { status: 400, headers }
+    );
   }
 
-  if (req.method !== 'POST') {
-    return json(res, 405, { error: 'Method not allowed' }, corsOrigin);
-  }
-
-  const validationError = validateLead(req.body);
+  const validationError = validateLead(body);
   if (validationError) {
-    return json(res, 400, { error: validationError }, corsOrigin);
+    return new Response(
+      JSON.stringify({ error: validationError }),
+      { status: 400, headers }
+    );
   }
 
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY?.trim();
   if (turnstileSecret) {
-    const turnstileToken = req.body?.turnstileToken;
+    const turnstileToken = body?.turnstileToken;
     if (!turnstileToken || typeof turnstileToken !== 'string') {
-      return json(res, 400, { error: 'Missing Turnstile token' }, corsOrigin);
+      return new Response(
+        JSON.stringify({ error: 'Missing Turnstile token' }),
+        { status: 400, headers }
+      );
     }
 
-    const verification = await verifyTurnstile(turnstileToken, getClientIp(req));
+    const clientIp =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+    const verification = await verifyTurnstile(turnstileToken, clientIp);
     if (!verification.ok) {
-      return json(res, 400, { error: 'Turnstile verification failed', details: verification.details }, corsOrigin);
+      return new Response(
+        JSON.stringify({
+          error: 'Turnstile verification failed',
+          details: verification.details,
+        }),
+        { status: 400, headers }
+      );
     }
   }
 
-  const { turnstileToken: _turnstileToken, ...leadData } = req.body || {};
+  const { turnstileToken: _turnstileToken, ...leadData } = body || {};
   const leadPayload = {
     ...leadData,
-    receivedAt: new Date().toISOString()
+    receivedAt: new Date().toISOString(),
   };
 
   try {
@@ -168,29 +189,39 @@ export default async function handler(req, res) {
 
   if (webhookUrl) {
     try {
-      const webhookResponse = await fetch(webhookUrl, {
+      const url = new URL(webhookUrl);
+      if (webhookSecret) url.searchParams.set('secret', webhookSecret);
+      const webhookResponse = await fetch(url.toString(), {
         method: 'POST',
         headers: buildWebhookHeaders(webhookSecret),
-        body: JSON.stringify(transformWebhookPayload(leadPayload))
+        body: JSON.stringify(transformWebhookPayload(leadPayload)),
       });
 
       if (!webhookResponse.ok) {
         const details = await webhookResponse.text();
-        return json(res, 502, {
-          error: 'Upstream lead destination failed',
-          details: details || webhookResponse.statusText
-        }, corsOrigin);
+        return new Response(
+          JSON.stringify({
+            error: 'Upstream lead destination failed',
+            details: details || webhookResponse.statusText,
+          }),
+          { status: 502, headers }
+        );
       }
     } catch (error) {
-      return json(res, 502, {
-        error: 'Unable to reach upstream lead destination',
-        details: error?.message || 'Unknown network error'
-      }, corsOrigin);
+      return new Response(
+        JSON.stringify({
+          error: 'Unable to reach upstream lead destination',
+          details: error?.message || 'Unknown network error',
+        }),
+        { status: 502, headers }
+      );
     }
   } else {
-    // Temporary fallback behavior until a durable destination is configured.
-    console.log('Lead received without LEADS_WEBHOOK_URL configured', leadPayload);
+    console.log(
+      'Lead received without LEADS_WEBHOOK_URL configured',
+      leadPayload
+    );
   }
 
-  return json(res, 200, { ok: true }, corsOrigin);
+  return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
 }

@@ -1,10 +1,12 @@
+"use client";
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn } from "@/lib/utils";
-import LeadCaptureForm from './components/LeadCaptureForm';
+import LeadCaptureForm from '@/components/LeadCaptureForm';
 
 export default function Layout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,9 +20,10 @@ export default function Layout({ children }) {
   }, []);
 
   const navigation = [
-    { name: 'Our Solutions', href: '#solutions' },
-    { name: 'Our Process', href: '#process' },
-    { name: 'Why Us', href: '#why-us' },
+    { name: 'Our Solutions', href: '/#solutions' },
+    { name: 'Our Process', href: '/#process' },
+    { name: 'Why Us', href: '/#why-us' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   return (
@@ -31,7 +34,7 @@ export default function Layout({ children }) {
       )}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Outlive Homes</span>
               <span className={cn(
                 "text-xl font-bold tracking-tight transition-colors duration-300",
@@ -39,7 +42,7 @@ export default function Layout({ children }) {
               )}>
                 Outlive Homes
               </span>
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -55,20 +58,23 @@ export default function Layout({ children }) {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "text-sm font-semibold leading-6 transition-colors duration-300",
-                  isScrolled
-                    ? "text-gray-900 hover:text-blue-600"
-                    : "text-white/90 hover:text-white"
-                )}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navigation.map((item) => {
+              const Tag = item.href.startsWith('/') ? Link : 'a';
+              return (
+                <Tag
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "text-sm font-semibold leading-6 transition-colors duration-300",
+                    isScrolled
+                      ? "text-gray-900 hover:text-blue-600"
+                      : "text-white/90 hover:text-white"
+                  )}
+                >
+                  {item.name}
+                </Tag>
+              );
+            })}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-6">
             <a
@@ -99,10 +105,10 @@ export default function Layout({ children }) {
             <div className="fixed inset-0 z-50" />
             <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
-                <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="-m-1.5 p-1.5">
+                <Link href="/" onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                   <span className="sr-only">Outlive Homes</span>
                   <span className="text-xl font-bold tracking-tight text-blue-900">Outlive Homes</span>
-                </a>
+                </Link>
                 <button
                   type="button"
                   className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -115,16 +121,19 @@ export default function Layout({ children }) {
               <div className="mt-6 flow-root">
                 <div className="-my-6 divide-y divide-gray-500/10">
                   <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    {navigation.map((item) => {
+                      const Tag = item.href.startsWith('/') ? Link : 'a';
+                      return (
+                        <Tag
+                          key={item.name}
+                          href={item.href}
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Tag>
+                      );
+                    })}
                   </div>
                   <div className="py-6 space-y-4">
                     <a
@@ -173,9 +182,10 @@ export default function Layout({ children }) {
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-400 mb-6 uppercase">Quick Links</h3>
                 <ul role="list" className="space-y-3">
-                  <li><a href="#solutions" className="text-sm text-gray-300 hover:text-white">Our Solutions</a></li>
-                  <li><a href="#process" className="text-sm text-gray-300 hover:text-white">Our Process</a></li>
-                  <li><a href="#why-us" className="text-sm text-gray-300 hover:text-white">Why Us</a></li>
+                  <li><a href="/#solutions" className="text-sm text-gray-300 hover:text-white">Our Solutions</a></li>
+                  <li><a href="/#process" className="text-sm text-gray-300 hover:text-white">Our Process</a></li>
+                  <li><a href="/#why-us" className="text-sm text-gray-300 hover:text-white">Why Us</a></li>
+                  <li><Link href="/blog" className="text-sm text-gray-300 hover:text-white">Blog</Link></li>
                 </ul>
               </div>
               <div>
@@ -190,7 +200,7 @@ export default function Layout({ children }) {
                     </button>
                   </li>
                   <li>
-                    <Link to={createPageUrl('PrivacyPolicy')} className="text-sm text-gray-300 hover:text-white">
+                    <Link href={createPageUrl('PrivacyPolicy')} className="text-sm text-gray-300 hover:text-white">
                       Privacy Policy
                     </Link>
                   </li>

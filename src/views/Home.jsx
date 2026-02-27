@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   ArrowRight,
-  Stethoscope,
+  Compass,
   Stars,
   Hammer,
   Star,
@@ -31,17 +33,14 @@ export default function HomePage() {
 
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-300 mb-4">
-              South Florida's Home Accessibility Experts
-            </p>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl leading-tight">
               The Art and Science of
               <br />
               Outliving at Home
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-200 max-w-xl">
-              We design elegant, clinical-grade accessibility solutions that let
-              you stay safely and comfortably in the home you love.
+              We design elegant bathroom and access solutions that let you stay
+              safe and comfortable in the home you love for decades to come.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <Button
@@ -274,41 +273,43 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 gap-16 lg:gap-28">
-            {/* Clinical-Led Design */}
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
-              <div className="flex flex-col justify-center lg:pr-8">
+            {/* Universal Design */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
-                    <Stethoscope className="h-6 w-6 text-blue-600" />
+                    <Compass className="h-6 w-6 text-blue-600" />
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                    Clinical-Led Design
-                  </h2>
+                  <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                      Universal Design
+                    </h2>
+                    <p className="text-sm font-medium text-blue-600 mt-1">
+                      Creating Homes for a Lifetime
+                    </p>
+                  </div>
                 </div>
                 <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  We combine clinical insight with construction know-how. Our
-                  design process is led by licensed occupational therapists who
-                  specialize in accessibility and universal design principles.
-                  They assess your mobility, safety, and functional needs,
-                  crafting elegant solutions that meet today's challenges and
-                  anticipate tomorrow's.
+                  Every detail is designed with purpose — blending beauty,
+                  function, and safety so seamlessly you'd never know the
+                  difference. Our approach anticipates how your needs may
+                  evolve, creating spaces that work for you today and decades
+                  from now. The result: a home that looks stunning and feels
+                  effortless at every stage of life.
                 </p>
               </div>
-              <div className="relative h-full flex items-center">
-                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                    alt="Clinical Assessment"
-                    className="h-full w-full object-cover object-center shadow-xl"
-                  />
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
-                </div>
+              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl">
+                <img
+                  src={ASSET_URLS.whyUs.universalDesign}
+                  alt="Universal Design Bathroom"
+                  className="h-full w-full object-cover object-center shadow-lg"
+                />
               </div>
             </div>
 
             {/* Exceptional Quality and Craftsmanship */}
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
-              <div className="flex flex-col justify-center lg:order-2 lg:pl-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="flex flex-col justify-center lg:order-2">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
                     <Hammer className="h-6 w-6 text-blue-600" />
@@ -327,21 +328,18 @@ export default function HomePage() {
                   beautiful, and safe living spaces.
                 </p>
               </div>
-              <div className="relative h-full flex items-center lg:order-1">
-                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2531&q=80"
-                    alt="Quality Craftsmanship"
-                    className="h-full w-full object-cover object-center shadow-xl"
-                  />
-                  <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
-                </div>
+              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl lg:order-1">
+                <img
+                  src={ASSET_URLS.whyUs.craftsmanship}
+                  alt="Quality Craftsmanship"
+                  className="h-full w-full object-cover object-center shadow-lg"
+                />
               </div>
             </div>
 
             {/* Unparalleled Customer Service */}
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-start">
-              <div className="flex flex-col justify-center lg:pr-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="flex flex-col justify-center">
                 <div className="flex items-center gap-4 mb-6 sm:mb-8">
                   <div className="p-3 rounded-lg bg-blue-100">
                     <Stars className="h-6 w-6 text-blue-600" />
@@ -361,15 +359,12 @@ export default function HomePage() {
                   expectations.
                 </p>
               </div>
-              <div className="relative h-full flex items-center">
-                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                    alt="Customer Satisfaction"
-                    className="h-full w-full object-cover object-center shadow-xl"
-                  />
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-600 rounded-lg opacity-20 blur-2xl"></div>
-                </div>
+              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl">
+                <img
+                  src={ASSET_URLS.whyUs.customerService}
+                  alt="Customer Satisfaction"
+                  className="h-full w-full object-cover object-center shadow-lg"
+                />
               </div>
             </div>
           </div>

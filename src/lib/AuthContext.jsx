@@ -1,10 +1,12 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+"use client";
+
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 const AUTH_STORAGE_KEY = 'app_auth_user';
 const AUTH_TOKEN_KEY = 'app_auth_token';
-const AUTH_REQUIRED = import.meta.env.VITE_AUTH_REQUIRED === 'true';
-const AUTH_LOGIN_URL = import.meta.env.VITE_AUTH_LOGIN_URL || '';
+const AUTH_REQUIRED = process.env.NEXT_PUBLIC_AUTH_REQUIRED === 'true';
+const AUTH_LOGIN_URL = process.env.NEXT_PUBLIC_AUTH_LOGIN_URL || '';
 
 const getStoredUser = () => {
   try {
