@@ -1,6 +1,6 @@
 const DEFAULT_ASSET_BASE_URL = "/assets";
 
-const configuredAssetBaseUrl = import.meta.env.VITE_ASSET_BASE_URL?.trim();
+const configuredAssetBaseUrl = process.env.NEXT_PUBLIC_ASSET_BASE_URL?.trim();
 
 export const ASSET_BASE_URL = (
   configuredAssetBaseUrl || DEFAULT_ASSET_BASE_URL
@@ -10,52 +10,56 @@ const buildAssetUrl = (path) => `${ASSET_BASE_URL}/${path.replace(/^\/+/, "")}`;
 
 export const ASSET_URLS = {
   brand: {
-    logo: buildAssetUrl("688302222532cfd3939198b2/0f33cbc97_BlueMountainLogo.jpg"),
     heroBackground: buildAssetUrl("hero-bathroom.png"),
     showerGlassEnclosure: buildAssetUrl("shower-glass-enclosure.jpg"),
   },
   home: {
-    bathroomSafety: buildAssetUrl("317fd6_AccessibleBathroom.jpg"),
-    homeElevators: buildAssetUrl("9b3d8c_StiltzLift.png"),
-    stairLifts: buildAssetUrl("f49588477_Bruno-Elan-SRE-3050-Stairlift-Bottom-Of-Stairs-2.png"),
-    ramps: buildAssetUrl("673f08be2_Ramps.jpg"),
-    grabBarsHandrails: buildAssetUrl("10bde6_Handrails2.jpg"),
-    wheelchairLifts: buildAssetUrl("4239901fe_WheelchairLift-harmar-highlanderii-l-bap-lpr.jpg"),
+    bathroomSafety: buildAssetUrl("bathroom-accessible.jpg"),
+    homeElevators: buildAssetUrl("homelift-stiltz.png"),
+    stairLifts: buildAssetUrl("stairlift-bruno-elan.png"),
+    ramps: buildAssetUrl("ramp-modular.jpg"),
+    grabBarsHandrails: buildAssetUrl("grab-bars-handrails.jpg"),
+    wheelchairLifts: buildAssetUrl("wheelchair-lift-harmar.jpg"),
   },
   bathroomSafety: {
-    hero: buildAssetUrl("152233e36_kohlrChoreograph2.png"),
-    benefits: buildAssetUrl("317fd6_AccessibleBathroom.jpg"),
-    walkInTub: buildAssetUrl("523f79347_KohlerWalk-inTub1.jpg"),
-    wetRoom: buildAssetUrl("4cffb52aa_Wet-Roombyhttps-motionspotcouk.jpg"),
-    safetyUpdates: buildAssetUrl("531adeaa4_SafteyAccessibilityUpdatesCredit-LameBlackLamb.jpg"),
+    hero: buildAssetUrl("bathroom-kohler-choreograph.png"),
+    benefits: buildAssetUrl("bathroom-accessible.jpg"),
+    walkInTub: buildAssetUrl("bathroom-walk-in-tub.jpg"),
+    wetRoom: buildAssetUrl("bathroom-wet-room.jpg"),
+    safetyUpdates: buildAssetUrl("bathroom-safety-updates.jpg"),
   },
   homelifts: {
-    hero: buildAssetUrl("f75325b4e_Homeliftherosectionphoto1.png"),
-    generic: buildAssetUrl("9b3d8c_StiltzLift.png"),
-    brochurePdf: buildAssetUrl("81a88eabb_Stiltz-US-Duo-Trio-Alta-Brochure-11-01-23-WEB.pdf"),
+    hero: buildAssetUrl("homelift-hero.png"),
+    generic: buildAssetUrl("homelift-stiltz.png"),
+    brochurePdf: buildAssetUrl("stiltz-brochure.pdf"),
     features: {
-      quickInstallation: buildAssetUrl("8126875ed_quick-installation-feature.png"),
-      shaftlessRail: buildAssetUrl("113a19b8d_Theinvisibleelevator.png"),
-      easyToOperate: buildAssetUrl("68aa89b09_Smallfootprint.png"),
-      smoothRide: buildAssetUrl("dce936dd7_smooth-and-quiet-ride-feature.png"),
-      safetyFeatures: buildAssetUrl("8b4dc3927_built-in-safety-feature.png"),
-      wheelchairFriendly: buildAssetUrl("31d7d12e7_Wheelchairfriendlyoption2.png"),
+      quickInstallation: buildAssetUrl("homelift-feature-quick-install.png"),
+      shaftlessRail: buildAssetUrl("homelift-feature-shaftless-rail.png"),
+      easyToOperate: buildAssetUrl("homelift-feature-small-footprint.png"),
+      smoothRide: buildAssetUrl("homelift-feature-smooth-ride.png"),
+      safetyFeatures: buildAssetUrl("homelift-feature-safety.png"),
+      wheelchairFriendly: buildAssetUrl("homelift-feature-wheelchair.png"),
     },
     models: {
       duoAlta: {
-        logo: buildAssetUrl("9a12b85ce_duo-alta-logo.png"),
-        product: buildAssetUrl("9b4f43dec_DuoAltaPhoto.png"),
+        logo: buildAssetUrl("stiltz-duo-alta-logo.png"),
+        product: buildAssetUrl("stiltz-duo-alta-product.png"),
       },
       trioAlta: {
-        logo: buildAssetUrl("20a8f01ea_trio-alta-logo.png"),
-        product: buildAssetUrl("c08f4c98f_TrioAltaPhoto.png"),
+        logo: buildAssetUrl("stiltz-trio-alta-logo.png"),
+        product: buildAssetUrl("stiltz-trio-alta-product.png"),
       },
     },
   },
   ramps: {
-    modular: buildAssetUrl("673f08be2_Ramps.jpg"),
+    modular: buildAssetUrl("ramp-modular.jpg"),
   },
   stairLifts: {
-    hero: buildAssetUrl("2914844b0_BrunoWebsitePhoto.jpg"),
+    hero: buildAssetUrl("stairlift-bruno-hero.jpg"),
+  },
+  whyUs: {
+    universalDesign: buildAssetUrl("why-us-universal-design.jpg"),
+    craftsmanship: buildAssetUrl("why-us-craftsmanship.jpg"),
+    customerService: buildAssetUrl("why-us-customer-service.jpg"),
   },
 };
