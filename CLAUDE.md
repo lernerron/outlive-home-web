@@ -4,7 +4,7 @@
 
 **Outlive Homes** is an aging-in-place home remodeling company launching in South Florida. This is the primary marketing website — its job is to convert visitors into estimate requests.
 
-- **Repo:** github.com/outlive-partners/outlive-home-web
+- **Repo:** github.com/lernerron/outlive-home-web (upstream: outlive-partners/outlive-home-web)
 - **Branch:** `main` (production)
 - **Framework:** Next.js 15 (App Router) + React 18
 - **Language:** JavaScript (JSX) — not TypeScript
