@@ -37,3 +37,4 @@ data/leads.json
 *.sw?
 
 .env
+.vercel
