@@ -298,7 +298,7 @@ export default function HomePage() {
                   effortless at every stage of life.
                 </p>
               </div>
-              <div className="aspect-[3/4] max-w-md mx-auto lg:mx-0 w-full overflow-hidden rounded-2xl">
+              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl">
                 <img
                   src={ASSET_URLS.whyUs.universalDesign}
                   alt="Universal Design Home"
