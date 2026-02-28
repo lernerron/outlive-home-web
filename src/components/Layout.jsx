@@ -1,23 +1,44 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import LeadCaptureForm from '@/components/LeadCaptureForm';
+import StickyCtaBanner from '@/components/StickyCtaBanner';
 
 export default function Layout({ children }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [leadFormOpen, setLeadFormOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+  const lastScrollY = useRef(0);
+  const scrollDirection = useRef('down');
+
+  const handleScroll = useCallback(() => {
+    const currentY = window.scrollY;
+    const heroThreshold = window.innerHeight * 0.85;
+    const delta = currentY - lastScrollY.current;
+
+    setIsScrolled(currentY > 80);
+
+    if (Math.abs(delta) > 5) {
+      scrollDirection.current = delta > 0 ? 'down' : 'up';
+    }
+
+    const pastHero = currentY > heroThreshold;
+    const isDown = scrollDirection.current === 'down';
+    setShowBanner(pastHero && isDown);
+
+    lastScrollY.current = currentY;
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const navigation = [
     { name: 'Our Solutions', href: '/#solutions' },
@@ -159,6 +180,11 @@ export default function Layout({ children }) {
           </div>
         )}
       </header>
+
+      <StickyCtaBanner
+        visible={showBanner}
+        onOpenModal={() => setLeadFormOpen(true)}
+      />
 
       <main>
         {children}
