@@ -58,7 +58,7 @@ export const ASSET_URLS = {
     hero: buildAssetUrl("stairlift-bruno-hero.jpg"),
   },
   whyUs: {
-    universalDesign: buildAssetUrl("why-us-universal-design.jpg"),
+    universalDesign: buildAssetUrl("home-universal-design.jpg"),
     craftsmanship: buildAssetUrl("why-us-craftsmanship.jpg"),
     customerService: buildAssetUrl("why-us-customer-service.jpg"),
   },
