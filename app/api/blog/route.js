@@ -1,73 +1,46 @@
 import { revalidateTag } from 'next/cache';
 import { getAllPosts, createPost } from '@/lib/blog';
-
-function corsHeaders(origin = '*') {
-  return {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, X-Blog-Secret',
-  };
-}
-
-function isAuthorized(request) {
-  const secret = process.env.BLOG_WRITE_SECRET?.trim();
-  if (!secret) return false;
-  return request.headers.get('X-Blog-Secret') === secret;
-}
+import { CreatePostSchema } from '@/lib/blog-schema';
+import {
+  corsHeaders,
+  isAuthorized,
+  jsonResponse,
+  errorResponse,
+} from '@/lib/api-helpers';
 
 export async function OPTIONS() {
   return new Response(null, { status: 204, headers: corsHeaders() });
 }
 
 export async function GET() {
-  const headers = corsHeaders();
   try {
     const posts = await getAllPosts();
-    return new Response(JSON.stringify(posts), { status: 200, headers });
+    return jsonResponse(posts);
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: 'Failed to load posts', details: error?.message }),
-      { status: 500, headers }
-    );
+    return errorResponse(`Failed to load posts: ${error?.message}`, 500);
   }
 }
 
 export async function POST(request) {
-  const headers = corsHeaders();
-
   if (!isAuthorized(request)) {
-    return new Response(
-      JSON.stringify({ error: 'Unauthorized' }),
-      { status: 401, headers }
-    );
+    return errorResponse('Unauthorized', 401);
   }
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Invalid JSON body' }),
-      { status: 400, headers }
-    );
+  const body = await request.json().catch(() => null);
+  if (!body) {
+    return errorResponse('Invalid JSON body', 400);
   }
 
-  if (!body?.title || !body?.content) {
-    return new Response(
-      JSON.stringify({ error: 'title and content are required' }),
-      { status: 400, headers }
-    );
+  const result = CreatePostSchema.safeParse(body);
+  if (!result.success) {
+    return errorResponse(result.error.issues[0].message, 400);
   }
 
   try {
-    const post = await createPost(body);
+    const post = await createPost(result.data);
     revalidateTag('blog');
-    return new Response(JSON.stringify(post), { status: 201, headers });
+    return jsonResponse(post, 201);
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { status: 409, headers }
-    );
+    return errorResponse(error.message, 500);
   }
 }

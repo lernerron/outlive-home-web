@@ -26,7 +26,7 @@
 
 ## 6. Verification
 
-- [ ] 6.1 Test scroll behavior: banner appears past hero, hides on scroll up, reappears on scroll down
-- [ ] 6.2 Test mobile: CTA button opens modal, no inline fields shown
-- [ ] 6.3 Test form submission: lead arrives via `/api/leads` with correct source
+- [x] 6.1 Test scroll behavior: banner appears past hero, hides on scroll up, reappears on scroll down
+- [x] 6.2 Test mobile: CTA button opens modal, no inline fields shown
+- [x] 6.3 Test form submission: lead arrives via `/api/leads` with correct source
 - [x] 6.4 Run `npm run build` — zero errors

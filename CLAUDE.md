@@ -37,7 +37,7 @@ All non-trivial work uses the OpenSpec spec-driven workflow. See `~/.claude/rule
 - **Forms** — submit to `/api/leads` route which forwards to Google Sheets via Apps Script webhook
 - **Accessibility** — WCAG AA minimum, AAA where feasible; our audience includes aging users with reduced visual acuity
 - **Assets** — served from `public/assets/`, configured via `src/lib/assets.js`
-- **Blog** — API-driven, data in `data/blog.json`, CRUD API at `/api/blog`. See `docs/blog-api.md`
+- **Blog** — API-driven, Postgres-backed (Neon via Vercel). Layered: `blog-schema.js` (Zod validation) → `blog-repository.js` (SQL) → `blog.js` (re-export shim). CRUD API at `/api/blog`
 
 ## Brand System
 
@@ -51,12 +51,12 @@ In this project, brand tokens are configured in `tailwind.config.js` under `them
 - **APIs:** `/api/leads` (POST), `/api/blog` (GET/POST), `/api/blog/[slug]` (GET/PUT/DELETE)
 - **Views:** `src/views/` — Home, BlogIndex, BlogPost, PrivacyPolicy, AdminLeadsQueue
 - **Components:** `src/components/` — Layout, ui/ (shadcn)
-- **Data:** `data/blog.json` (blog posts), `data/leads.json` (local lead backup, gitignored)
+- **Data:** Vercel Postgres / Neon (`posts` table), `data/leads.json` (local lead backup, gitignored), `data/blog.json` (seed data, no longer read at runtime)
 
 ## Key Integrations
 
 - **Lead Capture:** Forms → `/api/leads` → Google Sheets via Apps Script webhook
-- **Blog API:** REST API for AI content agent publishing. Auth via `X-Blog-Secret` header. Docs in `docs/blog-api.md`
+- **Blog API:** REST API for AI content agent (Content OS) publishing. Auth via `X-Blog-Secret` header. Idempotent upsert by slug. Zod-validated inputs
 - **Analytics:** Not yet configured (Plausible or GA planned)
 - **Anti-spam:** Turnstile env vars available but not yet enabled
 
@@ -64,11 +64,14 @@ In this project, brand tokens are configured in `tailwind.config.js` under `them
 
 ```
 # .env.local (gitignored — never commit)
+DATABASE_URL=                # Vercel Postgres / Neon (auto-injected by Vercel)
+BLOG_WRITE_SECRET=           # Auth for blog API write operations
+SITE_PASSWORD=               # Password gate for preview protection
+
 LEADS_WEBHOOK_URL=           # Google Apps Script webhook URL
 LEADS_WEBHOOK_SECRET=        # Shared secret for webhook auth
 LEADS_STORE_LOCAL=true       # Also save leads to local JSON
 LEADS_LOCAL_PATH=./data/leads.json
-BLOG_WRITE_SECRET=           # Auth for blog API write operations
 
 # Available but not yet configured
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=

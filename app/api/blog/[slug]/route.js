@@ -1,92 +1,64 @@
 import { revalidateTag } from 'next/cache';
 import { getPostBySlug, updatePost, deletePost } from '@/lib/blog';
-
-function corsHeaders(origin = '*') {
-  return {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Methods': 'GET, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, X-Blog-Secret',
-  };
-}
-
-function isAuthorized(request) {
-  const secret = process.env.BLOG_WRITE_SECRET?.trim();
-  if (!secret) return false;
-  return request.headers.get('X-Blog-Secret') === secret;
-}
+import { UpdatePostSchema } from '@/lib/blog-schema';
+import {
+  corsHeaders,
+  isAuthorized,
+  jsonResponse,
+  errorResponse,
+} from '@/lib/api-helpers';
 
 export async function OPTIONS() {
   return new Response(null, { status: 204, headers: corsHeaders() });
 }
 
 export async function GET(request, { params }) {
-  const headers = corsHeaders();
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post || !post.published) {
-    return new Response(
-      JSON.stringify({ error: 'Not found' }),
-      { status: 404, headers }
-    );
+    return errorResponse('Not found', 404);
   }
 
-  return new Response(JSON.stringify(post), { status: 200, headers });
+  return jsonResponse(post);
 }
 
 export async function PUT(request, { params }) {
-  const headers = corsHeaders();
-
   if (!isAuthorized(request)) {
-    return new Response(
-      JSON.stringify({ error: 'Unauthorized' }),
-      { status: 401, headers }
-    );
+    return errorResponse('Unauthorized', 401);
   }
 
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Invalid JSON body' }),
-      { status: 400, headers }
-    );
+  const body = await request.json().catch(() => null);
+  if (!body) {
+    return errorResponse('Invalid JSON body', 400);
+  }
+
+  const result = UpdatePostSchema.safeParse(body);
+  if (!result.success) {
+    return errorResponse(result.error.issues[0].message, 400);
   }
 
   const { slug } = await params;
-  const post = await updatePost(slug, body);
+  const post = await updatePost(slug, result.data);
   if (!post) {
-    return new Response(
-      JSON.stringify({ error: 'Not found' }),
-      { status: 404, headers }
-    );
+    return errorResponse('Not found', 404);
   }
 
   revalidateTag('blog');
-  return new Response(JSON.stringify(post), { status: 200, headers });
+  return jsonResponse(post);
 }
 
 export async function DELETE(request, { params }) {
-  const headers = corsHeaders();
-
   if (!isAuthorized(request)) {
-    return new Response(
-      JSON.stringify({ error: 'Unauthorized' }),
-      { status: 401, headers }
-    );
+    return errorResponse('Unauthorized', 401);
   }
 
   const { slug } = await params;
   const deleted = await deletePost(slug);
   if (!deleted) {
-    return new Response(
-      JSON.stringify({ error: 'Not found' }),
-      { status: 404, headers }
-    );
+    return errorResponse('Not found', 404);
   }
 
   revalidateTag('blog');
-  return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+  return jsonResponse({ ok: true });
 }
