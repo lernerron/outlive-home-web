@@ -8,18 +8,20 @@ import { Menu, X, Phone } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
+import { getBannerConfig } from '@/lib/banner-config';
 
-export default function Layout({ children }) {
+export default function Layout({ children, bannerPreset }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [leadFormOpen, setLeadFormOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const lastScrollY = useRef(0);
   const scrollDirection = useRef('down');
+  const bannerConfig = getBannerConfig(bannerPreset);
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
-    const heroThreshold = window.innerHeight * 0.85;
+    const heroThreshold = window.innerHeight * bannerConfig.scrollThreshold;
     const delta = currentY - lastScrollY.current;
 
     setIsScrolled(currentY > 80);
@@ -33,7 +35,7 @@ export default function Layout({ children }) {
     setShowBanner(pastHero && isDown);
 
     lastScrollY.current = currentY;
-  }, []);
+  }, [bannerConfig.scrollThreshold]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -184,6 +186,7 @@ export default function Layout({ children }) {
       <StickyCtaBanner
         visible={showBanner}
         onOpenModal={() => setLeadFormOpen(true)}
+        config={bannerConfig}
       />
 
       <main>

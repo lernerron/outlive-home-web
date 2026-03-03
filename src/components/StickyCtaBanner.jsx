@@ -7,8 +7,9 @@ import { Loader2, CheckCircle2 } from 'lucide-react';
 import { submitLead } from '@/api/leads';
 import { trackEvent } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
+import { BANNER_PRESETS } from '@/lib/banner-config';
 
-export default function StickyCtaBanner({ visible, onOpenModal }) {
+export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_PRESETS.default }) {
   const [formData, setFormData] = useState({
     name: '',
     zipCode: '',
@@ -56,10 +57,10 @@ export default function StickyCtaBanner({ visible, onOpenModal }) {
       await submitLead({
         ...formData,
         phone: formData.phone.replace(/\D/g, ''),
-        source: 'sticky-banner',
+        source: config.leadSource,
       });
       setIsSubmitted(true);
-      trackEvent('lead_submit', { source: 'sticky-banner' });
+      trackEvent('lead_submit', { source: config.leadSource });
     } catch {
       setErrors({ submit: 'Something went wrong. Please try again.' });
     } finally {
@@ -82,19 +83,19 @@ export default function StickyCtaBanner({ visible, onOpenModal }) {
       <div className="mx-auto max-w-7xl px-4 py-2 lg:px-8">
         {/* Promo headline */}
         <p className="text-center text-xs sm:text-sm font-bold text-warm mb-1.5">
-          $1,000 Off Your Shower, Plus Low Monthly Payments!*
+          {config.promo}
         </p>
 
         {/* Mobile: CTA button only */}
         <div className="flex items-center justify-between lg:hidden">
           <p className="text-sm font-medium text-white">
-            Ready to transform your home?
+            {config.mobileCta}
           </p>
           <Button
             onClick={onOpenModal}
             className="bg-warm hover:bg-warm/90 text-white text-sm px-4 py-1.5 h-auto"
           >
-            Get Free Estimate
+            {config.mobileButtonText}
           </Button>
         </div>
 
@@ -104,13 +105,13 @@ export default function StickyCtaBanner({ visible, onOpenModal }) {
             <div className="flex items-center justify-center gap-2 py-1">
               <CheckCircle2 className="h-5 w-5 text-green-400" />
               <p className="text-sm font-medium text-white">
-                Thank you! We'll contact you within 24 hours.
+                {config.successMessage}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex items-center gap-3" noValidate>
               <p className="text-sm font-medium text-white whitespace-nowrap mr-1">
-                Get a Free Estimate:
+                {config.desktopLabel}
               </p>
               <Input
                 value={formData.name}
@@ -167,7 +168,7 @@ export default function StickyCtaBanner({ visible, onOpenModal }) {
                 {isSubmitting ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  'Get Free Quote'
+                  config.submitText
                 )}
               </Button>
             </form>
