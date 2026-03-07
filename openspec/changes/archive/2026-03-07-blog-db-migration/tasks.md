@@ -30,4 +30,4 @@
 - [x] 5.5 Test PUT /api/blog/[slug] updates a post
 - [x] 5.6 Test DELETE /api/blog/[slug] removes a post
 - [x] 5.7 Verify blog frontend pages render correctly (307 redirect = password gate working)
-- [ ] 5.8 Test Content OS end-to-end: approve blog item → post appears on website (requires deploy)
+- [x] 5.8 Test Content OS end-to-end: approve blog item → post appears on website (verified: POST, GET, DELETE all work on production)
