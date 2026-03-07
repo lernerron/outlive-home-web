@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -129,11 +130,13 @@ export default function HomePage() {
               },
             ].map((product, index) => (
               <Card key={index} className="overflow-hidden flex flex-col">
-                <div className="h-48 overflow-hidden">
-                  <img
+                <div className="relative h-48 overflow-hidden">
+                  <Image
                     src={product.image}
                     alt={product.title}
-                    className="h-full w-full object-cover object-center"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-center"
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
@@ -196,10 +199,12 @@ export default function HomePage() {
                 className="relative group overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer"
                 onClick={() => setLeadFormOpen(true)}
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
@@ -297,11 +302,13 @@ export default function HomePage() {
                   effortless at every stage of life.
                 </p>
               </div>
-              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl">
-                <img
+              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl">
+                <Image
                   src={ASSET_URLS.whyUs.universalDesign}
                   alt="Universal Design Home"
-                  className="h-full w-full object-cover object-center shadow-lg"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center shadow-lg"
                 />
               </div>
             </div>
@@ -327,11 +334,13 @@ export default function HomePage() {
                   beautiful, and safe living spaces.
                 </p>
               </div>
-              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl lg:order-1">
-                <img
+              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl lg:order-1">
+                <Image
                   src={ASSET_URLS.whyUs.craftsmanship}
                   alt="Quality Craftsmanship"
-                  className="h-full w-full object-cover object-center shadow-lg"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center shadow-lg"
                 />
               </div>
             </div>
@@ -358,11 +367,13 @@ export default function HomePage() {
                   expectations.
                 </p>
               </div>
-              <div className="aspect-[8/5] w-full overflow-hidden rounded-2xl">
-                <img
+              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl">
+                <Image
                   src={ASSET_URLS.whyUs.customerService}
                   alt="Customer Satisfaction"
-                  className="h-full w-full object-cover object-center shadow-lg"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center shadow-lg"
                 />
               </div>
             </div>

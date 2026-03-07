@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
@@ -40,11 +41,13 @@ export default function BlogIndex({ posts }) {
                 <Link href={`/blog/${post.slug}`} className="block h-full">
                   <Card className="h-full overflow-hidden hover:shadow-md transition-shadow">
                     {post.coverImage && (
-                      <div className="aspect-video overflow-hidden">
-                        <img
+                      <div className="relative aspect-video overflow-hidden">
+                        <Image
                           src={post.coverImage}
                           alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 hover:scale-105"
                         />
                       </div>
                     )}

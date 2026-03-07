@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
 import { ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -50,11 +51,14 @@ export default function BlogPost({ post }) {
         </div>
 
         {post.coverImage && (
-          <div className="mt-8 aspect-video overflow-hidden rounded-xl">
-            <img
+          <div className="relative mt-8 aspect-video overflow-hidden rounded-xl">
+            <Image
               src={post.coverImage}
               alt={post.title}
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
             />
           </div>
         )}
