@@ -115,7 +115,7 @@ export default function InlineLeadForm({ source = 'inline' }) {
           type="tel"
           value={formData.phone}
           onChange={(e) => handleInputChange('phone', e.target.value)}
-          placeholder="(305) 555-0199"
+          placeholder="(305) 555-1234"
           className={errors.phone ? 'border-red-500' : ''}
           autoComplete="tel"
         />

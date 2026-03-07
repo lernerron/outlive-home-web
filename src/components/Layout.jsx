@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
@@ -100,16 +100,6 @@ export default function Layout({ children, bannerPreset }) {
             })}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-6">
-            <a
-              href="tel:3055550199"
-              className={cn(
-                "flex items-center gap-1.5 text-sm font-semibold transition-colors duration-300",
-                isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white/90 hover:text-white"
-              )}
-            >
-              <Phone className="h-4 w-4" />
-              (305) 555-0199
-            </a>
             <Button
               onClick={() => setLeadFormOpen(true)}
               className={cn(
@@ -159,13 +149,6 @@ export default function Layout({ children, bannerPreset }) {
                     })}
                   </div>
                   <div className="py-6 space-y-4">
-                    <a
-                      href="tel:3055550199"
-                      className="flex items-center justify-center gap-2 text-base font-semibold text-blue-600"
-                    >
-                      <Phone className="h-5 w-5" />
-                      (305) 555-0199
-                    </a>
                     <Button
                       onClick={() => {
                         setLeadFormOpen(true);

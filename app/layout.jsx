@@ -6,7 +6,7 @@ export const metadata = {
   description:
     'Expert home accessibility solutions for aging in place. South Florida\'s trusted partner for safe, elegant, independent living.',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://outlivehomes.com'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://outlivehome.com'
   ),
   openGraph: {
     title: 'Outlive Homes | The Art and Science of Outliving at Home',

@@ -1,33 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/</loc>
+    <loc>https://outlivehome.com/</loc>
   </url>
   <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/BathroomSafety</loc>
+    <loc>https://outlivehome.com/blog</loc>
   </url>
   <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/Homelifts</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/StairLift</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/Ramps</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/WheelchairRamps</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/AssessmentDesignServices</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/FinancingOptions</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/AboutUs</loc>
-  </url>
-  <url>
-    <loc>https://REPLACE_WITH_PRODUCTION_DOMAIN/PrivacyPolicy</loc>
+    <loc>https://outlivehome.com/privacypolicy</loc>
   </url>
 </urlset>

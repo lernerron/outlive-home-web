@@ -9,7 +9,6 @@ import {
   Stars,
   Hammer,
   Star,
-  Quote,
   Shield,
   Clock,
   CheckCircle2,
@@ -368,26 +367,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Customer Testimonial */}
-      <div className="bg-gray-50 py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-          <Quote className="mx-auto h-10 w-10 text-blue-200 mb-8" />
-          <blockquote className="text-xl sm:text-2xl font-medium leading-relaxed text-gray-900 mb-8">
-            "This was the best experience we've ever had with a home renovation.
-            The team was professional, listened to everything we needed, and
-            delivered beyond our expectations. Our bathroom is now safe, beautiful,
-            and exactly what we envisioned."
-          </blockquote>
-          <div className="flex items-center justify-center gap-2 mb-3">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="h-5 w-5 fill-orange-500 text-orange-500" />
-            ))}
-          </div>
-          <p className="font-semibold text-gray-900">Maria R.</p>
-          <p className="text-sm text-gray-500">Verified Customer &middot; Miami, FL</p>
         </div>
       </div>
 

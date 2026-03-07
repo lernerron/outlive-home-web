@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: replace with production domain
-Sitemap: https://REPLACE_WITH_PRODUCTION_DOMAIN/sitemap.xml
+Sitemap: https://outlivehome.com/sitemap.xml
