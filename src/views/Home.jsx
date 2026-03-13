@@ -34,9 +34,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl leading-tight">
-              The Art and Science of
-              <br />
-              Outliving at Home
+              Outlive at Home
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-200 max-w-xl">
               We design elegant bathroom and access solutions that let you stay
