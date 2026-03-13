@@ -13,6 +13,9 @@ import {
   Shield,
   Clock,
   CheckCircle2,
+  Phone,
+  PenRuler,
+  Wrench,
 } from "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
 import InlineLeadForm from "../components/InlineLeadForm";
@@ -213,27 +216,39 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                step: 1,
+                icon: Phone,
                 title: "Free Consultation",
                 description:
                   "We visit your home, assess your needs, and discuss solutions — no obligation, no pressure.",
               },
               {
-                step: 2,
+                icon: PenRuler,
                 title: "Design & Estimate",
                 description:
                   "Our team designs a custom plan tailored to your home, needs, and budget. You'll know exactly what to expect.",
               },
               {
-                step: 3,
+                icon: Wrench,
                 title: "Professional Installation",
                 description:
                   "Our skilled installers complete your project efficiently and respectfully, backed by our lifetime warranty.",
               },
-            ].map((step) => (
-              <div key={step.step} className="text-center">
-                <div className="mx-auto w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-bold mb-6">
-                  {step.step}
+            ].map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="flex justify-center mb-6">
+                  <div
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                    style={{
+                      background: "linear-gradient(135deg, #24477F 0%, #051C2C 100%)",
+                      boxShadow: "0 8px 24px rgba(5, 28, 44, 0.35), inset 0 1px 0 rgba(255,255,255,0.15)",
+                      transform: "rotate(-6deg)",
+                    }}
+                  >
+                    <step.icon
+                      className="h-9 w-9 text-white"
+                      style={{ transform: "rotate(6deg)" }}
+                    />
+                  </div>
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
                 <p className="text-gray-600 leading-7">{step.description}</p>
@@ -285,7 +300,7 @@ export default function HomePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center bg-white rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
@@ -296,26 +311,15 @@ export default function HomePage() {
                     className="object-cover object-center"
                   />
                 </div>
-                {/* 3D-styled icon */}
-                <div className="-mt-10 relative z-10 mb-2">
-                  <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg"
-                    style={{
-                      background: "linear-gradient(135deg, #24477F 0%, #051C2C 100%)",
-                      boxShadow: "0 8px 24px rgba(5, 28, 44, 0.35), inset 0 1px 0 rgba(255,255,255,0.15)",
-                      transform: "rotate(-6deg)",
-                    }}
-                  >
-                    <item.icon
-                      className="h-9 w-9 text-white"
-                      style={{ transform: "rotate(6deg)" }}
-                    />
+                <div className="flex flex-col flex-1 p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-lg bg-blue-100">
+                      <item.icon className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-bold tracking-tight text-gray-900">
+                      {item.title}
+                    </h3>
                   </div>
-                </div>
-                <div className="flex flex-col flex-1 px-6 pb-6 text-center">
-                  <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-3">
-                    {item.title}
-                  </h3>
                   <p className="text-base text-gray-600 leading-7">
                     {item.description}
                   </p>
