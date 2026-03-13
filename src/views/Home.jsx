@@ -241,13 +241,9 @@ export default function HomePage() {
                     style={{
                       background: "linear-gradient(135deg, #24477F 0%, #051C2C 100%)",
                       boxShadow: "0 8px 24px rgba(5, 28, 44, 0.35), inset 0 1px 0 rgba(255,255,255,0.15)",
-                      transform: "rotate(-6deg)",
                     }}
                   >
-                    <step.icon
-                      className="h-9 w-9 text-white"
-                      style={{ transform: "rotate(6deg)" }}
-                    />
+                    <step.icon className="h-9 w-9 text-white" />
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
