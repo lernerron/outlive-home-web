@@ -316,10 +316,10 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-anchor hover:bg-navy text-white"
               onClick={() => setLeadFormOpen(true)}
             >
-              Get a Free Consultation
+              Get Free Consultation
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -335,9 +335,8 @@ export default function HomePage() {
                 Want more info? We've got you.
               </h2>
               <p className="text-lg text-gray-600 mb-8 leading-8">
-                Get a free, no-obligation consultation. Our experts will visit
-                your home, assess your needs, and design the perfect solution —
-                all at no cost to you.
+                Get a free, no-obligation consultation. Our experts will call
+                you, assess your needs, and help you understand our solutions.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
