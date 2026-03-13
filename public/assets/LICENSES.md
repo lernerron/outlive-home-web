@@ -12,5 +12,6 @@ All images used on the website must be documented here with their source and lic
 | `shower-glass-enclosure.jpg` | Unsplash | Unsplash License (free commercial use, no permission needed) | 2026-03-12 | Shower Conversions card |
 | `walkin-shower-modern.jpg` | Unsplash | Unsplash License (free commercial use, no permission needed) | 2026-03-12 | Walk-in Solutions card |
 | `bathroom-remodel-modern.jpg` | Unsplash (cropped) | Unsplash License (free commercial use, no permission needed) | 2026-03-12 | Bathroom Remodels card |
+| `bathroom-safety-accessible.jpg` | Motionspot.co.uk (cropped, watermarked) | Used with attribution | 2026-03-12 | Bathroom Safety card |
 
 <!-- Add entries for replacement images as they are sourced -->

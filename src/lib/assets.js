@@ -15,6 +15,7 @@ export const ASSET_URLS = {
   },
   home: {
     bathroomRemodel: buildAssetUrl("bathroom-remodel-modern.jpg"),
+    bathroomSafetyCard: buildAssetUrl("bathroom-safety-accessible.jpg"),
     homeElevators: buildAssetUrl("homelift-stiltz.png"),
     stairLifts: buildAssetUrl("stairlift-bruno-elan.png"),
     ramps: buildAssetUrl("ramp-modular.jpg"),

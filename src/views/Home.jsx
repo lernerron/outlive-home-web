@@ -96,7 +96,7 @@ export default function HomePage() {
                 title: "Bathroom Safety",
                 description:
                   "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
-                image: ASSET_URLS.home.bathroomSafety,
+                image: ASSET_URLS.home.bathroomSafetyCard,
               },
               {
                 title: "Home Elevators",
@@ -109,24 +109,6 @@ export default function HomePage() {
                 description:
                   "Glide up and down your stairs with a gentle, smooth ride from start to finish.",
                 image: ASSET_URLS.home.stairLifts,
-              },
-              {
-                title: "Ramps",
-                description:
-                  "In-and-out of the house solutions for easy home entry.",
-                image: ASSET_URLS.home.ramps,
-              },
-              {
-                title: "Grab Bars & Handrails",
-                description:
-                  "Enhance safety and mobility throughout your home with stylish, sturdy grab bars and handrails designed to blend with your decor.",
-                image: ASSET_URLS.home.grabBarsHandrails,
-              },
-              {
-                title: "Wheelchair Lifts",
-                description:
-                  "Provide safe, reliable access between floors for wheelchair users with our vertical platform lifts.",
-                image: ASSET_URLS.home.wheelchairLifts,
               },
             ].map((product, index) => (
               <Card key={index} className="overflow-hidden flex flex-col">
