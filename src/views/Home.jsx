@@ -181,7 +181,7 @@ export default function HomePage() {
               {
                 title: "Bathroom Remodels",
                 description: "Remodel your bathroom to match your style and needs.",
-                image: ASSET_URLS.home.bathroomSafety,
+                image: ASSET_URLS.home.bathroomRemodel,
               },
               {
                 title: "Shower Conversions",

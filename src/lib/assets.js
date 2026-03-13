@@ -14,7 +14,7 @@ export const ASSET_URLS = {
     showerGlassEnclosure: buildAssetUrl("shower-glass-enclosure.jpg"),
   },
   home: {
-    bathroomSafety: buildAssetUrl("bathroom-accessible.jpg"),
+    bathroomRemodel: buildAssetUrl("bathroom-remodel-modern.jpg"),
     homeElevators: buildAssetUrl("homelift-stiltz.png"),
     stairLifts: buildAssetUrl("stairlift-bruno-elan.png"),
     ramps: buildAssetUrl("ramp-modular.jpg"),
