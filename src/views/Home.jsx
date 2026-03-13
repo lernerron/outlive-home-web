@@ -244,122 +244,87 @@ export default function HomePage() {
       </div>
 
       {/* Why Customers Choose Us Section */}
-      <div id="why-us" className="py-20 sm:py-24">
+      <section id="why-us" className="bg-gray-50 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
+          <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
               Why Customers Choose Us
             </h2>
-            <p className="text-lg text-gray-600 mb-12 sm:mb-16">
+            <p className="text-lg text-gray-600">
               Our commitment to excellence sets us apart in every aspect of home
               accessibility.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-16 lg:gap-28">
-            {/* Universal Design */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-4 mb-6 sm:mb-8">
-                  <div className="p-3 rounded-lg bg-blue-100">
-                    <Compass className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                      Universal Design
-                    </h2>
-                    <p className="text-sm font-medium text-blue-600 mt-1">
-                      Creating Homes for a Lifetime
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Compass,
+                title: "Universal Design",
+                image: ASSET_URLS.whyUs.universalDesign,
+                alt: "Universal Design Home",
+                description:
+                  "We blend beauty, function, and safety so seamlessly you'd never know the difference. Our designs anticipate how your needs evolve — creating spaces that work for you today and decades from now.",
+              },
+              {
+                icon: Hammer,
+                title: "Exceptional Craftsmanship",
+                image: ASSET_URLS.whyUs.craftsmanship,
+                alt: "Quality Craftsmanship",
+                description:
+                  "Our skilled team combines premium materials with rigorous quality standards. Every modification — from a simple grab bar to a full remodel — is executed flawlessly and built to last.",
+              },
+              {
+                icon: Stars,
+                title: "Unparalleled Service",
+                image: ASSET_URLS.whyUs.customerService,
+                alt: "Customer Satisfaction",
+                description:
+                  "Your dedicated concierge listens closely, follows through with precision, and doesn't stop until you're fully satisfied. We stand behind every project with our satisfaction guarantee.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-center"
+                  />
                 </div>
-                <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  Every detail is designed with purpose — blending beauty,
-                  function, and safety so seamlessly you'd never know the
-                  difference. Our approach anticipates how your needs may
-                  evolve, creating spaces that work for you today and decades
-                  from now. The result: a home that looks stunning and feels
-                  effortless at every stage of life.
-                </p>
+                <div className="flex flex-col flex-1 p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-lg bg-blue-100">
+                      <item.icon className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-bold tracking-tight text-gray-900">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="text-base text-gray-600 leading-7">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl">
-                <Image
-                  src={ASSET_URLS.whyUs.universalDesign}
-                  alt="Universal Design Home"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center shadow-lg"
-                />
-              </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Exceptional Quality and Craftsmanship */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="flex flex-col justify-center lg:order-2">
-                <div className="flex items-center gap-4 mb-6 sm:mb-8">
-                  <div className="p-3 rounded-lg bg-blue-100">
-                    <Hammer className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                    Exceptional Quality and Craftsmanship
-                  </h2>
-                </div>
-                <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  Quality craftsmanship defines every project we undertake. Our
-                  team of skilled professionals adheres to the highest industry
-                  standards, ensuring every modification—be it a simple grab bar
-                  installation or a full-scale accessible remodel—is executed
-                  flawlessly. We combine premium materials, advanced techniques,
-                  and rigorous quality control processes to deliver durable,
-                  beautiful, and safe living spaces.
-                </p>
-              </div>
-              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl lg:order-1">
-                <Image
-                  src={ASSET_URLS.whyUs.craftsmanship}
-                  alt="Quality Craftsmanship"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center shadow-lg"
-                />
-              </div>
-            </div>
-
-            {/* Unparalleled Customer Service */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-4 mb-6 sm:mb-8">
-                  <div className="p-3 rounded-lg bg-blue-100">
-                    <Stars className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                    Unparalleled Customer Service
-                  </h2>
-                </div>
-                <p className="text-base sm:text-lg text-gray-600 leading-8">
-                  Your satisfaction drives everything we do. We earned a
-                  distinguished reputation by delivering exceptional service,
-                  every time. Your dedicated concierge will start by listening
-                  closely, follow through with precise attention to detail, and
-                  finish only when you're fully satisfied. Our satisfaction
-                  guarantee means we stand behind our work, ensuring each step
-                  from initial consultation to final walkthrough exceeds your
-                  expectations.
-                </p>
-              </div>
-              <div className="relative aspect-[8/5] w-full overflow-hidden rounded-2xl">
-                <Image
-                  src={ASSET_URLS.whyUs.customerService}
-                  alt="Customer Satisfaction"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center shadow-lg"
-                />
-              </div>
-            </div>
+          <div className="mt-12 text-center">
+            <Button
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700"
+              onClick={() => setLeadFormOpen(true)}
+            >
+              Get a Free Consultation
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Inline Lead Capture Section */}
       <div className="bg-white py-20 sm:py-24">
