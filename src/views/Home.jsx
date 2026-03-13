@@ -186,12 +186,12 @@ export default function HomePage() {
               {
                 title: "Shower Conversions",
                 description: "Convert your tub to a shower or your shower to a tub.",
-                image: ASSET_URLS.brand.heroBackground,
+                image: ASSET_URLS.brand.showerGlassEnclosure,
               },
               {
                 title: "Walk-in Solutions",
                 description: "Safe, accessible walk-in showers and baths for comfort and independence.",
-                image: ASSET_URLS.home.grabBarsHandrails,
+                image: ASSET_URLS.home.walkinShower,
               },
             ].map((item, index) => (
               <div

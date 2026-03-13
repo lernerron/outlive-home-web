@@ -19,6 +19,7 @@ export const ASSET_URLS = {
     stairLifts: buildAssetUrl("stairlift-bruno-elan.png"),
     ramps: buildAssetUrl("ramp-modular.jpg"),
     grabBarsHandrails: buildAssetUrl("grab-bars-handrails.jpg"),
+    walkinShower: buildAssetUrl("walkin-shower-modern.jpg"),
     wheelchairLifts: buildAssetUrl("wheelchair-lift-harmar.jpg"),
   },
   bathroomSafety: {
