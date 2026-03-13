@@ -270,6 +270,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
+                icon: Stars,
+                title: "Unparalleled Service",
+                image: ASSET_URLS.whyUs.customerService,
+                alt: "Customer Satisfaction",
+                description:
+                  "Your dedicated concierge listens closely, follows through with precision, and doesn't stop until you're fully satisfied. We stand behind every project with our satisfaction guarantee.",
+              },
+              {
                 icon: Compass,
                 title: "Universal Design",
                 image: ASSET_URLS.whyUs.universalDesign,
@@ -284,14 +292,6 @@ export default function HomePage() {
                 alt: "Quality Craftsmanship",
                 description:
                   "Our skilled team combines premium materials with rigorous quality standards. Every modification — from a simple grab bar to a full remodel — is executed flawlessly and built to last.",
-              },
-              {
-                icon: Stars,
-                title: "Unparalleled Service",
-                image: ASSET_URLS.whyUs.customerService,
-                alt: "Customer Satisfaction",
-                description:
-                  "Your dedicated concierge listens closely, follows through with precision, and doesn't stop until you're fully satisfied. We stand behind every project with our satisfaction guarantee.",
               },
             ].map((item, index) => (
               <div
