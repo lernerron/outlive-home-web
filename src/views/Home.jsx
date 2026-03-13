@@ -14,7 +14,7 @@ import {
   Clock,
   CheckCircle2,
   Phone,
-  PenRuler,
+  Ruler,
   Wrench,
 } from "lucide-react";
 import LeadCaptureForm from "../components/LeadCaptureForm";
@@ -222,7 +222,7 @@ export default function HomePage() {
                   "We visit your home, assess your needs, and discuss solutions — no obligation, no pressure.",
               },
               {
-                icon: PenRuler,
+                icon: Ruler,
                 title: "Design & Estimate",
                 description:
                   "Our team designs a custom plan tailored to your home, needs, and budget. You'll know exactly what to expect.",
