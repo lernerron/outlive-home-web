@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
         {/* Introduction */}
         <div className="mb-16">
           <p className="text-lg leading-8 text-gray-700">
-            This Privacy Policy describes how <strong className="text-blue-900">Outlive Homes</strong> ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") collects, uses, shares, and protects your personal information when you visit or use our website, <strong>www.outlivehomes.com</strong> (the "<strong>Site</strong>"). This Privacy Policy is intended to comply with applicable privacy laws, including the <strong>California Consumer Privacy Act (CCPA)</strong> and the <strong>California Privacy Rights Act (CPRA)</strong>.
+            This Privacy Policy describes how <strong className="text-blue-900">Outlive Homes</strong> ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") collects, uses, shares, and protects your personal information when you visit or use our website, <strong>www.outlivehomes.com</strong> (the "<strong>Site</strong>"). This Privacy Policy is intended to comply with applicable privacy laws, including the <strong>Florida Information Protection Act (FIPA)</strong> and the <strong>Florida Digital Bill of Rights (FDBR)</strong>.
           </p>
         </div>
 
@@ -169,10 +169,10 @@ export default function PrivacyPolicyPage() {
           </div>
         </section>
 
-        {/* Section 4 - California Rights */}
+        {/* Section 4 - Florida Rights */}
         <section id="section-4" className="mb-16">
           <div className="border-l-4 border-blue-600 pl-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Your Privacy Rights (California Residents)</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Your Privacy Rights (Florida Residents)</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
