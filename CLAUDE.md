@@ -21,10 +21,13 @@
 3. Check `openspec/specs/` for specs related to today's work
 4. Review `tasks/lessons.md` for relevant patterns and past corrections
 5. Check `package.json` scripts before running any commands — don't assume what exists
+6. Activate governance — identify mode (Full Sprint, Execution, or Direct Fix) per `.claude/rules/governance.md`
 
 ## OpenSpec Integration
 
 All non-trivial work uses the OpenSpec spec-driven workflow. See `~/.claude/rules/openspec-workflow.md` for the full propose → apply → archive lifecycle and rules on when to use vs. skip.
+
+Development workflow follows the GStack governance framework. See @.claude/rules/governance.md for modes, stage gates, and skill routing.
 
 ## Tech Stack Conventions
 
@@ -41,9 +44,9 @@ All non-trivial work uses the OpenSpec spec-driven workflow. See `~/.claude/rule
 
 ## Brand System
 
-Brand colors, typography, usage rules, and accessibility contrast requirements are defined in `~/.claude/rules/brand.md`. That file is the single source of truth.
+Brand identity (colors, typography, hard rules, accessibility contrast) is defined in `~/.claude/rules/brand.md`. Component patterns, spacing, motion, buttons, forms, and implementation details are in `DESIGN.md` at the project root. Both files are source of truth — brand.md for identity, DESIGN.md for implementation.
 
-In this project, brand tokens are configured in `tailwind.config.js` under `theme.extend.colors`. Never hardcode hex values — always use the Tailwind token names.
+Brand tokens are configured in `tailwind.config.cjs` under `theme.extend.colors`. Never hardcode hex values — always use Tailwind token names.
 
 ## Architecture
 
@@ -52,6 +55,7 @@ In this project, brand tokens are configured in `tailwind.config.js` under `them
 - **Views:** `src/views/` — Home, BlogIndex, BlogPost, PrivacyPolicy, AdminLeadsQueue
 - **Components:** `src/components/` — Layout, ui/ (shadcn)
 - **Data:** Vercel Postgres / Neon (`posts` table), `data/leads.json` (local lead backup, gitignored), `data/blog.json` (seed data, no longer read at runtime)
+- **Designs:** `docs/designs/` — gstack design docs from `/office-hours` sessions; `docs/wireframes/` — wireframe HTML files
 
 ## Key Integrations
 
