@@ -118,8 +118,8 @@ export default function BathroomSafety() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/75 to-navy/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
