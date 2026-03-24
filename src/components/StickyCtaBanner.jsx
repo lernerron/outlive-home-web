@@ -175,9 +175,9 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
           )}
         </div>
 
-        {/* Consent text */}
-        <p className="text-xs leading-tight text-white/70 mt-1.5 max-w-5xl mx-auto text-center">
-          By submitting this form, you consent to receive text messages from Outlive Homes for marketing, customer care, and account notifications. Message frequency may vary. Msg and Data rates apply. Reply &ldquo;STOP&rdquo; to unsubscribe. Text HELP for support. Consent is not a condition of purchase. You also consent to receiving phone calls and emails with explicit information about your project needs. We will never share your personal information with 3rd parties for marketing purposes or spam you. <a href="/privacypolicy" className="underline hover:text-white/70">Terms and Conditions</a> | <a href="/privacypolicy" className="underline hover:text-white/70">Privacy Policy</a>
+        {/* Consent text — hidden on mobile to prevent banner from dominating viewport */}
+        <p className="hidden md:block text-xs leading-tight text-white/70 mt-1.5 max-w-5xl mx-auto text-center">
+          By submitting, you consent to calls, texts, and emails from Outlive Homes. Msg/data rates apply. Reply STOP to unsubscribe. Consent not required for purchase. <a href="/privacypolicy" className="underline hover:text-white/90">Privacy Policy</a>
         </p>
       </div>
     </div>
