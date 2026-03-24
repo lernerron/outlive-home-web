@@ -28,7 +28,7 @@ const COMMON_EMAIL_DOMAINS = [
   'icloud.com'
 ];
 
-export default function LeadCaptureForm({ isOpen, onClose, source = 'website' }) {
+export default function LeadCaptureForm({ isOpen, onClose, source = 'website', defaultServiceType = '' }) {
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
   const isTurnstileEnabled = Boolean(turnstileSiteKey);
   const turnstileRef = useRef(null);
@@ -39,40 +39,17 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
     phone: '',
     address: '',
     email: '',
-    comments: ''
+    comments: '',
+    serviceType: defaultServiceType,
+    urgency: '',
+    relationship: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailSuggestion, setEmailSuggestion] = useState('');
-  const [locationPermissionRequested, setLocationPermissionRequested] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
   const [turnstileError, setTurnstileError] = useState('');
-  // The consentChecked state is no longer needed
-
-  // Auto-detect location for zip code
-  useEffect(() => {
-    if (isOpen && !locationPermissionRequested && !formData.zipCode) {
-      setLocationPermissionRequested(true);
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            try {
-              // In a real app, you'd use a geocoding service here
-              // For demo purposes, we'll just show the feature exists
-              console.log('Location detected:', position.coords);
-            } catch (error) {
-              console.log('Geocoding failed:', error);
-            }
-          },
-          (error) => {
-            console.log('Geolocation permission denied or failed:', error);
-          },
-          { timeout: 5000, maximumAge: 300000 }
-        );
-      }
-    }
-  }, [isOpen, locationPermissionRequested, formData.zipCode]);
 
   useEffect(() => {
     if (!isOpen || !isTurnstileEnabled || !turnstileRef.current) {
@@ -202,19 +179,16 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
     setErrors(prev => ({ ...prev, [name]: error }));
   };
 
+  const optionalFields = ['address', 'comments', 'serviceType', 'urgency', 'relationship'];
+
   const validateForm = () => {
     const newErrors = {};
     Object.keys(formData).forEach(key => {
-      // 'address' and 'comments' are optional fields, so skip their validation here.
-      // Required fields are handled by validateField.
-      if (key !== 'address' && key !== 'comments') {
+      if (!optionalFields.includes(key)) {
         const error = validateField(key, formData[key]);
         if (error) newErrors[key] = error;
       }
     });
-    
-    // Consent checkbox validation removed
-    
     return newErrors;
   };
 
@@ -257,15 +231,13 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
   };
 
   const handleClose = () => {
-    setFormData({ name: '', zipCode: '', phone: '', address: '', email: '', comments: '' });
+    setFormData({ name: '', zipCode: '', phone: '', address: '', email: '', comments: '', serviceType: defaultServiceType, urgency: '', relationship: '' });
     setErrors({});
     setIsSubmitting(false);
     setIsSubmitted(false);
     setEmailSuggestion('');
-    setLocationPermissionRequested(false);
     setTurnstileToken('');
     setTurnstileError('');
-    // setConsentChecked(false); // This state is no longer needed
     onClose();
   };
 
@@ -281,17 +253,17 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md" aria-describedby="success-description">
           <div className="text-center py-6">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 mb-6">
-              <CheckCircle2 className="h-8 w-8 text-green-600" />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-anchor/10 mb-6">
+              <CheckCircle2 className="h-8 w-8 text-anchor" />
             </div>
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-gray-900">Thank You!</DialogTitle>
-              <DialogDescription id="success-description" className="mt-4 text-lg text-gray-600">
-                We've received your information and will contact you within 24 hours to schedule your free consultation.
+              <DialogTitle className="text-2xl font-bold text-text-body">Thank You!</DialogTitle>
+              <DialogDescription id="success-description" className="mt-4 text-lg text-text-body/70">
+                We&rsquo;ve received your information and will contact you within 24 hours to schedule your free consultation.
               </DialogDescription>
             </DialogHeader>
             <Button
-              className="mt-8 w-full bg-blue-600 hover:bg-blue-700"
+              className="mt-8 w-full bg-blue hover:bg-blue/90 text-white"
               onClick={handleClose}
             >
               Close
@@ -306,18 +278,18 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg" aria-describedby="form-description">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-900">
-            Get Your Free Consultation
+          <DialogTitle className="text-2xl font-bold text-text-body">
+            Get Your Free Assessment
           </DialogTitle>
           <DialogDescription id="form-description">
-            Complete the form below to schedule your free home accessibility consultation.
+            Complete the form below to schedule your free home accessibility assessment.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6 mt-6" noValidate>
+        <form onSubmit={handleSubmit} className="space-y-4 mt-6" noValidate>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="name" className="text-sm font-medium text-text-body mb-1.5">
                 Full Name *
               </Label>
               <Input
@@ -326,14 +298,14 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 onBlur={(e) => handleBlur('name', e.target.value)}
-                className={errors.name ? 'border-red-500 focus:ring-red-500' : ''}
+                className={errors.name ? 'border-warm focus:ring-warm' : ''}
                 placeholder="Enter your full name"
                 aria-invalid={errors.name ? 'true' : 'false'}
                 aria-describedby={errors.name ? 'name-error' : undefined}
                 autoComplete="name"
               />
               {errors.name && (
-                <p id="name-error" className="mt-1 text-sm text-red-600 flex items-center">
+                <p id="name-error" className="mt-1 text-sm text-warm flex items-center">
                   <AlertCircle className="h-4 w-4 mr-1" />
                   {errors.name}
                 </p>
@@ -341,9 +313,9 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
             </div>
 
             <div>
-              <Label htmlFor="zipCode" className="text-sm font-medium text-gray-700 flex items-center">
+              <Label htmlFor="zipCode" className="text-sm font-medium text-text-body mb-1.5 flex items-center">
                 ZIP Code *
-                <MapPin className="h-4 w-4 ml-1 text-gray-400" />
+                <MapPin className="h-4 w-4 ml-1 text-warm-gray" />
               </Label>
               <Input
                 id="zipCode"
@@ -351,15 +323,15 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
                 value={formData.zipCode}
                 onChange={(e) => handleInputChange('zipCode', e.target.value)}
                 onBlur={(e) => handleBlur('zipCode', e.target.value)}
-                className={errors.zipCode ? 'border-red-500 focus:ring-red-500' : ''}
-                placeholder="12345"
+                className={errors.zipCode ? 'border-warm focus:ring-warm' : ''}
+                placeholder="33101"
                 maxLength="5"
                 aria-invalid={errors.zipCode ? 'true' : 'false'}
                 aria-describedby={errors.zipCode ? 'zipCode-error' : undefined}
                 autoComplete="postal-code"
               />
               {errors.zipCode && (
-                <p id="zipCode-error" className="mt-1 text-sm text-red-600 flex items-center">
+                <p id="zipCode-error" className="mt-1 text-sm text-warm flex items-center">
                   <AlertCircle className="h-4 w-4 mr-1" />
                   {errors.zipCode}
                 </p>
@@ -367,65 +339,122 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
             </div>
           </div>
 
-          <div>
-            <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-              Phone Number *
-            </Label>
-            <Input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => handleInputChange('phone', e.target.value)}
-              onBlur={(e) => handleBlur('phone', e.target.value)}
-              className={errors.phone ? 'border-red-500 focus:ring-red-500' : ''}
-              placeholder="(555) 123-4567"
-              aria-invalid={errors.phone ? 'true' : 'false'}
-              aria-describedby={errors.phone ? 'phone-error' : undefined}
-              autoComplete="tel"
-            />
-            {errors.phone && (
-              <p id="phone-error" className="mt-1 text-sm text-red-600 flex items-center">
-                <AlertCircle className="h-4 w-4 mr-1" />
-                {errors.phone}
-              </p>
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="phone" className="text-sm font-medium text-text-body mb-1.5">
+                Phone Number *
+              </Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => handleInputChange('phone', e.target.value)}
+                onBlur={(e) => handleBlur('phone', e.target.value)}
+                className={errors.phone ? 'border-warm focus:ring-warm' : ''}
+                placeholder="(305) 555-1234"
+                aria-invalid={errors.phone ? 'true' : 'false'}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
+                autoComplete="tel"
+              />
+              {errors.phone && (
+                <p id="phone-error" className="mt-1 text-sm text-warm flex items-center">
+                  <AlertCircle className="h-4 w-4 mr-1" />
+                  {errors.phone}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="email" className="text-sm font-medium text-text-body mb-1.5">
+                Email Address *
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange('email', e.target.value)}
+                onBlur={(e) => handleBlur('email', e.target.value)}
+                className={errors.email ? 'border-warm focus:ring-warm' : ''}
+                placeholder="you@example.com"
+                aria-invalid={errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+                autoComplete="email"
+              />
+              {emailSuggestion && (
+                <button
+                  type="button"
+                  onClick={applySuggestion}
+                  className="mt-1 text-sm text-blue hover:text-navy underline"
+                >
+                  Did you mean: {emailSuggestion}?
+                </button>
+              )}
+              {errors.email && (
+                <p id="email-error" className="mt-1 text-sm text-warm flex items-center">
+                  <AlertCircle className="h-4 w-4 mr-1" />
+                  {errors.email}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div>
-            <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-              Email Address *
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => handleInputChange('email', e.target.value)}
-              onBlur={(e) => handleBlur('email', e.target.value)}
-              className={errors.email ? 'border-red-500 focus:ring-red-500' : ''}
-              placeholder="your.email@example.com"
-              aria-invalid={errors.email ? 'true' : 'false'}
-              aria-describedby={errors.email ? 'email-error' : undefined}
-              autoComplete="email"
-            />
-            {emailSuggestion && (
-              <button
-                type="button"
-                onClick={applySuggestion}
-                className="mt-1 text-sm text-blue-600 hover:text-blue-800 underline"
+          {/* Qualification fields */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <Label htmlFor="serviceType" className="text-sm font-medium text-text-body mb-1.5">
+                Service Needed
+              </Label>
+              <select
+                id="serviceType"
+                value={formData.serviceType}
+                onChange={(e) => handleInputChange('serviceType', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-warm-gray/30 bg-white text-text-body focus:outline-none focus:ring-2 focus:ring-blue focus:border-blue transition-colors duration-200 appearance-none"
               >
-                Did you mean: {emailSuggestion}?
-              </button>
-            )}
-            {errors.email && (
-              <p id="email-error" className="mt-1 text-sm text-red-600 flex items-center">
-                <AlertCircle className="h-4 w-4 mr-1" />
-                {errors.email}
-              </p>
-            )}
+                <option value="">Select...</option>
+                <option value="Barrier-free shower">Barrier-free shower</option>
+                <option value="Roll-in shower">Roll-in shower</option>
+                <option value="Complete bathroom">Complete bathroom</option>
+                <option value="Grab bars & safety">Grab bars &amp; safety</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="urgency" className="text-sm font-medium text-text-body mb-1.5">
+                Timeline
+              </Label>
+              <select
+                id="urgency"
+                value={formData.urgency}
+                onChange={(e) => handleInputChange('urgency', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-warm-gray/30 bg-white text-text-body focus:outline-none focus:ring-2 focus:ring-blue focus:border-blue transition-colors duration-200 appearance-none"
+              >
+                <option value="">Select...</option>
+                <option value="Urgent (recent fall/surgery)">Urgent (recent fall/surgery)</option>
+                <option value="Within 1 month">Within 1 month</option>
+                <option value="Within 3 months">Within 3 months</option>
+                <option value="Planning ahead">Planning ahead</option>
+              </select>
+            </div>
+            <div>
+              <Label htmlFor="relationship" className="text-sm font-medium text-text-body mb-1.5">
+                This is for...
+              </Label>
+              <select
+                id="relationship"
+                value={formData.relationship}
+                onChange={(e) => handleInputChange('relationship', e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-warm-gray/30 bg-white text-text-body focus:outline-none focus:ring-2 focus:ring-blue focus:border-blue transition-colors duration-200 appearance-none"
+              >
+                <option value="">Select...</option>
+                <option value="Myself">Myself</option>
+                <option value="My parent/family member">My parent/family member</option>
+                <option value="My patient/client">My patient/client</option>
+              </select>
+            </div>
           </div>
 
           <div>
-            <Label htmlFor="address" className="text-sm font-medium text-gray-700">
+            <Label htmlFor="address" className="text-sm font-medium text-text-body mb-1.5">
               Street Address (Optional)
             </Label>
             <Input
@@ -439,7 +468,7 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
           </div>
 
           <div>
-            <Label htmlFor="comments" className="text-sm font-medium text-gray-700">
+            <Label htmlFor="comments" className="text-sm font-medium text-text-body mb-1.5">
               Questions or Comments (Optional)
             </Label>
             <Textarea
@@ -453,8 +482,8 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
           </div>
 
           {errors.submit && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600 flex items-center">
+            <div className="p-3 bg-warm/10 border border-warm/30 rounded-xl">
+              <p className="text-sm text-warm flex items-center">
                 <AlertCircle className="h-4 w-4 mr-2" />
                 {errors.submit}
               </p>
@@ -466,13 +495,13 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
               <div className="space-y-2">
                 <div ref={turnstileRef} />
                 {turnstileError && (
-                  <p className="text-sm text-red-600">{turnstileError}</p>
+                  <p className="text-sm text-warm">{turnstileError}</p>
                 )}
               </div>
             )}
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 py-3 text-lg font-semibold"
+              className="w-full bg-blue hover:bg-blue/90 text-white py-3 text-lg font-semibold rounded-full shadow-lg shadow-blue/20"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -481,11 +510,11 @@ export default function LeadCaptureForm({ isOpen, onClose, source = 'website' })
                   Submitting...
                 </>
               ) : (
-                'Submit'
+                'Get Your Free Assessment'
               )}
             </Button>
-            <p className="text-xs text-gray-500 text-center leading-relaxed">
-              By clicking "Submit", I am providing my e-signature and agree that Outlive Homes may call or text me using an automatic dialing system to arrange a convenient phone or in-home estimate. I understand consent is not required as a condition of purchase, and that I may revoke my consent at any time. Msg / data rates may apply. See our <Link href={createPageUrl('PrivacyPolicy')} className="underline hover:text-blue-700">Privacy Policy</Link>.
+            <p className="text-xs text-text-body/60 text-center leading-relaxed">
+              By clicking &ldquo;Get Your Free Assessment&rdquo;, I am providing my e-signature and agree that Outlive Homes may call or text me using an automatic dialing system to arrange a convenient phone or in-home estimate. I understand consent is not required as a condition of purchase, and that I may revoke my consent at any time. Msg / data rates may apply. See our <Link href={createPageUrl('PrivacyPolicy')} className="underline hover:text-blue">Privacy Policy</Link>.
             </p>
           </div>
         </form>

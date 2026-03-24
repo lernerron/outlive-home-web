@@ -111,8 +111,8 @@ export default function HomePremium() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-anchor/85 via-anchor/70 to-anchor/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-anchor/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/70 to-navy/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
         </div>
         {/* Subtle grain */}
         <div
@@ -151,8 +151,10 @@ export default function HomePremium() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-8 text-lg sm:text-xl leading-relaxed text-white/75 max-w-xl"
             >
-              We design elegant bathroom and access solutions that let you stay
-              safe and comfortable in the home you love for decades to come.
+              We design and install barrier-free bathroom solutions that let
+              South Florida customers stay safe and independent at home. From
+              shower conversions to complete accessible bathrooms &mdash;
+              installed in days, not months.
             </motion.p>
 
             <motion.div
@@ -163,17 +165,17 @@ export default function HomePremium() {
             >
               <Button
                 size="lg"
-                className="bg-warm hover:bg-warm/90 text-white px-8 py-6 text-base font-semibold rounded-full shadow-lg shadow-warm/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base font-semibold rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                 onClick={() => setLeadFormOpen(true)}
               >
-                Get a Free Consultation
+                Get Your Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <a
-                href="#solutions"
+                href="/services/bathroom-safety"
                 className="group text-sm font-semibold text-white/80 hover:text-white flex items-center gap-2 transition-colors"
               >
-                See Our Solutions
+                Explore Bathroom Safety
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </motion.div>
@@ -203,7 +205,7 @@ export default function HomePremium() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="bg-anchor border-t border-white/5"
+        className="bg-navy border-t border-white/5"
       >
         <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -258,56 +260,86 @@ export default function HomePremium() {
                 description:
                   "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
                 image: ASSET_URLS.home.bathroomSafetyCard,
+                href: "/services/bathroom-safety",
               },
               {
                 title: "Home Elevators",
                 description:
                   "Safe, reliable, and elegant home elevators for seamless floor-to-floor access.",
                 image: ASSET_URLS.home.homeElevators,
+                comingSoon: true,
               },
               {
                 title: "Stair Lifts",
                 description:
                   "Glide up and down your stairs with a gentle, smooth ride from start to finish.",
                 image: ASSET_URLS.home.stairLifts,
+                comingSoon: true,
               },
-            ].map((product, index) => (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 border border-gray-100"
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-anchor/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                <div className="p-7">
-                  <h3 className="text-xl font-bold text-anchor mb-3" style={{ fontFamily: playfair }}>
-                    {product.title}
-                  </h3>
-                  <p className="text-text-body/70 leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            ].map((product, index) => {
+              const CardWrapper = product.href ? 'a' : 'div';
+              const cardProps = product.href ? { href: product.href } : {};
+              return (
+                <motion.div
+                  key={index}
+                  variants={staggerItem}
+                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                >
+                  <CardWrapper
+                    {...cardProps}
+                    className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 border border-gray-100"
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-anchor/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {product.comingSoon && (
+                        <span className="absolute top-4 right-4 bg-navy text-white text-xs font-semibold px-3 py-1 rounded-full">
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-7">
+                      <h3 className="text-xl font-bold text-anchor mb-3" style={{ fontFamily: playfair }}>
+                        {product.title}
+                      </h3>
+                      <p className="text-text-body/70 leading-relaxed">
+                        {product.description}
+                      </p>
+                      {product.href && (
+                        <span className="mt-4 inline-flex items-center text-warm font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
+                          Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                        </span>
+                      )}
+                      {product.comingSoon && (
+                        <button
+                          type="button"
+                          onClick={(e) => { e.preventDefault(); setLeadFormOpen(true); }}
+                          className="mt-4 inline-flex items-center text-navy font-semibold text-sm hover:text-blue transition-colors duration-300"
+                        >
+                          Notify Me <ArrowRight className="ml-1 h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
+                  </CardWrapper>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           <Reveal delay={0.2}>
             <div className="text-center">
               <Button
                 size="lg"
-                className="bg-warm hover:bg-warm/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-warm/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                 onClick={() => setLeadFormOpen(true)}
               >
-                Get a Free Consultation
+                Get Your Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
@@ -400,16 +432,12 @@ export default function HomePremium() {
       </section>
 
       {/* ═══════════════════════════════════════
-          PROCESS — Timeline style
+          PROCESS — Horizontal cards
           ═══════════════════════════════════════ */}
-      <section id="process" className="bg-bg-gray py-24 sm:py-32 relative overflow-hidden">
-        {/* Decorative circle */}
-        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full border border-navy/5 pointer-events-none" />
-        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-navy/5 pointer-events-none" />
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+      <section id="process" className="bg-bg-gray py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto max-w-2xl text-center mb-20">
+            <div className="mx-auto max-w-2xl text-center mb-16">
               <span className="text-warm font-semibold text-sm tracking-[0.15em] uppercase">How It Works</span>
               <h2
                 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-anchor"
@@ -420,12 +448,13 @@ export default function HomePremium() {
             </div>
           </Reveal>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Connecting line */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px">
-              <div className="w-full h-full bg-gradient-to-b from-navy/20 via-blue/20 to-warm/20" />
-            </div>
-
+          <motion.div
+            className="grid grid-cols-1 gap-8 md:grid-cols-3"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
             {[
               {
                 icon: Phone,
@@ -451,48 +480,41 @@ export default function HomePremium() {
             ].map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className={`relative flex items-start mb-16 last:mb-0 md:items-center ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+                variants={staggerItem}
+                whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                className="relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 text-center"
               >
-                {/* Timeline dot */}
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-white border-[3px] border-navy shadow-md z-10" />
-
-                {/* Content */}
-                <div className={`md:w-[calc(50%-2.5rem)] ${index % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0 md:ml-auto"}`}>
-                  <motion.div
-                    whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                    className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
-                  >
-                    <div className={`flex items-center gap-4 mb-5 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                      <div
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                        style={{
-                          background: "linear-gradient(135deg, #24477F 0%, #051C2C 100%)",
-                          boxShadow: "0 6px 20px rgba(5, 28, 44, 0.3), inset 0 1px 0 rgba(255,255,255,0.15)",
-                        }}
-                      >
-                        <step.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <span className="text-warm font-bold text-xs tracking-[0.15em] uppercase">Step {step.step}</span>
-                        <h3 className="text-xl font-bold text-anchor" style={{ fontFamily: playfair }}>
-                          {step.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <p className={`text-text-body/70 leading-relaxed ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                      {step.description}
-                    </p>
-                  </motion.div>
+                {/* Step number */}
+                <div className="mx-auto w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                  style={{
+                    background: "linear-gradient(135deg, #24477F 0%, #051C2C 100%)",
+                    boxShadow: "0 6px 20px rgba(5, 28, 44, 0.3), inset 0 1px 0 rgba(255,255,255,0.15)",
+                  }}
+                >
+                  <step.icon className="h-6 w-6 text-white" />
                 </div>
+                <span className="text-warm font-bold text-xs tracking-[0.15em] uppercase">
+                  Step {step.step}
+                </span>
+                <h3
+                  className="mt-2 text-xl font-bold text-anchor"
+                  style={{ fontFamily: playfair }}
+                >
+                  {step.title}
+                </h3>
+                <p className="mt-4 text-text-body/70 leading-relaxed">
+                  {step.description}
+                </p>
+
+                {/* Connector arrow (between cards, hidden on mobile) */}
+                {index < 2 && (
+                  <div className="hidden md:block absolute -right-5 top-1/2 -translate-y-1/2 z-10">
+                    <ArrowRight className="h-5 w-5 text-navy/30" />
+                  </div>
+                )}
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -587,7 +609,7 @@ export default function HomePremium() {
             <div className="mt-16 text-center">
               <Button
                 size="lg"
-                className="bg-anchor hover:bg-navy text-white px-8 py-6 text-base rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="bg-navy hover:bg-anchor text-white px-8 py-6 text-base rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                 onClick={() => setLeadFormOpen(true)}
               >
                 Get Free Consultation
@@ -603,7 +625,7 @@ export default function HomePremium() {
           ═══════════════════════════════════════ */}
       <section className="relative overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-anchor" />
+        <div className="absolute inset-0 bg-navy" />
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -658,7 +680,7 @@ export default function HomePremium() {
               <div className="relative">
                 <div className="absolute -inset-3 bg-warm/10 rounded-3xl blur-2xl" />
                 <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/15 shadow-2xl">
-                  <InlineLeadForm source="homepage-premium-inline" />
+                  <InlineLeadForm source="homepage-premium-inline" darkMode />
                 </div>
               </div>
             </Reveal>
