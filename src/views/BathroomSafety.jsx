@@ -130,8 +130,8 @@ export default function BathroomSafety() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-8"
             >
-              <span className="inline-flex items-center gap-2 text-warm text-sm font-semibold tracking-[0.2em] uppercase">
-                <span className="w-8 h-px bg-warm" />
+              <span className="inline-flex items-center gap-2 text-blue text-sm font-semibold tracking-[0.2em] uppercase">
+                <span className="w-8 h-px bg-blue" />
                 Bathroom Safety Solutions
               </span>
             </motion.div>
