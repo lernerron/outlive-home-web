@@ -434,7 +434,7 @@ export default function HomePremium() {
       {/* ═══════════════════════════════════════
           PROCESS — Horizontal cards
           ═══════════════════════════════════════ */}
-      <section id="process" className="bg-bg-gray py-24 sm:py-32">
+      <section id="process" className="bg-bg-gray py-24 sm:py-32 scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center mb-16">
@@ -521,7 +521,7 @@ export default function HomePremium() {
       {/* ═══════════════════════════════════════
           WHY CUSTOMERS CHOOSE US
           ═══════════════════════════════════════ */}
-      <section id="why-us" className="bg-white py-24 sm:py-32">
+      <section id="why-us" className="bg-white py-24 sm:py-32 scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center mb-16">
