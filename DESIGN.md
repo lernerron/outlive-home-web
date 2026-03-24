@@ -31,11 +31,11 @@ Tokens configured in `tailwind.config.cjs` under `theme.extend.colors`. Never ha
 
 | Context | Background | Headings | CTAs | Avoid |
 |---|---|---|---|---|
-| Homepage hero | Anchor gradient | White | Warm (primary), White outline (secondary) | Saturated blues |
-| Service landing pages | Anchor (hero), alternating white/bg-gray | Anchor | Warm | Navy hero backgrounds |
-| Partner page | Anchor (hero), white/bg-gray | Anchor | Warm | Heavy terracotta |
+| Homepage hero | Neutral dark gradient (black) | White | Blue (primary) | Colored tints over photos |
+| Service landing pages | Neutral dark gradient (hero), alternating white/bg-gray | Anchor | Blue | Colored tints over photos |
+| Partner page | Anchor (hero), white/bg-gray | Anchor | Blue | Heavy terracotta |
 | Blog | White/bg-gray | Anchor | Blue links | Dark backgrounds |
-| Forms on dark bg | Anchor | White | Warm submit button | Generic blue/red |
+| Forms on dark bg | Anchor | White | Blue submit button | Generic red |
 | Trust/safety sections | Anchor | White | Navy accents | Warm accent colors |
 
 ## Typography
@@ -45,7 +45,8 @@ Tokens configured in `tailwind.config.cjs` under `theme.extend.colors`. Never ha
 | H1 (hero) | Playfair Display | `text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05]` | One per page, hero headline |
 | H2 (section) | Playfair Display | `text-4xl sm:text-5xl font-bold tracking-tight` | Section headings |
 | H3 (card/subsection) | Playfair Display | `text-xl font-bold` or `text-2xl sm:text-3xl font-bold` | Card titles, step headings |
-| Eyebrow | DM Sans | `text-sm font-semibold tracking-[0.2em] uppercase text-warm` | Section labels above H2 |
+| Eyebrow (dark bg) | DM Sans | `text-sm font-bold tracking-[0.2em] uppercase text-white` + `textShadow: '0 1px 3px rgba(0,0,0,0.4)'` | Section labels on hero/dark backgrounds |
+| Eyebrow (light bg) | DM Sans | `text-sm font-semibold tracking-[0.15em] uppercase text-warm` | Section labels on white/gray backgrounds |
 | Body large | DM Sans | `text-lg sm:text-xl leading-relaxed` | Hero descriptions, section intros |
 | Body | DM Sans | `text-base leading-relaxed` | Default paragraph text |
 | Caption | DM Sans | `text-sm` | Supporting text, disclaimers |
@@ -61,11 +62,11 @@ Tokens configured in `tailwind.config.cjs` under `theme.extend.colors`. Never ha
 
 ## Buttons
 
-### Primary CTA (Warm)
+### Primary CTA (Blue)
 
 ```
-bg-warm hover:bg-warm/90 text-white px-8 py-6 text-base font-semibold rounded-full
-shadow-lg shadow-warm/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300
+bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base font-semibold rounded-full
+shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300
 ```
 
 Use for: main conversion actions (Get Free Assessment, Request Quote, Schedule Consultation).
@@ -294,7 +295,7 @@ visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 
 ```
 <section className="relative min-h-[90vh] flex items-center overflow-hidden">
   {/* Background image with gradient overlay */}
-  <div className="absolute inset-0 bg-gradient-to-r from-anchor/85 via-anchor/70 to-anchor/40" />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent" />
   <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
     {/* Eyebrow → H1 → Description → CTA buttons */}
   </div>
@@ -347,7 +348,7 @@ Alternate between `bg-white` and `bg-bg-gray` backgrounds:
 | `shadow-lg` | Buttons, elevated elements |
 | `shadow-xl` | Card hover state |
 | `shadow-2xl` | Featured card hover |
-| `shadow-lg shadow-warm/20` | Warm CTA glow |
+| `shadow-lg shadow-blue/20` | Primary CTA glow |
 
 ## Accessibility
 
