@@ -143,8 +143,7 @@ export default function BathroomSafety() {
               className="text-5xl sm:text-7xl font-bold tracking-tight text-white leading-[1.05]"
               style={{ fontFamily: playfair }}
             >
-              A Safer Shower.{" "}
-              <span className="text-warm">Installed This Week.</span>
+              A Safer Shower. Installed This Week.
             </motion.h1>
 
             <motion.p
