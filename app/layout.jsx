@@ -1,5 +1,18 @@
 import './globals.css';
+import { Playfair_Display, DM_Sans } from 'next/font/google';
 import { Providers } from './providers';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-dm-sans',
+});
 
 export const metadata = {
   title: 'Outlive Homes | The Art and Science of Outliving at Home',
@@ -30,8 +43,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${dmSans.variable}`}>
+      <body className={dmSans.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

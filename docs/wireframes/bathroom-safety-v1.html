@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outlive Homes — Bathroom Safety Landing Page Wireframe</title>
+<style>
+  /* Intentionally rough wireframe aesthetic */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, serif; color: #333; background: #f9f9f9; line-height: 1.5; }
+  .wireframe-note { font-size: 11px; color: #999; font-style: italic; font-family: sans-serif; }
+  .section { border: 1px dashed #ccc; margin: 16px; padding: 24px; background: white; }
+  .section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin-bottom: 12px; font-family: sans-serif; }
+  h1 { font-size: 36px; margin-bottom: 8px; color: #051C2C; }
+  h2 { font-size: 24px; margin-bottom: 8px; color: #051C2C; }
+  h3 { font-size: 18px; margin-bottom: 6px; color: #24477F; }
+  p { font-family: sans-serif; font-size: 14px; color: #555; margin-bottom: 8px; }
+  .btn-primary { display: inline-block; padding: 14px 32px; background: #C4724A; color: white; border: none; border-radius: 999px; font-size: 16px; font-family: sans-serif; cursor: pointer; margin: 8px 4px; }
+  .btn-secondary { display: inline-block; padding: 14px 32px; background: transparent; color: #051C2C; border: 2px solid #051C2C; border-radius: 999px; font-size: 16px; font-family: sans-serif; cursor: pointer; margin: 8px 4px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid #ddd; padding: 16px; background: #fafafa; }
+  .img-placeholder { background: #e0e0e0; height: 180px; display: flex; align-items: center; justify-content: center; color: #999; font-family: sans-serif; font-size: 12px; margin-bottom: 12px; }
+  .img-placeholder.hero { height: 300px; }
+  .img-placeholder.tall { height: 240px; }
+  .form-field { display: block; width: 100%; padding: 10px; border: 1px solid #ccc; margin-bottom: 8px; font-size: 14px; font-family: sans-serif; }
+  .trust-bar { display: flex; gap: 24px; align-items: center; justify-content: center; padding: 12px; background: #051C2C; color: white; font-family: sans-serif; font-size: 13px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: bold; color: #C4724A; }
+  .testimonial { border-left: 3px solid #C4724A; padding-left: 16px; margin: 12px 0; }
+  .faq-item { border-bottom: 1px solid #eee; padding: 12px 0; }
+  .page-title { text-align: center; padding: 24px; background: #051C2C; color: white; font-family: sans-serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
+  .before-after { display: grid; grid-template-columns: 1fr 20px 1fr; align-items: center; }
+  .arrow { text-align: center; font-size: 24px; color: #C4724A; }
+</style>
+</head>
+<body>
+
+<!-- PAGE: Bathroom Safety Service/Landing Page -->
+<div class="page-title">WIREFRAME: /services/bathroom-safety (Landing Page for Paid Ads)</div>
+
+<!-- HERO — Problem-first, not product-first -->
+<div class="section" style="background: #051C2C; color: white;">
+  <div class="section-label" style="color: #888;">HERO — Problem-agitation-solution. Paid traffic lands here.</div>
+  <div class="grid-2">
+    <div>
+      <p style="color: #C4724A; font-size: 13px; font-family: sans-serif; margin-bottom: 4px;">BATHROOM SAFETY SOLUTIONS</p>
+      <h1 style="color: white; font-size: 32px; line-height: 1.2;">A Safer Shower.<br>Installed This Week.</h1>
+      <p style="color: #ccc; margin: 16px 0;">80% of falls among seniors happen in the bathroom. Our barrier-free shower conversions eliminate trip hazards and restore independence — typically installed in 3-5 days.</p>
+      <div>
+        <button class="btn-primary">Get Your Free Assessment</button>
+        <button class="btn-secondary" style="color: white; border-color: white;">Call (305) 555-0100</button>
+      </div>
+      <p class="wireframe-note" style="margin-top: 12px;">CTA opens lead form with "Bathroom Safety" pre-selected</p>
+    </div>
+    <div>
+      <div class="img-placeholder hero" style="background: #1a3a5c;">[Hero image: Modern barrier-free shower, well-lit, grab bars visible but elegant]</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR — Immediate credibility signals -->
+<div class="trust-bar">
+  <span>Licensed & Insured</span>
+  <span>|</span>
+  <span>CAPS Certified</span>
+  <span>|</span>
+  <span>500+ Bathrooms Completed</span>
+  <span>|</span>
+  <span>Satisfaction Guaranteed</span>
+  <span>|</span>
+  <span>Financing Available</span>
+</div>
+
+<!-- PROBLEM SECTION — Why this matters -->
+<div class="section">
+  <div class="section-label">PROBLEM STATEMENT — Empathy before selling</div>
+  <div class="grid-2">
+    <div>
+      <h2>The Bathroom Shouldn't Be the Most Dangerous Room in Your Home</h2>
+      <p>Every year, 235,000 Americans over 65 visit the emergency room due to bathroom falls. High tub walls, slippery surfaces, and poor lighting turn a daily routine into a daily risk.</p>
+      <p>The good news: most of these falls are preventable with the right modifications.</p>
+    </div>
+    <div>
+      <div class="grid-2">
+        <div class="stat"><div class="stat-num">235K</div><p>ER visits/year from bathroom falls (65+)</p></div>
+        <div class="stat"><div class="stat-num">80%</div><p>of senior falls happen in the bathroom</p></div>
+        <div class="stat"><div class="stat-num">$35K</div><p>avg. cost of a fall-related hospitalization</p></div>
+        <div class="stat"><div class="stat-num">3-5</div><p>days to install a barrier-free shower</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTIONS — What we offer -->
+<div class="section" style="background: #F2F4F7;">
+  <div class="section-label">SOLUTIONS — Productized offerings with clear scope</div>
+  <h2 style="text-align: center; margin-bottom: 20px;">Our Bathroom Safety Solutions</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="img-placeholder">[Walk-in shower conversion photo]</div>
+      <h3>Barrier-Free Shower Conversion</h3>
+      <p>Remove dangerous tub walls and replace with a zero-threshold walk-in shower. Our most popular solution.</p>
+      <p style="font-weight: bold; color: #051C2C;">Starting at $15,000 | 3-5 days</p>
+      <button class="btn-primary" style="width: 100%; font-size: 14px; padding: 10px;">Get a Free Quote</button>
+    </div>
+    <div class="card">
+      <div class="img-placeholder">[Roll-in shower photo]</div>
+      <h3>Roll-In Shower (Wheelchair Accessible)</h3>
+      <p>ADA-compliant roll-in showers designed for wheelchair users. Includes fold-down bench and hand-held showerhead.</p>
+      <p style="font-weight: bold; color: #051C2C;">Starting at $20,000 | 4-5 days</p>
+      <button class="btn-primary" style="width: 100%; font-size: 14px; padding: 10px;">Get a Free Quote</button>
+    </div>
+    <div class="card">
+      <div class="img-placeholder">[Full bathroom remodel photo]</div>
+      <h3>Complete Accessible Bathroom</h3>
+      <p>Full bathroom renovation with universal design principles. Barrier-free shower, comfort-height toilet, accessible vanity.</p>
+      <p style="font-weight: bold; color: #051C2C;">Starting at $25,000 | 5-7 days</p>
+      <button class="btn-primary" style="width: 100%; font-size: 14px; padding: 10px;">Get a Free Quote</button>
+    </div>
+  </div>
+  <p class="wireframe-note" style="text-align: center; margin-top: 12px;">Pricing transparency builds trust. "Starting at" manages expectations without scaring people off.</p>
+</div>
+
+<!-- BEFORE/AFTER — Visual proof -->
+<div class="section">
+  <div class="section-label">BEFORE/AFTER — Social proof through visual transformation</div>
+  <h2 style="text-align: center; margin-bottom: 20px;">See the Transformation</h2>
+  <div class="before-after">
+    <div>
+      <div class="img-placeholder tall" style="background: #d4c4b4;">[BEFORE: Dated bathtub with high walls, no grab bars]</div>
+      <p style="text-align: center; font-weight: bold;">Before</p>
+    </div>
+    <div class="arrow">&rarr;</div>
+    <div>
+      <div class="img-placeholder tall" style="background: #b4d4c4;">[AFTER: Modern barrier-free shower, grab bars, bench, good lighting]</div>
+      <p style="text-align: center; font-weight: bold;">After</p>
+    </div>
+  </div>
+  <p class="wireframe-note">Will need 3-4 before/after pairs. Can use licensed stock initially, replace with real projects ASAP.</p>
+</div>
+
+<!-- PROCESS — How it works -->
+<div class="section" style="background: #F2F4F7;">
+  <div class="section-label">PROCESS — Reduce anxiety about the remodel experience</div>
+  <h2 style="text-align: center; margin-bottom: 20px;">How It Works</h2>
+  <div class="grid-3">
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: #C4724A; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 20px; font-weight: bold;">1</div>
+      <h3>Free In-Home Assessment</h3>
+      <p>Our certified specialist visits your home, evaluates your needs, and designs a custom solution. No obligation.</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: #C4724A; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 20px; font-weight: bold;">2</div>
+      <h3>Design & Fixed Quote</h3>
+      <p>We present your design with a guaranteed fixed price. No surprises, no change orders. Financing options available.</p>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: #C4724A; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 20px; font-weight: bold;">3</div>
+      <h3>Professional Installation</h3>
+      <p>Our team completes the installation in 3-5 days. We protect your home, clean up daily, and do a final walkthrough together.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL — Trust from a real person -->
+<div class="section">
+  <div class="section-label">TESTIMONIAL — Ideally from a real customer. Placeholder for now.</div>
+  <div class="testimonial">
+    <p style="font-size: 18px; font-style: italic; color: #051C2C;">"After Mom's fall, we needed the bathroom done fast. Outlive had it done in 4 days. She feels safe again, and honestly, it looks better than our bathroom."</p>
+    <p style="font-weight: bold; margin-top: 8px;">— Sarah M., daughter of client, Miami FL</p>
+  </div>
+  <p class="wireframe-note">Replace with real testimonials ASAP. Until then, mark as "representative of customer feedback" or remove.</p>
+</div>
+
+<!-- LEAD FORM — Qualified, not just captured -->
+<div class="section" style="background: #051C2C; color: white;">
+  <div class="section-label" style="color: #888;">LEAD FORM — Enhanced with qualification fields</div>
+  <div class="grid-2">
+    <div>
+      <h2 style="color: white;">Get Your Free Assessment</h2>
+      <p style="color: #ccc;">Tell us about your situation and we'll schedule a no-obligation in-home visit. Most assessments happen within 48 hours.</p>
+      <ul style="color: #ccc; font-family: sans-serif; font-size: 14px; padding-left: 20px; margin-top: 12px;">
+        <li>No obligation, no pressure</li>
+        <li>Licensed, insured, CAPS certified</li>
+        <li>Financing options available</li>
+        <li>Satisfaction guaranteed</li>
+      </ul>
+    </div>
+    <div>
+      <input class="form-field" placeholder="Full Name *" />
+      <input class="form-field" placeholder="Phone *" />
+      <input class="form-field" placeholder="Email *" />
+      <input class="form-field" placeholder="ZIP Code *" />
+      <select class="form-field">
+        <option>What do you need? *</option>
+        <option>Barrier-free shower conversion</option>
+        <option>Roll-in shower (wheelchair accessible)</option>
+        <option>Complete bathroom remodel</option>
+        <option>Grab bars & safety features</option>
+        <option>Not sure — need an assessment</option>
+      </select>
+      <select class="form-field">
+        <option>How soon do you need this?</option>
+        <option>Urgent — recent fall or surgery</option>
+        <option>Within 1 month</option>
+        <option>Within 3 months</option>
+        <option>Planning ahead</option>
+      </select>
+      <select class="form-field">
+        <option>Who is this for?</option>
+        <option>Myself</option>
+        <option>My parent/family member</option>
+        <option>My patient/client (I'm a healthcare provider)</option>
+      </select>
+      <button class="btn-primary" style="width: 100%; margin-top: 8px;">Request Free Assessment</button>
+      <p class="wireframe-note" style="margin-top: 8px;">Qualification fields: service type, urgency, relationship. Enables lead scoring and routing.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ — Address objections -->
+<div class="section">
+  <div class="section-label">FAQ — Handle the top 5 objections before they leave</div>
+  <h2 style="margin-bottom: 16px;">Common Questions</h2>
+  <div class="faq-item">
+    <h3>How long does a shower conversion take?</h3>
+    <p>Most barrier-free shower conversions are completed in 3-5 days. We work efficiently to minimize disruption to your home.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Do you offer financing?</h3>
+    <p>Yes. We offer several financing options including 0% interest for qualified buyers. We also help identify applicable VA benefits, Medicaid waivers, and other assistance programs.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Will my bathroom still look nice?</h3>
+    <p>Absolutely. We specialize in universal design — modifications that are both safe and beautiful. Our barrier-free showers use premium materials and modern design principles.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What if I'm not sure what I need?</h3>
+    <p>That's what the free assessment is for. Our certified specialist will evaluate your home and recommend the right solution for your specific situation.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Are you licensed and insured?</h3>
+    <p>Yes. We are fully licensed, bonded, and insured. Our team holds CAPS (Certified Aging-in-Place Specialist) certification from the National Association of Home Builders.</p>
+  </div>
+</div>
+
+<!-- PARTNER PAGE SKETCH -->
+<div class="page-title" style="margin-top: 40px;">WIREFRAME: /partners (Referral Partner Page)</div>
+
+<div class="section" style="background: #051C2C; color: white;">
+  <div class="section-label" style="color: #888;">PARTNER HERO — Speaks to OTs, PTs, discharge planners</div>
+  <h1 style="color: white; font-size: 28px;">Partner With Outlive Homes</h1>
+  <p style="color: #ccc; max-width: 600px;">You focus on your patient's recovery. We'll make sure their home is ready when they get there. Outlive Homes partners with healthcare professionals to deliver fast, high-quality home modifications.</p>
+  <div style="margin-top: 16px;">
+    <button class="btn-primary">Become a Referral Partner</button>
+    <button class="btn-secondary" style="color: white; border-color: white;">Learn About OutliveHome.org</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">PARTNER BENEFITS</div>
+  <div class="grid-3">
+    <div class="card" style="text-align: center;">
+      <h3>Priority Scheduling</h3>
+      <p>Partner referrals get expedited assessments — typically within 24 hours of discharge.</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <h3>Clinical Coordination</h3>
+      <p>We work directly with OTs and PTs to ensure modifications match the patient's care plan.</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <h3>Patient Updates</h3>
+      <p>Referring providers receive project status updates so they can plan therapy around the timeline.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="background: #F2F4F7;">
+  <div class="section-label">OUTLIVEHOME.ORG CROSS-LINK</div>
+  <div class="grid-2">
+    <div>
+      <h2>OutliveHome.org</h2>
+      <p>Our nonprofit arm supports fall prevention research, education, and home upgrades for underserved seniors. Clinical professionals can engage through community programs and sponsored modifications.</p>
+      <button class="btn-secondary">Visit OutliveHome.org &rarr;</button>
+    </div>
+    <div>
+      <div class="img-placeholder">[Community/nonprofit imagery — volunteers, education event]</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

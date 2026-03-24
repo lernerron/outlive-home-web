@@ -1,12 +1,12 @@
 "use client";
 
 import Layout from '@/components/Layout';
-import Home from '@/views/Home';
+import HomePremium from '@/views/HomePremium';
 
 export default function HomeContent() {
   return (
     <Layout>
-      <Home />
+      <HomePremium />
     </Layout>
   );
 }

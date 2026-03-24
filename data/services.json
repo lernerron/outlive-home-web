@@ -1,0 +1,41 @@
+[
+  {
+    "id": "barrier-free-shower",
+    "name": "Barrier-Free Shower",
+    "startingPrice": 15000,
+    "description": "Remove the tub and threshold for a completely level, step-free shower entry. The safest option for wheelchair users and fall prevention.",
+    "timeline": "3-5 days",
+    "features": [
+      "Zero-threshold entry",
+      "Non-slip flooring",
+      "Built-in shower seat",
+      "Grab bar installation"
+    ]
+  },
+  {
+    "id": "roll-in-shower",
+    "name": "Roll-In Shower",
+    "startingPrice": 20000,
+    "description": "A spacious, open shower designed for wheelchair access with premium finishes and full accessibility features.",
+    "timeline": "4-6 days",
+    "features": [
+      "Wheelchair-accessible design",
+      "Handheld & rain showerheads",
+      "Anti-scald valve technology",
+      "Custom tile and finishes"
+    ]
+  },
+  {
+    "id": "complete-accessible-bathroom",
+    "name": "Complete Accessible Bathroom",
+    "startingPrice": 25000,
+    "description": "A full bathroom renovation designed around accessibility — from the shower to the vanity, toilet, and flooring.",
+    "timeline": "7-10 days",
+    "features": [
+      "Full bathroom redesign",
+      "ADA-compliant fixtures",
+      "Comfort-height toilet",
+      "Accessible vanity & storage"
+    ]
+  }
+]

@@ -73,7 +73,7 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
       role="complementary"
       aria-label="Quick contact form"
       className={cn(
-        "fixed top-16 left-0 right-0 z-40 bg-anchor shadow-md",
+        "fixed top-16 left-0 right-0 z-40 bg-navy shadow-md",
         "transition-all duration-300 motion-reduce:transition-none",
         visible
           ? "translate-y-0 opacity-100"
@@ -93,7 +93,7 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
           </p>
           <Button
             onClick={onOpenModal}
-            className="bg-warm hover:bg-warm/90 text-white text-sm px-4 py-1.5 h-auto"
+            className="bg-blue hover:bg-blue/90 text-white text-sm px-4 py-1.5 h-auto"
           >
             {config.mobileButtonText}
           </Button>
@@ -103,7 +103,7 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
         <div className="hidden lg:block">
           {isSubmitted ? (
             <div className="flex items-center justify-center gap-2 py-1">
-              <CheckCircle2 className="h-5 w-5 text-green-400" />
+              <CheckCircle2 className="h-5 w-5 text-white" />
               <p className="text-sm font-medium text-white">
                 {config.successMessage}
               </p>
@@ -118,8 +118,8 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 placeholder="Full Name"
                 className={cn(
-                  "h-8 text-sm bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:ring-warm focus:border-warm",
-                  errors.name && "border-red-400"
+                  "h-8 text-sm bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:ring-blue focus:border-blue",
+                  errors.name && "border-warm"
                 )}
                 autoComplete="name"
                 aria-label="Full Name"
@@ -130,8 +130,8 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
                 placeholder="ZIP"
                 maxLength="5"
                 className={cn(
-                  "h-8 text-sm w-24 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:ring-warm focus:border-warm",
-                  errors.zipCode && "border-red-400"
+                  "h-8 text-sm w-24 bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:ring-blue focus:border-blue",
+                  errors.zipCode && "border-warm"
                 )}
                 autoComplete="postal-code"
                 aria-label="ZIP Code"
@@ -142,8 +142,8 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
                 onChange={(e) => handleInputChange('phone', e.target.value)}
                 placeholder="Phone"
                 className={cn(
-                  "h-8 text-sm bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:ring-warm focus:border-warm",
-                  errors.phone && "border-red-400"
+                  "h-8 text-sm bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:ring-blue focus:border-blue",
+                  errors.phone && "border-warm"
                 )}
                 autoComplete="tel"
                 aria-label="Phone Number"
@@ -154,8 +154,8 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 placeholder="Email"
                 className={cn(
-                  "h-8 text-sm bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:ring-warm focus:border-warm",
-                  errors.email && "border-red-400"
+                  "h-8 text-sm bg-white/15 border-white/30 text-white placeholder:text-white/60 focus:ring-blue focus:border-blue",
+                  errors.email && "border-warm"
                 )}
                 autoComplete="email"
                 aria-label="Email Address"
@@ -163,7 +163,7 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="h-8 bg-warm hover:bg-warm/90 text-white text-sm px-5 whitespace-nowrap"
+                className="h-8 bg-blue hover:bg-blue/90 text-white text-sm px-5 whitespace-nowrap"
               >
                 {isSubmitting ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -175,9 +175,9 @@ export default function StickyCtaBanner({ visible, onOpenModal, config = BANNER_
           )}
         </div>
 
-        {/* Consent text */}
-        <p className="text-[9px] leading-tight text-white/50 mt-1.5 max-w-5xl mx-auto text-center">
-          By submitting this form, you consent to receive text messages from Outlive Homes for marketing, customer care, and account notifications. Message frequency may vary. Msg and Data rates apply. Reply &ldquo;STOP&rdquo; to unsubscribe. Text HELP for support. Consent is not a condition of purchase. You also consent to receiving phone calls and emails with explicit information about your project needs. We will never share your personal information with 3rd parties for marketing purposes or spam you. <a href="/privacypolicy" className="underline hover:text-white/70">Terms and Conditions</a> | <a href="/privacypolicy" className="underline hover:text-white/70">Privacy Policy</a>
+        {/* Consent text — hidden on mobile to prevent banner from dominating viewport */}
+        <p className="hidden md:block text-xs leading-tight text-white/70 mt-1.5 max-w-5xl mx-auto text-center">
+          By submitting, you consent to calls, texts, and emails from Outlive Homes. Msg/data rates apply. Reply STOP to unsubscribe. Consent not required for purchase. <a href="/privacypolicy" className="underline hover:text-white/90">Privacy Policy</a>
         </p>
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function Layout({ children, bannerPreset }) {
   }, [handleScroll]);
 
   const navigation = [
-    { name: 'Our Solutions', href: '/#solutions' },
+    { name: 'Bathroom Safety', href: '/services/bathroom-safety' },
     { name: 'Our Process', href: '/#process' },
     { name: 'Why Us', href: '/#why-us' },
     { name: 'Blog', href: '/blog' },
@@ -61,7 +61,7 @@ export default function Layout({ children, bannerPreset }) {
               <span className="sr-only">Outlive Homes</span>
               <span className={cn(
                 "text-xl font-bold tracking-tight transition-colors duration-300",
-                isScrolled ? "text-blue-900" : "text-white"
+                isScrolled ? "text-anchor" : "text-white"
               )}>
                 Outlive Homes
               </span>
@@ -72,7 +72,7 @@ export default function Layout({ children, bannerPreset }) {
               type="button"
               className={cn(
                 "-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors",
-                isScrolled ? "text-gray-700" : "text-white"
+                isScrolled ? "text-text-body" : "text-white"
               )}
               onClick={() => setMobileMenuOpen(true)}
             >
@@ -90,7 +90,7 @@ export default function Layout({ children, bannerPreset }) {
                   className={cn(
                     "text-sm font-semibold leading-6 transition-colors duration-300",
                     isScrolled
-                      ? "text-gray-900 hover:text-blue-600"
+                      ? "text-text-body hover:text-blue"
                       : "text-white/90 hover:text-white"
                   )}
                 >
@@ -103,28 +103,28 @@ export default function Layout({ children, bannerPreset }) {
             <Button
               onClick={() => setLeadFormOpen(true)}
               className={cn(
-                "transition-all duration-300",
+                "transition-all duration-300 rounded-full",
                 isScrolled
-                  ? "bg-blue-600 hover:bg-blue-700 text-white"
-                  : "bg-white text-blue-900 hover:bg-white/90"
+                  ? "bg-blue hover:bg-blue/90 text-white shadow-lg shadow-blue/20"
+                  : "bg-white text-anchor hover:bg-white/90"
               )}
             >
-              Get a Free Consultation
+              Get Your Free Assessment
             </Button>
           </div>
         </nav>
         {mobileMenuOpen && (
           <div className="lg:hidden" role="dialog" aria-modal="true">
             <div className="fixed inset-0 z-50" />
-            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-anchor/10">
               <div className="flex items-center justify-between">
                 <Link href="/" onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                   <span className="sr-only">Outlive Homes</span>
-                  <span className="text-xl font-bold tracking-tight text-blue-900">Outlive Homes</span>
+                  <span className="text-xl font-bold tracking-tight text-anchor">Outlive Homes</span>
                 </Link>
                 <button
                   type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                  className="-m-2.5 rounded-md p-2.5 text-text-body"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
@@ -140,7 +140,7 @@ export default function Layout({ children, bannerPreset }) {
                         <Tag
                           key={item.name}
                           href={item.href}
-                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text-body hover:bg-bg-gray"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {item.name}
@@ -154,9 +154,9 @@ export default function Layout({ children, bannerPreset }) {
                         setLeadFormOpen(true);
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      className="w-full bg-blue hover:bg-blue/90 text-white rounded-full shadow-lg shadow-blue/20"
                     >
-                      Get a Free Consultation
+                      Get Your Free Assessment
                     </Button>
                   </div>
                 </div>
@@ -176,43 +176,44 @@ export default function Layout({ children, bannerPreset }) {
         {children}
       </main>
 
-      <footer className="bg-gray-900 text-white" aria-labelledby="footer-heading">
+      <footer className="bg-anchor text-white" aria-labelledby="footer-heading">
         <h2 id="footer-heading" className="sr-only">Footer</h2>
         <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-20 lg:px-8 lg:pt-24">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
               <p className="text-lg font-bold text-white">Outlive Homes</p>
-              <p className="text-sm leading-6 text-gray-300 italic">
+              <p className="text-sm leading-6 text-white/70 italic">
                 The Art and Science of Outliving at Home
               </p>
-              <p className="text-sm leading-6 text-gray-400">
+              <p className="text-sm leading-6 text-white/50">
                 South Florida &middot; Miami and Surrounding Metros
               </p>
-              <p className="text-xs text-gray-500">Founded 2025</p>
+              <p className="text-xs text-white/40">Founded 2025</p>
             </div>
             <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-400 mb-6 uppercase">Quick Links</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white/50 mb-6 uppercase">Quick Links</h3>
                 <ul role="list" className="space-y-3">
-                  <li><a href="/#solutions" className="text-sm text-gray-300 hover:text-white">Our Solutions</a></li>
-                  <li><a href="/#process" className="text-sm text-gray-300 hover:text-white">Our Process</a></li>
-                  <li><a href="/#why-us" className="text-sm text-gray-300 hover:text-white">Why Us</a></li>
-                  <li><Link href="/blog" className="text-sm text-gray-300 hover:text-white">Blog</Link></li>
+                  <li><Link href="/services/bathroom-safety" className="text-sm text-white/70 hover:text-white">Bathroom Safety</Link></li>
+                  <li><a href="/#process" className="text-sm text-white/70 hover:text-white">Our Process</a></li>
+                  <li><a href="/#why-us" className="text-sm text-white/70 hover:text-white">Why Us</a></li>
+                  <li><Link href="/blog" className="text-sm text-white/70 hover:text-white">Blog</Link></li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-400 mb-6 uppercase">Company</h3>
+                <h3 className="text-sm font-semibold leading-6 text-white/50 mb-6 uppercase">Company</h3>
                 <ul role="list" className="space-y-3">
+                  <li><Link href="/partners" className="text-sm text-white/70 hover:text-white">Partners</Link></li>
                   <li>
                     <button
                       onClick={() => setLeadFormOpen(true)}
-                      className="text-sm text-gray-300 hover:text-white text-left"
+                      className="text-sm text-white/70 hover:text-white text-left"
                     >
                       Contact Us
                     </button>
                   </li>
                   <li>
-                    <Link href={createPageUrl('PrivacyPolicy')} className="text-sm text-gray-300 hover:text-white">
+                    <Link href={createPageUrl('PrivacyPolicy')} className="text-sm text-white/70 hover:text-white">
                       Privacy Policy
                     </Link>
                   </li>
@@ -221,7 +222,7 @@ export default function Layout({ children, bannerPreset }) {
             </div>
           </div>
           <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-            <p className="text-xs leading-5 text-gray-400">&copy; {new Date().getFullYear()} Outlive Homes. All rights reserved.</p>
+            <p className="text-xs leading-5 text-white/50">&copy; {new Date().getFullYear()} Outlive Homes. All rights reserved.</p>
           </div>
         </div>
       </footer>

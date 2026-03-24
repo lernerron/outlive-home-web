@@ -1,6 +1,7 @@
-const requiredFields = ['name', 'zipCode', 'phone', 'email'];
+const consumerRequiredFields = ['name', 'zipCode', 'phone', 'email'];
+const partnerRequiredFields = ['name', 'email', 'phone'];
 
-function corsHeaders(origin = '*') {
+function corsHeaders(origin = 'https://outlivehome.com') {
   return {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': origin,
@@ -13,6 +14,7 @@ const validateLead = (lead) => {
   if (!lead || typeof lead !== 'object') {
     return 'Request body must be a JSON object.';
   }
+  const requiredFields = lead.leadType === 'partner' ? partnerRequiredFields : consumerRequiredFields;
   for (const field of requiredFields) {
     if (!lead[field] || typeof lead[field] !== 'string' || !lead[field].trim()) {
       return `Missing required field: ${field}`;
@@ -172,11 +174,16 @@ export async function POST(request) {
     }
   }
 
-  const { turnstileToken: _turnstileToken, ...leadData } = body || {};
-  const leadPayload = {
-    ...leadData,
-    receivedAt: new Date().toISOString(),
-  };
+  // Allowlist known fields — never spread raw client body to webhook
+  const allowedFields = [
+    'name', 'email', 'phone', 'zipCode', 'address', 'comments',
+    'serviceType', 'urgency', 'relationship', 'leadType', 'source',
+    'organization', 'role', 'message',
+  ];
+  const leadPayload = { receivedAt: new Date().toISOString() };
+  for (const field of allowedFields) {
+    if (body[field] !== undefined) leadPayload[field] = body[field];
+  }
 
   try {
     await persistLeadLocally(leadPayload);
@@ -190,7 +197,7 @@ export async function POST(request) {
   if (webhookUrl) {
     try {
       const url = new URL(webhookUrl);
-      if (webhookSecret) url.searchParams.set('secret', webhookSecret);
+      // Secret sent via header only — never expose in URL query string
       const webhookResponse = await fetch(url.toString(), {
         method: 'POST',
         headers: buildWebhookHeaders(webhookSecret),
@@ -217,10 +224,7 @@ export async function POST(request) {
       );
     }
   } else {
-    console.log(
-      'Lead received without LEADS_WEBHOOK_URL configured',
-      leadPayload
-    );
+    console.log('Lead received without LEADS_WEBHOOK_URL configured');
   }
 
   return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
