@@ -50,11 +50,11 @@ Brand tokens are configured in `tailwind.config.cjs` under `theme.extend.colors`
 
 ## Architecture
 
-- **Routes:** `/` (home), `/blog`, `/blog/[slug]`, `/privacypolicy`, `/admin/leads-queue`
-- **APIs:** `/api/leads` (POST), `/api/blog` (GET/POST), `/api/blog/[slug]` (GET/PUT/DELETE)
-- **Views:** `src/views/` — Home, BlogIndex, BlogPost, PrivacyPolicy, AdminLeadsQueue
-- **Components:** `src/components/` — Layout, ui/ (shadcn)
-- **Data:** Vercel Postgres / Neon (`posts` table), `data/leads.json` (local lead backup, gitignored), `data/blog.json` (seed data, no longer read at runtime)
+- **Routes:** `/` (home), `/services/bathroom-safety`, `/partners`, `/blog`, `/blog/[slug]`, `/privacypolicy`, `/admin/leads-queue`, `/gate`
+- **APIs:** `/api/leads` (POST), `/api/blog` (GET/POST), `/api/blog/[slug]` (GET/PUT/DELETE), `/api/gate` (POST)
+- **Views:** `src/views/` — HomePremium, BathroomSafety, Partners, BlogIndex, BlogPost, PrivacyPolicy, AdminLeadsQueue
+- **Components:** `src/components/` — Layout, LeadCaptureForm, InlineLeadForm, StickyCtaBanner, Logo, Analytics, ui/ (shadcn)
+- **Data:** Vercel Postgres / Neon (`posts` table), `data/leads.json` (local lead backup, gitignored), `data/services.json` (service pricing tiers), `data/blog.json` (seed data, no longer read at runtime)
 - **Designs:** `docs/designs/` — gstack design docs from `/office-hours` sessions; `docs/wireframes/` — wireframe HTML files
 
 ## Key Integrations
@@ -62,7 +62,7 @@ Brand tokens are configured in `tailwind.config.cjs` under `theme.extend.colors`
 - **Lead Capture:** Forms → `/api/leads` → Google Sheets via Apps Script webhook
 - **Blog API:** REST API for AI content agent (Content OS) publishing. Auth via `X-Blog-Secret` header. Idempotent upsert by slug. Zod-validated inputs
 - **Analytics:** Not yet configured (Plausible or GA planned)
-- **Anti-spam:** Turnstile env vars available but not yet enabled
+- **Anti-spam:** Turnstile CAPTCHA integrated in modal lead form (enabled when `TURNSTILE_SECRET_KEY` is set)
 
 ## Environment Variables
 
