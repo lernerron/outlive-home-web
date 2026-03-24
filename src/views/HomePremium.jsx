@@ -111,8 +111,8 @@ export default function HomePremium() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/85 via-navy/70 to-navy/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/75 via-navy/50 to-navy/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/35 via-transparent to-transparent" />
         </div>
         {/* Subtle grain */}
         <div
@@ -171,13 +171,6 @@ export default function HomePremium() {
                 Get Your Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <a
-                href="/services/bathroom-safety"
-                className="group text-sm font-semibold text-white/80 hover:text-white flex items-center gap-2 transition-colors"
-              >
-                Explore Bathroom Safety
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
             </motion.div>
           </div>
         </div>
