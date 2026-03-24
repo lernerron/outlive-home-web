@@ -129,8 +129,8 @@ export default function HomePremium() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-8"
             >
-              <span className="inline-flex items-center gap-2 text-blue text-sm font-semibold tracking-[0.2em] uppercase">
-                <span className="w-8 h-px bg-blue" />
+              <span className="inline-flex items-center gap-2 text-white text-sm font-bold tracking-[0.2em] uppercase" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
+                <span className="w-8 h-px bg-white" />
                 South Florida&rsquo;s Home Accessibility Experts
               </span>
             </motion.div>
