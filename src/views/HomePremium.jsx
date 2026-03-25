@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -131,7 +132,7 @@ export default function HomePremium() {
             >
               <span className="inline-flex items-center gap-2 text-white text-sm font-bold tracking-[0.2em] uppercase" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
                 <span className="w-8 h-px bg-white" />
-                South Florida&rsquo;s Home Accessibility Experts
+                Home Accessibility Experts
               </span>
             </motion.div>
 
@@ -152,9 +153,9 @@ export default function HomePremium() {
               className="mt-8 text-lg sm:text-xl leading-relaxed text-white/75 max-w-xl"
             >
               We design and install barrier-free bathroom solutions that let
-              South Florida customers stay safe and independent at home. From
-              shower conversions to complete accessible bathrooms &mdash;
-              installed in days, not months.
+              customers stay safe and independent at home. From shower
+              conversions to complete accessible bathrooms &mdash; installed
+              in days, not months.
             </motion.p>
 
             <motion.div
@@ -221,206 +222,67 @@ export default function HomePremium() {
       </motion.div>
 
       {/* ═══════════════════════════════════════
-          OUR EXPERTISE
+          BATHROOM SHOWCASE — Feature-benefit split
           ═══════════════════════════════════════ */}
       <section id="solutions" className="bg-bg-gray py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="mx-auto max-w-2xl text-center mb-16">
-              <span className="text-warm font-semibold text-sm tracking-[0.15em] uppercase">What We Do</span>
-              <h2
-                className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-anchor"
-                style={{ fontFamily: playfair }}
-              >
-                Our Expertise
-              </h2>
-              <p className="mt-6 text-lg text-text-body/70 leading-relaxed">
-                We design solutions that fit your home and your personal needs.
-              </p>
-            </div>
-          </Reveal>
-
-          <motion.div
-            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {[
-              {
-                title: "Bathroom Safety",
-                description:
-                  "From minor modifications such as grab bars and shower seats to full renovations, we help you navigate your bathroom safely and comfortably.",
-                image: ASSET_URLS.home.bathroomSafetyCard,
-                href: "/services/bathroom-safety",
-              },
-              {
-                title: "Home Elevators",
-                description:
-                  "Safe, reliable, and elegant home elevators for seamless floor-to-floor access.",
-                image: ASSET_URLS.home.homeElevators,
-                comingSoon: true,
-              },
-              {
-                title: "Stair Lifts",
-                description:
-                  "Glide up and down your stairs with a gentle, smooth ride from start to finish.",
-                image: ASSET_URLS.home.stairLifts,
-                comingSoon: true,
-              },
-            ].map((product, index) => {
-              const CardWrapper = product.href ? 'a' : 'div';
-              const cardProps = product.href ? { href: product.href } : {};
-              return (
-                <motion.div
-                  key={index}
-                  variants={staggerItem}
-                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
-                >
-                  <CardWrapper
-                    {...cardProps}
-                    className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 border border-gray-100"
-                  >
-                    <div className="relative h-56 overflow-hidden">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-anchor/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      {product.comingSoon && (
-                        <span className="absolute top-4 right-4 bg-navy text-white text-xs font-semibold px-3 py-1 rounded-full">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                    <div className="p-7">
-                      <h3 className="text-xl font-bold text-anchor mb-3" style={{ fontFamily: playfair }}>
-                        {product.title}
-                      </h3>
-                      <p className="text-text-body/70 leading-relaxed">
-                        {product.description}
-                      </p>
-                      {product.href && (
-                        <span className="mt-4 inline-flex items-center text-warm font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
-                          Learn More <ArrowRight className="ml-1 h-4 w-4" />
-                        </span>
-                      )}
-                      {product.comingSoon && (
-                        <button
-                          type="button"
-                          onClick={(e) => { e.preventDefault(); setLeadFormOpen(true); }}
-                          className="mt-4 inline-flex items-center text-navy font-semibold text-sm hover:text-blue transition-colors duration-300"
-                        >
-                          Notify Me <ArrowRight className="ml-1 h-4 w-4" />
-                        </button>
-                      )}
-                    </div>
-                  </CardWrapper>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          <Reveal delay={0.2}>
-            <div className="text-center">
-              <Button
-                size="lg"
-                className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-                onClick={() => setLeadFormOpen(true)}
-              >
-                Get Your Free Assessment
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════
-          BATHROOM SOLUTIONS SHOWCASE
-          ═══════════════════════════════════════ */}
-      <section className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="mx-auto max-w-3xl text-center mb-16">
-              <h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-anchor leading-tight"
-                style={{ fontFamily: playfair }}
-              >
-                Simple solutions.{" "}
-                <span className="text-warm">Big results.</span>
-              </h2>
-              <p className="mt-6 text-lg text-text-body/70 leading-relaxed">
-                We combine style and functionality to design a bathroom you love.
-                And use quality craftsmanship that&rsquo;s built to last.
-              </p>
-            </div>
-          </Reveal>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-5"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            {[
-              {
-                title: "Bathroom Remodels",
-                description: "Remodel your bathroom to match your style and needs.",
-                image: ASSET_URLS.home.bathroomRemodel,
-              },
-              {
-                title: "Shower Conversions",
-                description: "Convert your tub to a shower or your shower to a tub.",
-                image: ASSET_URLS.brand.showerGlassEnclosure,
-              },
-              {
-                title: "Walk-in Solutions",
-                description: "Safe, accessible walk-in showers and baths for comfort and independence.",
-                image: ASSET_URLS.home.walkinShower,
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                whileHover={{ scale: 1.02, transition: { duration: 0.4 } }}
-                className="relative group overflow-hidden rounded-2xl aspect-[3/4] cursor-pointer"
-                onClick={() => setLeadFormOpen(true)}
-              >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image — shows first on mobile */}
+            <Reveal>
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                 <Image
-                  src={item.image}
-                  alt={item.title}
+                  src={ASSET_URLS.home.bathroomSafetyCard}
+                  alt="Modern accessible bathroom with barrier-free shower"
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-anchor/90 via-anchor/20 to-transparent" />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-warm/0 group-hover:bg-warm/10 transition-colors duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
-                  <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
-                    <h3
-                      className="text-2xl sm:text-3xl font-bold text-white mb-3"
-                      style={{ fontFamily: playfair }}
+              </div>
+            </Reveal>
+
+            {/* Content */}
+            <Reveal delay={0.2}>
+              <div>
+                <span className="text-warm font-semibold text-sm tracking-[0.15em] uppercase">Our Expertise</span>
+                <h2
+                  className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-anchor"
+                  style={{ fontFamily: playfair }}
+                >
+                  Bathroom Safety Solutions
+                </h2>
+                <p className="mt-6 text-lg text-text-body/70 leading-relaxed">
+                  We combine clinical expertise with exceptional craftsmanship to create
+                  bathrooms that are safe, beautiful, and built to last.
+                </p>
+
+                <ul className="mt-8 space-y-4">
+                  {[
+                    "Barrier-free shower conversions",
+                    "Installed in days, not months",
+                    "Licensed, insured, CAPS certified",
+                    "Financing options available",
+                  ].map((benefit) => (
+                    <li key={benefit} className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 text-blue flex-shrink-0 mt-0.5" />
+                      <span className="text-text-body leading-relaxed">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <Link href="/services/bathroom-safety">
+                    <Button
+                      size="lg"
+                      className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
                     >
-                      {item.title}
-                    </h3>
-                    <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                      {item.description}
-                    </p>
-                    <div className="mt-4 flex items-center text-warm font-semibold text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0">
-                      Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
-                  </div>
+                      Explore Bathroom Safety
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

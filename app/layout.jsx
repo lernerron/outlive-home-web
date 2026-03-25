@@ -17,14 +17,14 @@ const dmSans = DM_Sans({
 export const metadata = {
   title: 'Outlive Homes | The Art and Science of Outliving at Home',
   description:
-    'Expert home accessibility solutions for aging in place. South Florida\'s trusted partner for safe, elegant, independent living.',
+    'Expert home accessibility solutions for aging in place. Your trusted partner for safe, elegant, independent living.',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 'https://outlivehome.com'
   ),
   openGraph: {
     title: 'Outlive Homes | The Art and Science of Outliving at Home',
     description:
-      'Expert home accessibility solutions for aging in place. South Florida\'s trusted partner for safe, elegant, independent living.',
+      'Expert home accessibility solutions for aging in place. Your trusted partner for safe, elegant, independent living.',
     type: 'website',
     images: ['/assets/outlive-homes-og.jpg'],
   },

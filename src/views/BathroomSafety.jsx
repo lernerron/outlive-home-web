@@ -94,7 +94,7 @@ const FAQ_ITEMS = [
   {
     question: "Are you licensed and insured?",
     answer:
-      "Yes. Outlive Homes is fully licensed and insured in the state of Florida. Our team includes CAPS (Certified Aging-in-Place Specialist) professionals trained specifically in home accessibility modifications.",
+      "Yes. Outlive Homes is fully licensed and insured in every market we serve. Our team includes CAPS (Certified Aging-in-Place Specialist) professionals trained specifically in home accessibility modifications.",
   },
 ];
 

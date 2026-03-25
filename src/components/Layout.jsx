@@ -196,7 +196,7 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
                 The Art and Science of Outliving at Home
               </p>
               <p className="text-sm leading-6 text-white/50">
-                South Florida &middot; Miami and Surrounding Metros
+                South Florida | Los Angeles
               </p>
               <p className="text-xs text-white/40">Founded 2025</p>
             </div>
