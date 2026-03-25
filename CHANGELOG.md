@@ -2,6 +2,12 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.6.0] - 2026-03-25 — Resilient Webhook
+
+### Fixed
+
+- **Webhook failure no longer blocks lead submission** — if the Google Sheets webhook is temporarily unavailable, the user still sees success. The lead is already persisted locally before the webhook fires, so no data is lost. Errors are logged server-side for debugging.
+
 ## [1.0.5.0] - 2026-03-25 — UTM Tracking & Lead Attribution
 
 ### Added
