@@ -370,4 +370,4 @@ Alternate between `bg-white` and `bg-bg-gray` backgrounds:
 - Never use warm-gray as body text
 - Never skip hover/focus states on interactive elements
 - Never use animations faster than 300ms (jarring for aging users)
-- Never use auto-playing carousels or rapid transitions
+- Never use auto-playing *sliding* carousels or rapid transitions. Subtle crossfade galleries that pause on hover and respect `prefers-reduced-motion` are acceptable.

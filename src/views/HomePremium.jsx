@@ -90,8 +90,44 @@ function Counter({ target, suffix = "" }) {
 /* ═══════════════════════════════════════════════════
    PREMIUM HOMEPAGE
    ═══════════════════════════════════════════════════ */
+/* ─── Showcase Images ─── */
+const showcaseImages = [
+  { src: ASSET_URLS.home.bathroomSafetyCard, alt: "Modern accessible bathroom with barrier-free shower" },
+  { src: ASSET_URLS.home.bathroomRemodel, alt: "Modern accessible bathroom remodel" },
+  { src: ASSET_URLS.home.walkinShower, alt: "Modern walk-in shower conversion" },
+  { src: ASSET_URLS.bathroomSafety.wetRoom, alt: "Barrier-free wet room design" },
+  { src: ASSET_URLS.brand.showerGlassEnclosure, alt: "Glass-enclosed accessible shower" },
+];
+
 export default function HomePremium() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const showcaseRef = useRef(null);
+
+  const prefersReducedMotion = typeof window !== "undefined"
+    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // IntersectionObserver — only auto-advance when section is visible
+  useEffect(() => {
+    if (!showcaseRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(showcaseRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-advance timer (pauses on hover, out-of-view, or reduced motion)
+  useEffect(() => {
+    if (prefersReducedMotion || isPaused || !isInView) return;
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % showcaseImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, isInView, prefersReducedMotion]);
 
   const playfair = "var(--font-playfair), Georgia, serif";
 
@@ -227,16 +263,33 @@ export default function HomePremium() {
       <section id="solutions" className="bg-bg-gray py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Image — shows first on mobile */}
+            {/* Image carousel — crossfade, auto-advance */}
             <Reveal>
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
-                <Image
-                  src={ASSET_URLS.home.bathroomSafetyCard}
-                  alt="Modern accessible bathroom with barrier-free shower"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
+              <div
+                className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl"
+                ref={showcaseRef}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                <AnimatePresence>
+                  <motion.div
+                    key={currentImageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={showcaseImages[currentImageIndex].src}
+                      alt={showcaseImages[currentImageIndex].alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                      priority={currentImageIndex === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </Reveal>
 
