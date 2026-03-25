@@ -207,23 +207,13 @@ export async function POST(request) {
       });
 
       if (!webhookResponse.ok) {
+        // Non-blocking: log failure but return success to user (lead already persisted locally)
         const details = await webhookResponse.text();
-        return new Response(
-          JSON.stringify({
-            error: 'Upstream lead destination failed',
-            details: details || webhookResponse.statusText,
-          }),
-          { status: 502, headers }
-        );
+        console.error('Webhook failed:', webhookResponse.status, details || webhookResponse.statusText);
       }
     } catch (error) {
-      return new Response(
-        JSON.stringify({
-          error: 'Unable to reach upstream lead destination',
-          details: error?.message || 'Unknown network error',
-        }),
-        { status: 502, headers }
-      );
+      // Non-blocking: log failure but return success to user (lead already persisted locally)
+      console.error('Webhook unreachable:', error?.message || 'Unknown network error');
     }
   } else {
     console.log('Lead received without LEADS_WEBHOOK_URL configured');
