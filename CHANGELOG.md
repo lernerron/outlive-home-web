@@ -2,6 +2,18 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.4.0] - 2026-03-25 — Analytics (GTM)
+
+### Added
+
+- **Google Tag Manager** (GTM-NXD2RKXX) — all tracking pixels (GA4, Google Ads, Meta Pixel, etc.) now managed from GTM web dashboard without code changes
+- **CTA click tracking** — header "Get Your Free Assessment" button fires `cta_click` event to dataLayer
+- **dataLayer integration** — all `trackEvent()` calls push to GTM's dataLayer for unified event consumption
+
+### Changed
+
+- **Analytics architecture** — GA4 no longer loaded directly in code; managed through GTM instead. Plausible support retained (optional, env var gated).
+
 ## [1.0.3.0] - 2026-03-25 — SEO Infrastructure
 
 ### Added
