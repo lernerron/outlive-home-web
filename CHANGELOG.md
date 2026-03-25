@@ -2,6 +2,25 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.3.0] - 2026-03-25 — SEO Infrastructure
+
+### Added
+
+- **Dynamic sitemap** — auto-generated from all pages + blog posts via Next.js Metadata API, with graceful fallback when database is unavailable
+- **OG image** — social share preview image (1200x630) from hero bathroom photo — links on social media, Slack, and messaging apps now show a visual preview
+- **manifest.json** — PWA web app manifest (was referenced but missing, causing 404s)
+- **JSON-LD structured data** — Organization, Service, FAQPage, and BlogPosting schemas for Google rich snippets and local SEO
+- **Homepage custom metadata** — conversion-optimized title and description for search results
+
+### Changed
+
+- **Sitemap upgraded** — replaced static 3-page XML with dynamic generation covering all 8+ pages including blog posts
+- **CLAUDE.md** — removed stale "not yet live" note (domain has been live since Sprint 2)
+
+### Removed
+
+- **Static sitemap.xml** — replaced by dynamic `app/sitemap.js`
+
 ## [1.0.2.0] - 2026-03-24 — Bathroom Gallery
 
 ### Added
