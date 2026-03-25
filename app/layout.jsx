@@ -41,10 +41,30 @@ export const metadata = {
   },
 };
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: 'Outlive Homes',
+  description: 'Expert home accessibility solutions for aging in place. Barrier-free bathroom conversions installed in days, not months.',
+  url: 'https://outlivehome.com',
+  logo: 'https://outlivehome.com/assets/outlive-homes-og.jpg',
+  areaServed: [
+    { '@type': 'State', name: 'Florida' },
+    { '@type': 'City', name: 'Los Angeles' },
+  ],
+  serviceType: 'Home Accessibility Modifications',
+  foundingDate: '2025',
+  slogan: 'The Art and Science of Outliving at Home',
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${dmSans.variable}`}>
       <body className={dmSans.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -12,6 +12,37 @@ export const metadata = {
   },
 };
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Bathroom Safety Solutions',
+  description: 'Barrier-free shower conversions, roll-in showers, and complete accessible bathrooms for adults 65+. Installed in days, not months.',
+  provider: {
+    '@type': 'HomeAndConstructionBusiness',
+    name: 'Outlive Homes',
+    url: 'https://outlivehome.com',
+    areaServed: [
+      { '@type': 'State', name: 'Florida' },
+      { '@type': 'City', name: 'Los Angeles' },
+    ],
+  },
+  serviceType: 'Bathroom Accessibility Modification',
+  offers: {
+    '@type': 'Offer',
+    price: '15000',
+    priceCurrency: 'USD',
+    description: 'Barrier-free shower conversions starting at $15,000',
+  },
+};
+
 export default function BathroomSafetyPage() {
-  return <BathroomSafetyContent />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <BathroomSafetyContent />
+    </>
+  );
 }

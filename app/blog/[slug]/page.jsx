@@ -36,5 +36,27 @@ export default async function BlogPostPage({ params }) {
   const { slug } = await params;
   const post = await getCachedPost(slug);
   if (!post || !post.published) notFound();
-  return <PostContent post={post} />;
+
+  const blogPostJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    author: { '@type': 'Organization', name: post.author || 'Outlive Homes' },
+    publisher: { '@type': 'Organization', name: 'Outlive Homes', url: 'https://outlivehome.com' },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
+    ...(post.coverImage ? { image: `https://outlivehome.com${post.coverImage}` } : {}),
+    url: `https://outlivehome.com/blog/${post.slug}`,
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostJsonLd) }}
+      />
+      <PostContent post={post} />
+    </>
+  );
 }

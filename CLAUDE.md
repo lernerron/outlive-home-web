@@ -11,7 +11,7 @@
 - **Styling:** Tailwind CSS v3 + shadcn/ui (New York style) + `@tailwindcss/typography`
 - **Package Manager:** npm
 - **Deployment:** Vercel (push-to-deploy from main) — connected
-- **Production Domain:** outlivehome.com (not yet live)
+- **Production Domain:** outlivehome.com
 - **Dev URL:** localhost:3000
 
 ## Session Start — ALWAYS DO THIS

@@ -1,0 +1,9 @@
+{
+  "name": "Outlive Homes",
+  "short_name": "Outlive",
+  "description": "Expert home accessibility solutions for aging in place.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F4F7",
+  "theme_color": "#051C2C"
+}
