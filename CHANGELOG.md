@@ -2,6 +2,25 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.1.0] - 2026-03-24 — Focused & Multi-Market
+
+### Changed
+
+- **Homepage focused on bathroom safety** — removed "Coming Soon" cards for Home Elevators and Stair Lifts, merged "Our Expertise" and "Simple Solutions" into a single bathroom showcase section (image + benefits + CTA)
+- **Multi-market positioning** — added Los Angeles as second service area, removed all Florida-specific copy from hero, FAQ, and SEO metadata
+- **Hero cosmetics** — neutral black gradient overlay (no more blue tint), white eyebrow text with text-shadow for readability, all-white headline on bathroom safety page
+- **Solid header variant** — blog and privacy policy pages now use a white header with dark text (previously invisible transparent header on light backgrounds)
+- **Blog brand tokens** — replaced generic Tailwind grays with brand token colors
+
+### Added
+
+- **Test framework** — Vitest + @testing-library/react bootstrapped with lead validation tests
+- **README rewrite** — updated from legacy Vite/Blue Mountain docs to current Next.js project
+
+### Fixed
+
+- **Header invisible on light pages** — added `headerVariant="solid"` prop to Layout component
+
 ## [1.0.0.0] - 2026-03-24 — Launch-Ready Landing Machine
 
 ### Added

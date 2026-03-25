@@ -1,68 +1,85 @@
-# Blue Mountain Public
+# Outlive Homes Website
+
+Marketing website for [Outlive Homes](https://outlivehome.com) — aging-in-place home remodeling. Converts visitors into estimate requests.
+
+**Stack:** Next.js 15 (App Router) · React 18 · Tailwind CSS · shadcn/ui · Vercel
 
 ## Local Development
 
 ```bash
 npm install
-npm run dev
+npm run dev          # localhost:3000
+npm run build        # Production build
+npm run lint         # ESLint
+npm test             # Vitest
 ```
 
-## Static Asset Base URL
+## Environment Variables
 
-- Static marketing assets are centralized in `src/lib/assets.js`.
-- Local default is `/assets` served from `public/assets`.
-- Set `VITE_ASSET_BASE_URL` to point assets to your own bucket/domain when ready.
-- Use `./scripts/download-assets.sh` to pull the legacy assets into `public/assets`.
+Copy `.env.example` to `.env.local` and fill in:
 
-## Local Lead Storage (Dev)
+```bash
+# Required for blog (auto-injected on Vercel)
+DATABASE_URL=                # Vercel Postgres / Neon
 
-- Set `LEADS_STORE_LOCAL=true` to persist leads to a local JSON file.
-- Default path is `./data/leads.json` and is only recommended for local dev.
+# Lead capture
+LEADS_WEBHOOK_URL=           # Google Apps Script webhook
+LEADS_WEBHOOK_SECRET=        # Shared secret (header-only)
+LEADS_STORE_LOCAL=true       # Also save to local JSON (dev only)
 
-## Turnstile (Anti-spam)
+# Blog API auth
+BLOG_WRITE_SECRET=           # Auth for blog write operations
 
-- Set `VITE_TURNSTILE_SITE_KEY` (client) and `TURNSTILE_SECRET_KEY` (server).
-- If set, form submissions require Turnstile verification.
+# Optional
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=  # Cloudflare Turnstile (client)
+TURNSTILE_SECRET_KEY=            # Cloudflare Turnstile (server)
+NEXT_PUBLIC_SITE_URL=            # Production URL
+SITE_PASSWORD=                   # Password gate for preview protection
+```
 
-## Analytics (Optional)
+## Site Structure
 
-- Plausible: set `VITE_PLAUSIBLE_DOMAIN`.
-- Google Analytics: set `VITE_GA_MEASUREMENT_ID`.
+| Route | Purpose |
+|-------|---------|
+| `/` | Homepage — bathroom safety focus, lead capture |
+| `/services/bathroom-safety` | Service landing page with pricing tiers |
+| `/partners` | Healthcare referral partner recruitment |
+| `/blog` | Blog index (Postgres-backed via Neon) |
+| `/blog/[slug]` | Individual blog post |
+| `/privacypolicy` | Privacy policy |
 
-## SEO Defaults
+## Lead Capture Flow
 
-- `public/robots.txt` and `public/sitemap.xml` are set to `http://localhost:5173`.
-- Update those URLs before production deployment.
+1. Visitor fills form (modal CTA or inline form)
+2. Frontend POSTs to `/api/leads`
+3. API validates fields (allowlisted), optionally verifies Turnstile CAPTCHA
+4. Forwards to Google Sheets via webhook (header-only secret)
+5. Optionally persists to local JSON (dev mode)
 
-## Lead Submission Flow
+## Blog API
 
-- Frontend posts to `VITE_LEADS_API_URL` when set.
-- If unset, frontend defaults to `/api/leads`.
-- If the endpoint is unreachable, lead data is queued in browser `localStorage` under `pending_leads`.
+REST API for programmatic content publishing. See [`docs/blog-api.md`](docs/blog-api.md) for full documentation.
 
-## Serverless Leads Endpoint
+- `GET /api/blog` — list all posts
+- `GET /api/blog/:slug` — single post
+- `POST /api/blog` — create post (requires `X-Blog-Secret`)
+- `PUT /api/blog/:slug` — update post
+- `DELETE /api/blog/:slug` — delete post
 
-This repo includes a Vercel function at `api/leads.js`.
+## Deployment
 
-- Accepts `POST /api/leads` JSON payloads.
-- Validates required fields: `name`, `zipCode`, `phone`, `email`.
-- If `LEADS_WEBHOOK_URL` is configured, forwards lead payloads there.
-- If no webhook is configured, logs payload server-side and returns success.
+- **Production:** Push to `main` → Vercel auto-deploys to [outlivehome.com](https://outlivehome.com)
+- **Preview:** Push to feature branch → Vercel creates preview deployment
 
-### Admin Queue Page
+## Design System
 
-- Open `/admin/leads-queue` to inspect local queued leads.
-- Actions available: refresh, retry-send, export JSON, export CSV, clear queue.
-- Queue source is browser `localStorage` key `pending_leads`.
+Brand identity defined in `DESIGN.md` — color tokens, typography (Playfair Display + DM Sans), component patterns, spacing, motion, and accessibility requirements. All colors use Tailwind brand tokens configured in `tailwind.config.cjs`.
 
-### Wiring `LEADS_WEBHOOK_URL` to a Real Destination
+## Testing
 
-Use Vercel project env vars:
+Vitest + @testing-library/react. Tests live in `__tests__/`.
 
-- `LEADS_WEBHOOK_URL`: destination endpoint URL.
-- `LEADS_WEBHOOK_SECRET`: optional shared secret sent as `X-Webhook-Secret`.
-- `LEADS_WEBHOOK_AUTH_HEADER`: header name for token auth (default `Authorization`).
-- `LEADS_WEBHOOK_AUTH_TOKEN`: token value (for example `Bearer <token>`).
-- `LEADS_WEBHOOK_PAYLOAD_MODE`:
-  - `raw`: sends lead object directly (default).
-  - `event`: sends `{ event: "lead.created", data: <lead> }`.
+```bash
+npm test             # Single run
+npm run test:watch   # Watch mode
+```

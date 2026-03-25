@@ -110,7 +110,11 @@ NEXT_PUBLIC_SITE_URL=
 
 ## Testing
 
-- No test framework configured yet — flag to user before skipping tests
+- **Framework:** Vitest + @testing-library/react + jsdom
+- **Run tests:** `npm test` (single run) or `npm run test:watch` (watch mode)
+- **Config:** `vitest.config.js` with `@` alias for `src/`
+- **Test directory:** `__tests__/`
+- **Conventions:** Colocate tests next to source or in `__tests__/`, use `.test.js` suffix
 - Build verification: `npm run build` must pass with 0 errors
 - API verification: test with curl (see `docs/blog-api.md`)
 
@@ -127,6 +131,8 @@ npm install          # Install dependencies
 npm run dev          # Start dev server (localhost:3000)
 npm run build        # Production build
 npm run lint         # ESLint check
+npm test             # Run tests (vitest)
+npm run test:watch   # Run tests in watch mode
 ```
 
 ## Site Goals
