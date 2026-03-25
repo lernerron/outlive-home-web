@@ -2,6 +2,19 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.5.0] - 2026-03-25 — UTM Tracking & Lead Attribution
+
+### Added
+
+- **UTM parameter capture** — automatically reads `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` from ad URLs and persists them in sessionStorage across page navigation
+- **Lead attribution** — every lead form submission now includes UTM data + landing page + page URL, forwarded to Google Sheets webhook for cost-per-lead tracking by channel
+- **Thank you page** (`/thank-you`) — post-submission page with next steps. Useful as a GTM conversion trigger (pageview = confirmed lead).
+
+### Changed
+
+- **Lead API** — added UTM and attribution fields to the allowlist (utmSource, utmMedium, utmCampaign, utmContent, utmTerm, landingPage, pageUrl)
+- **submitLead()** — auto-injects UTM data at the shared submission layer, so all 3 form types (modal, inline, sticky) get attribution automatically with zero form-level changes
+
 ## [1.0.4.0] - 2026-03-25 — Analytics (GTM)
 
 ### Added

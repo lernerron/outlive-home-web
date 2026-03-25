@@ -73,7 +73,7 @@ Brand tokens are configured in `tailwind.config.cjs` under `theme.extend.colors`
 
 ## Architecture
 
-- **Routes:** `/` (home), `/services/bathroom-safety`, `/partners`, `/blog`, `/blog/[slug]`, `/privacypolicy`, `/admin/leads-queue`, `/gate`
+- **Routes:** `/` (home), `/services/bathroom-safety`, `/partners`, `/blog`, `/blog/[slug]`, `/privacypolicy`, `/thank-you`, `/admin/leads-queue`, `/gate`
 - **APIs:** `/api/leads` (POST), `/api/blog` (GET/POST), `/api/blog/[slug]` (GET/PUT/DELETE), `/api/gate` (POST)
 - **Views:** `src/views/` — HomePremium, BathroomSafety, Partners, BlogIndex, BlogPost, PrivacyPolicy, AdminLeadsQueue
 - **Components:** `src/components/` — Layout, LeadCaptureForm, InlineLeadForm, StickyCtaBanner, Logo, Analytics, ui/ (shadcn)
