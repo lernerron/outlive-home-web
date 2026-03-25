@@ -2,6 +2,16 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.0.2.0] - 2026-03-24 — Bathroom Gallery
+
+### Added
+
+- **Image carousel in bathroom showcase** — 5 rotating bathroom photos with smooth crossfade transitions (0.8s, every 5 seconds). Pauses on hover, stops when scrolled out of view, and shows a static image for users who prefer reduced motion.
+
+### Changed
+
+- **DESIGN.md anti-pattern clarified** — "no auto-playing carousels" refined to distinguish sliding carousels (still banned) from subtle crossfade galleries with accessibility controls (acceptable).
+
 ## [1.0.1.0] - 2026-03-24 — Focused & Multi-Market
 
 ### Changed
