@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
 import { getBannerConfig } from '@/lib/banner-config';
+import { trackEvent } from '@/lib/analytics';
 
 export default function Layout({ children, bannerPreset, headerVariant = "transparent" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -109,7 +110,10 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-6">
             <Button
-              onClick={() => setLeadFormOpen(true)}
+              onClick={() => {
+                trackEvent('cta_click', { source: 'header' });
+                setLeadFormOpen(true);
+              }}
               className={cn(
                 "rounded-full",
                 isSolid ? "" : "transition-all duration-300",

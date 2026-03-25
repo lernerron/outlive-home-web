@@ -84,7 +84,7 @@ Brand tokens are configured in `tailwind.config.cjs` under `theme.extend.colors`
 
 - **Lead Capture:** Forms → `/api/leads` → Google Sheets via Apps Script webhook
 - **Blog API:** REST API for AI content agent (Content OS) publishing. Auth via `X-Blog-Secret` header. Idempotent upsert by slug. Zod-validated inputs
-- **Analytics:** Not yet configured (Plausible or GA planned)
+- **Analytics:** Google Tag Manager (GTM-NXD2RKXX) → GA4 configured in GTM dashboard. Events via `dataLayer.push()`. Plausible optional (env var gated).
 - **Anti-spam:** Turnstile CAPTCHA integrated in modal lead form (enabled when `TURNSTILE_SECRET_KEY` is set)
 
 ## Environment Variables
