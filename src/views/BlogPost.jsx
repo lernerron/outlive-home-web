@@ -40,11 +40,11 @@ export default function BlogPost({ post }) {
           ))}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-anchor">
           {post.title}
         </h1>
 
-        <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
+        <div className="mt-4 flex items-center gap-4 text-sm text-text-body/70">
           <span>{post.author}</span>
           <span>&middot;</span>
           <span>{format(new Date(post.publishedAt), 'MMMM d, yyyy')}</span>

@@ -5,7 +5,7 @@ import BlogPost from '@/views/BlogPost';
 
 export default function PostContent({ post }) {
   return (
-    <Layout>
+    <Layout headerVariant="solid">
       <BlogPost post={post} />
     </Layout>
   );

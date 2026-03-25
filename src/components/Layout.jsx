@@ -10,7 +10,7 @@ import LeadCaptureForm from '@/components/LeadCaptureForm';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
 import { getBannerConfig } from '@/lib/banner-config';
 
-export default function Layout({ children, bannerPreset }) {
+export default function Layout({ children, bannerPreset, headerVariant = "transparent" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [leadFormOpen, setLeadFormOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,19 +49,25 @@ export default function Layout({ children, bannerPreset }) {
     { name: 'Blog', href: '/blog' },
   ];
 
+  const isSolid = headerVariant === "solid";
+  const useSolidHeader = isSolid || isScrolled;
+
   return (
     <div className="bg-white">
       <header className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        isScrolled ? "bg-white shadow-sm" : "bg-transparent"
+        "fixed w-full z-50",
+        isSolid ? "" : "transition-all duration-300",
+        useSolidHeader ? "bg-white border-b border-gray-100" : "bg-transparent",
+        isScrolled && "shadow-sm"
       )}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Outlive Homes</span>
               <span className={cn(
-                "text-xl font-bold tracking-tight transition-colors duration-300",
-                isScrolled ? "text-anchor" : "text-white"
+                "text-xl font-bold tracking-tight",
+                isSolid ? "" : "transition-colors duration-300",
+                useSolidHeader ? "text-anchor" : "text-white"
               )}>
                 Outlive Homes
               </span>
@@ -71,8 +77,9 @@ export default function Layout({ children, bannerPreset }) {
             <button
               type="button"
               className={cn(
-                "-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors",
-                isScrolled ? "text-text-body" : "text-white"
+                "-m-2.5 inline-flex items-center justify-center rounded-md p-2.5",
+                isSolid ? "" : "transition-colors",
+                useSolidHeader ? "text-text-body" : "text-white"
               )}
               onClick={() => setMobileMenuOpen(true)}
             >
@@ -88,8 +95,9 @@ export default function Layout({ children, bannerPreset }) {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "text-sm font-semibold leading-6 transition-colors duration-300",
-                    isScrolled
+                    "text-sm font-semibold leading-6",
+                    isSolid ? "" : "transition-colors duration-300",
+                    useSolidHeader
                       ? "text-text-body hover:text-blue"
                       : "text-white/90 hover:text-white"
                   )}
@@ -103,8 +111,9 @@ export default function Layout({ children, bannerPreset }) {
             <Button
               onClick={() => setLeadFormOpen(true)}
               className={cn(
-                "transition-all duration-300 rounded-full",
-                isScrolled
+                "rounded-full",
+                isSolid ? "" : "transition-all duration-300",
+                useSolidHeader
                   ? "bg-blue hover:bg-blue/90 text-white shadow-lg shadow-blue/20"
                   : "bg-white text-anchor hover:bg-white/90"
               )}
@@ -173,6 +182,7 @@ export default function Layout({ children, bannerPreset }) {
       />
 
       <main>
+        {isSolid && <div className="h-20" />}
         {children}
       </main>
 

@@ -5,7 +5,7 @@ import BlogIndex from '@/views/BlogIndex';
 
 export default function BlogContent({ posts }) {
   return (
-    <Layout>
+    <Layout headerVariant="solid">
       <BlogIndex posts={posts} />
     </Layout>
   );

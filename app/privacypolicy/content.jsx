@@ -5,7 +5,7 @@ import PrivacyPolicy from '@/views/PrivacyPolicy';
 
 export default function PrivacyPolicyContent() {
   return (
-    <Layout>
+    <Layout headerVariant="solid">
       <PrivacyPolicy />
     </Layout>
   );
