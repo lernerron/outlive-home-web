@@ -29,6 +29,29 @@ All non-trivial work uses the OpenSpec spec-driven workflow. See `~/.claude/rule
 
 Development workflow follows the GStack governance framework. See @.claude/rules/governance.md for modes, stage gates, and skill routing.
 
+### GStack Protocol Summary
+
+**Mode Selection:**
+- New feature or big change → Full Sprint
+- Existing plan or OpenSpec change → Execution Mode
+- Bug fix or trivial change → Direct Fix
+
+**Full Sprint Sequence:**
+1. **Think** — `/office-hours` or `/plan-ceo-review` → user approves direction
+2. **Plan** — `/plan-eng-review` (required) + `/plan-design-review` (if UI) → user approves plan
+3. **Build** — Implement per plan, one concern per commit
+4. **Review** — `/review` → issues resolved
+5. **QA** — `/qa` → all passing
+6. **Ship** — `/ship` → push + PR, then `/document-release`
+
+**Skill Routing (which reviews to run):**
+| Step involves | Required | Optional |
+|---|---|---|
+| Backend / data / API | `/plan-eng-review`, `/review`, `/qa` | — |
+| Frontend / UI | `/plan-eng-review`, `/plan-design-review`, `/review`, `/qa` | `/browse` |
+| Config / infra | `/plan-eng-review`, `/review` | `/qa` |
+| Copy / content only | `/review` | `/plan-design-review` |
+
 ## Tech Stack Conventions
 
 - **Server Components by default** — use Client Components only when the component needs interactivity, hooks, or browser APIs
