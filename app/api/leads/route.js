@@ -179,6 +179,8 @@ export async function POST(request) {
     'name', 'email', 'phone', 'zipCode', 'address', 'comments',
     'serviceType', 'urgency', 'relationship', 'leadType', 'source',
     'organization', 'role', 'message',
+    'utmSource', 'utmMedium', 'utmCampaign', 'utmContent', 'utmTerm',
+    'landingPage', 'pageUrl',
   ];
   const leadPayload = { receivedAt: new Date().toISOString() };
   for (const field of allowedFields) {

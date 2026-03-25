@@ -10,6 +10,7 @@ import LeadCaptureForm from '@/components/LeadCaptureForm';
 import StickyCtaBanner from '@/components/StickyCtaBanner';
 import { getBannerConfig } from '@/lib/banner-config';
 import { trackEvent } from '@/lib/analytics';
+import { captureUtm } from '@/lib/utm';
 
 export default function Layout({ children, bannerPreset, headerVariant = "transparent" }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,6 +43,11 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
+
+  // Capture UTM parameters from URL on every page load
+  useEffect(() => {
+    captureUtm();
+  }, []);
 
   const navigation = [
     { name: 'Bathroom Safety', href: '/services/bathroom-safety' },

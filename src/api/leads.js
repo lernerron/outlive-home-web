@@ -71,13 +71,29 @@ export const retryPendingLeads = async () => {
 };
 
 export async function submitLead(payload) {
+  // Auto-inject UTM attribution + page URL into every submission
+  let enrichedPayload = { ...payload };
+  try {
+    const { getUtmData } = await import('@/lib/utm');
+    const utmData = getUtmData();
+    if (utmData.utm_source) enrichedPayload.utmSource = utmData.utm_source;
+    if (utmData.utm_medium) enrichedPayload.utmMedium = utmData.utm_medium;
+    if (utmData.utm_campaign) enrichedPayload.utmCampaign = utmData.utm_campaign;
+    if (utmData.utm_content) enrichedPayload.utmContent = utmData.utm_content;
+    if (utmData.utm_term) enrichedPayload.utmTerm = utmData.utm_term;
+    if (utmData.landing_page) enrichedPayload.landingPage = utmData.landing_page;
+    enrichedPayload.pageUrl = typeof window !== 'undefined' ? window.location.href : '';
+  } catch {
+    // UTM capture is best-effort — never block lead submission
+  }
+
   await retryPendingLeads();
   let response;
   try {
-    response = await sendLeadToEndpoint(payload);
+    response = await sendLeadToEndpoint(enrichedPayload);
   } catch (error) {
     // If the endpoint is unavailable (e.g. local dev without API), queue locally.
-    queueLeadLocally(payload);
+    queueLeadLocally(enrichedPayload);
     return {
       queued: true,
       reason: 'network_error',
