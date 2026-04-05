@@ -158,19 +158,6 @@ export default function HomePremium() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-8"
-            >
-              <span className="inline-flex items-center gap-2 text-white text-sm font-bold tracking-[0.2em] uppercase" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
-                <span className="w-8 h-px bg-white" />
-                Home Accessibility Experts
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,10 +174,10 @@ export default function HomePremium() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="mt-8 text-lg sm:text-xl leading-relaxed text-white/75 max-w-xl"
             >
-              We design and install barrier-free bathroom solutions that let
-              customers stay safe and independent at home. From shower
-              conversions to complete accessible bathrooms &mdash; installed
-              in days, not months.
+              We design and install bathroom solutions that help people stay
+              safe, independent, and comfortably in the homes they love.
+              From bathtub to shower conversions to complete bathroom
+              remodels.
             </motion.p>
 
             <motion.div
@@ -300,19 +287,18 @@ export default function HomePremium() {
                   className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-anchor"
                   style={{ fontFamily: playfair }}
                 >
-                  Bathroom Safety Solutions
+                  Barrier Free Bathroom Solutions
                 </h2>
                 <p className="mt-6 text-lg text-text-body/70 leading-relaxed">
-                  We combine clinical expertise with exceptional craftsmanship to create
-                  bathrooms that are safe, beautiful, and built to last.
+                  We combine universal design expertise with exceptional craftsmanship to create
+                  bathrooms that are safe, beautiful, functional and built to last.
                 </p>
 
                 <ul className="mt-8 space-y-4">
                   {[
-                    "Barrier-free shower conversions",
-                    "Installed in days, not months",
-                    "Licensed, insured, CAPS certified",
-                    "Financing options available",
+                    "Create more space, and enable easier access",
+                    "Blend beauty, function, and safety",
+                    "Create spaces that work for you today and decades from now",
                   ].map((benefit) => (
                     <li key={benefit} className="flex items-start gap-3">
                       <CheckCircle2 className="h-6 w-6 text-blue flex-shrink-0 mt-0.5" />
@@ -367,7 +353,7 @@ export default function HomePremium() {
                 step: "01",
                 title: "Free Consultation",
                 description:
-                  "We visit your home, assess your needs, and discuss solutions — no obligation, no pressure.",
+                  "We assess your needs and discuss solutions — no obligation, no pressure.",
               },
               {
                 icon: Ruler,
