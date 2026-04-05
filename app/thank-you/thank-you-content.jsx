@@ -51,11 +51,6 @@ export default function ThankYouContent() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/services/bathroom-safety">
-              <Button variant="outline" className="px-8 py-6 text-base rounded-full border-2 border-anchor text-anchor hover:bg-anchor hover:text-white">
-                Explore Our Solutions
-              </Button>
-            </Link>
           </div>
         </div>
       </section>

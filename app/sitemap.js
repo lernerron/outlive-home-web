@@ -4,8 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://outlivehome.com';
 
 const staticRoutes = [
   { path: '/', changeFrequency: 'weekly', priority: 1.0 },
-  { path: '/services/bathroom-safety', changeFrequency: 'monthly', priority: 0.9 },
-  { path: '/partners', changeFrequency: 'monthly', priority: 0.7 },
+{ path: '/partners', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/privacypolicy', changeFrequency: 'yearly', priority: 0.3 },
 ];

@@ -18,6 +18,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/services/bathroom-safety',
+        destination: '/',
+        permanent: false,
+      },
     ];
   },
 };

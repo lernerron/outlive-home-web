@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -323,15 +322,14 @@ export default function HomePremium() {
                 </ul>
 
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <Link href="/services/bathroom-safety">
-                    <Button
-                      size="lg"
-                      className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-                    >
-                      Explore Bathroom Safety
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <Button
+                    size="lg"
+                    onClick={() => setLeadFormOpen(true)}
+                    className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-base rounded-full shadow-lg shadow-blue/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    Get a Free Estimate
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                 </div>
               </div>
             </Reveal>

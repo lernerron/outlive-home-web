@@ -50,7 +50,6 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
   }, []);
 
   const navigation = [
-    { name: 'Bathroom Safety', href: '/services/bathroom-safety' },
     { name: 'Our Process', href: '/#process' },
     { name: 'Why Us', href: '/#why-us' },
     { name: 'Blog', href: '/blog' },
@@ -214,7 +213,6 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-white/50 mb-6 uppercase">Quick Links</h3>
                 <ul role="list" className="space-y-3">
-                  <li><Link href="/services/bathroom-safety" className="text-sm text-white/70 hover:text-white">Bathroom Safety</Link></li>
                   <li><a href="/#process" className="text-sm text-white/70 hover:text-white">Our Process</a></li>
                   <li><a href="/#why-us" className="text-sm text-white/70 hover:text-white">Why Us</a></li>
                   <li><Link href="/blog" className="text-sm text-white/70 hover:text-white">Blog</Link></li>
