@@ -2,6 +2,16 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.1.1.0] - 2026-04-07 — AIPR Founding Partner Page
+
+### Added
+
+- **AIPR founding partner page** (`/partners/aipr`) — 11-section operations partner page for Tyler Owen / Aging-in-Place Remodeling. Positions Tyler as Founding Partner for LA market with 30 years of experience, CAPS certification, NAHB award, and #1 Stiltz dealer status
+- **Stiltz Elevators feature section** — dedicated product showcase for home elevators (#1 US dealer), paired with Rapid Recess showers to show Outlive's full product portfolio
+- **Service area with SoCal referral** — LA metro as Outlive territory, with link to AIPR directly for San Diego/OC/Riverside service
+- **Benefits bridge section** — "The Outlive + AIPR Difference" translating capabilities into homeowner outcomes
+- **AIPR go-live checklist** in TODOS.md — nav links, SEO, real assets from Tyler
+
 ## [1.1.0.0] - 2026-04-07 — Rapid Recess Partner Page
 
 ### Added
