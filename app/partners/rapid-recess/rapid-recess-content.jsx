@@ -5,7 +5,7 @@ import RapidRecess from '@/views/RapidRecess';
 
 export default function RapidRecessContent() {
   return (
-    <Layout headerVariant="solid" bannerPreset={null}>
+    <Layout headerVariant="solid" bannerPreset={false}>
       <RapidRecess />
     </Layout>
   );
