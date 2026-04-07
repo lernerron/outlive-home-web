@@ -44,3 +44,8 @@
 **Why:** Mockup uses dashed-border placeholders. Real assets needed for production.
 **Context:** Images go in `public/assets/partners/aipr/`. Use `next/image`.
 **Depends on:** Tyler Owen approval + asset delivery.
+
+### Re-enable sticky CTA banner on AIPR page
+**What:** Remove `bannerPreset={false}` from `app/partners/aipr/aipr-content.jsx` so the sticky CTA banner appears.
+**Why:** Banner is suppressed during mockup/CEO review stage. Should be active once the page is public.
+**Depends on:** Tyler Owen approval + all other AIPR go-live items completed.
