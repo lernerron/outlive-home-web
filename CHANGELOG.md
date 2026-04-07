@@ -2,6 +2,20 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.1.0.0] - 2026-04-07 — Rapid Recess Partner Page
+
+### Added
+
+- **Rapid Recess partner page** (`/partners/rapid-recess`) — 9-section mockup page for Rapid Recess CEO review. Hero, company story, credentials, quote placeholder, technical specs, video/gallery placeholders, benefits bridge, and CTA with lead form attribution
+- **Per-partner password gate** — reusable auth system for password-protecting partner mockup pages. Individual env vars per partner (e.g., `PARTNER_PW_RAPID_RECESS`), branded gate UI with Outlive logo, timing-safe password comparison, slug validation
+- **Partner gate API** (`/api/partner-gate`) — validates passwords, sets scoped httpOnly cookies with 7-day expiry
+- **Banner suppression** — `bannerPreset={false}` on Layout now hides the sticky CTA banner (used during partner review stage)
+- **Go-live checklist** in TODOS.md — nav links, SEO/sitemap, real assets, banner re-enable
+
+### Changed
+
+- **Layout.jsx** — supports `bannerPreset={false}` to suppress sticky CTA banner without affecting scroll behavior
+
 ## [1.0.6.0] - 2026-03-25 — Resilient Webhook
 
 ### Fixed

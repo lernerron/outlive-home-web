@@ -19,14 +19,20 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
   const [showBanner, setShowBanner] = useState(false);
   const lastScrollY = useRef(0);
   const scrollDirection = useRef('down');
-  const bannerConfig = getBannerConfig(bannerPreset);
+  const bannerConfig = bannerPreset === false ? null : getBannerConfig(bannerPreset);
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
-    const heroThreshold = window.innerHeight * bannerConfig.scrollThreshold;
-    const delta = currentY - lastScrollY.current;
 
     setIsScrolled(currentY > 80);
+
+    if (!bannerConfig) {
+      lastScrollY.current = currentY;
+      return;
+    }
+
+    const heroThreshold = window.innerHeight * bannerConfig.scrollThreshold;
+    const delta = currentY - lastScrollY.current;
 
     if (Math.abs(delta) > 5) {
       scrollDirection.current = delta > 0 ? 'down' : 'up';
@@ -37,7 +43,7 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
     setShowBanner(pastHero && isDown);
 
     lastScrollY.current = currentY;
-  }, [bannerConfig.scrollThreshold]);
+  }, [bannerConfig]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -184,11 +190,13 @@ export default function Layout({ children, bannerPreset, headerVariant = "transp
         )}
       </header>
 
-      <StickyCtaBanner
-        visible={showBanner}
-        onOpenModal={() => setLeadFormOpen(true)}
-        config={bannerConfig}
-      />
+      {bannerConfig && (
+        <StickyCtaBanner
+          visible={showBanner}
+          onOpenModal={() => setLeadFormOpen(true)}
+          config={bannerConfig}
+        />
+      )}
 
       <main>
         {isSolid && <div className="h-20" />}
