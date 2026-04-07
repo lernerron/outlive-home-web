@@ -27,6 +27,8 @@ export default function PartnerGate({ slug }) {
 
       if (res.ok) {
         router.refresh();
+        // Reset loading if refresh doesn't unmount the gate (e.g., slow network)
+        setTimeout(() => setLoading(false), 5000);
       } else {
         setError('Incorrect password');
         setLoading(false);

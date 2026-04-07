@@ -299,19 +299,20 @@ export default function RapidRecess() {
             className="grid grid-cols-1 sm:grid-cols-2 gap-8"
           >
             {[
-              "Before photo — pending from Rapid Recess",
-              "After photo — pending from Rapid Recess",
-              "Before photo — pending from Rapid Recess",
-              "After photo — pending from Rapid Recess",
-            ].map((label, i) => (
+              { id: "before-1", label: "Before photo — pending from Rapid Recess" },
+              { id: "after-1", label: "After photo — pending from Rapid Recess" },
+              { id: "before-2", label: "Before photo — pending from Rapid Recess" },
+              { id: "after-2", label: "After photo — pending from Rapid Recess" },
+            ].map(({ id, label }) => (
               <motion.div
-                key={i}
+                key={id}
                 variants={staggerItem}
                 className="bg-bg-gray border-2 border-dashed border-warm-gray rounded-2xl aspect-[4/3] flex items-center justify-center"
               >
                 <p className="text-warm-gray text-sm text-center px-4">
                   [{label}]
                 </p>
+
               </motion.div>
             ))}
           </motion.div>
