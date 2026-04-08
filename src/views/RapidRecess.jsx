@@ -169,8 +169,8 @@ export default function RapidRecess() {
                   shower system from the ground up.
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-text-body">
-                  With co-founder Bill Parker bringing 30 years of installation
-                  expertise, Rapid Recess was built on a simple philosophy: never
+                  With over 30 years of installation expertise, Josef built
+                  Rapid Recess on a simple philosophy: never
                   sell something you wouldn&apos;t install in your own
                   grandmother&apos;s house. Their patented above-joist installation
                   means no structural compromise to your home.
