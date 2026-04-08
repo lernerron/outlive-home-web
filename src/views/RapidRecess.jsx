@@ -172,7 +172,7 @@ export default function RapidRecess() {
                   With over 30 years of installation expertise, Josef built
                   Rapid Recess on a simple philosophy: never
                   sell something you wouldn&apos;t install in your own
-                  grandmother&apos;s house. Their patented above-joist installation
+                  mother&apos;s house. Their patented above-joist installation
                   means no structural compromise to your home.
                 </p>
               </div>
@@ -222,7 +222,7 @@ export default function RapidRecess() {
                 style={{ fontFamily: playfair }}
               >
                 &ldquo;We won&apos;t sell you something we wouldn&apos;t install
-                in our grandma&apos;s house.&rdquo;
+                in our mother&apos;s house.&rdquo;
               </blockquote>
               <p className="mt-4 text-sm font-semibold text-text-body/70">
                 — Josef Erlebach, Co-Founder, Rapid Recess

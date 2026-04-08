@@ -59,7 +59,7 @@ describe('RapidRecess', () => {
 
   it('renders real Josef quote', () => {
     render(<RapidRecess />);
-    expect(screen.getByText(/grandma's house/)).toBeInTheDocument();
+    expect(screen.getByText(/mother's house/)).toBeInTheDocument();
     expect(screen.getByText(/Josef Erlebach, Co-Founder/)).toBeInTheDocument();
   });
 
