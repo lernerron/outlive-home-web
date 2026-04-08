@@ -2,6 +2,14 @@
 
 All notable changes to the Outlive Homes website will be documented in this file.
 
+## [1.1.1.1] - 2026-04-08 — Rapid Recess Content Update
+
+### Changed
+
+- **Rapid Recess page rewritten with real founder meeting data** — origin story (Barbara's injury, first US linear drain, changed building codes), Josef's philosophy quote, DCOF slip resistance comparison bars, Hilton/Ferguson trust proof, updated credentials and product features
+- **New Safety section** with animated DCOF comparison bars showing Rapid Recess at 0.81 vs industry minimum 0.42
+- **Rapid Recess logo placeholder** added to hero section
+
 ## [1.1.1.0] - 2026-04-07 — AIPR Founding Partner Page
 
 ### Added
