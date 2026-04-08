@@ -57,10 +57,9 @@ describe('RapidRecess', () => {
     expect(screen.getByText('Made in USA')).toBeInTheDocument();
   });
 
-  it('renders real Josef quote', () => {
+  it('renders quote placeholder', () => {
     render(<RapidRecess />);
-    expect(screen.getByText(/mother's house/)).toBeInTheDocument();
-    expect(screen.getByText(/Josef Erlebach, Co-Founder/)).toBeInTheDocument();
+    expect(screen.getByText(/Partner quote pending/)).toBeInTheDocument();
   });
 
   it('renders safety section with DCOF data', () => {

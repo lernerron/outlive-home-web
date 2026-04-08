@@ -170,10 +170,9 @@ export default function RapidRecess() {
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-text-body">
                   With over 30 years of installation expertise, Josef built
-                  Rapid Recess on a simple philosophy: never
-                  sell something you wouldn&apos;t install in your own
-                  mother&apos;s house. Their patented above-joist installation
-                  means no structural compromise to your home.
+                  Rapid Recess on a commitment to quality and safety above all
+                  else. Their patented above-joist installation means no
+                  structural compromise to your home.
                 </p>
               </div>
             </Reveal>
@@ -221,11 +220,11 @@ export default function RapidRecess() {
                 className="text-xl sm:text-2xl leading-relaxed text-text-body italic"
                 style={{ fontFamily: playfair }}
               >
-                &ldquo;We won&apos;t sell you something we wouldn&apos;t install
-                in our mother&apos;s house.&rdquo;
+                &ldquo;[Partner quote pending — we&apos;ll add a quote from
+                the Rapid Recess team here]&rdquo;
               </blockquote>
               <p className="mt-4 text-sm font-semibold text-text-body/70">
-                — Josef Erlebach, Co-Founder, Rapid Recess
+                — Rapid Recess
               </p>
             </div>
           </Reveal>
